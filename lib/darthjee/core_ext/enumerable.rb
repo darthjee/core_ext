@@ -155,6 +155,8 @@ module Enumerable
   #
   # Checks if a value is considered empty
   #
+  # This also clean empty values
+  #
   # @return [::TrueClass,::FalseClass]
   def empty_value?(value)
     return true if value.nil? || value.try(:empty?)
