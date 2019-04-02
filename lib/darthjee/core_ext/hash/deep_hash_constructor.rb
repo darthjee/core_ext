@@ -45,13 +45,13 @@ module Darthjee
 
         # Performs deep hash transformation
         #
-        # @param array [::Hash]
+        # @param hash [::Hash]
         #
         # @return [::Hash]
         #
         # @example (see DeepHashConstructor)
-        def deep_hash(object)
-          hash_deep_hash(object)
+        def deep_hash(hash)
+          hash_deep_hash(hash)
         end
 
         private
