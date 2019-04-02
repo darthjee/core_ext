@@ -119,7 +119,7 @@ module Darthjee
         end
 
         def set_deep_hash_array_value(hash, base_key, index, value, key = nil)
-          key_without_index = base_key.gsub("[#{index}]", '')
+          key_without_index = base_key.tr("[#{index}]", '')
           hash[key_without_index] ||= []
 
           if key.nil?
@@ -130,16 +130,16 @@ module Darthjee
           end
         end
 
-        def set_deep_hash_positioned_value(new_hash, base_key, value, child_key)
+        def set_deep_hash_positioned_value(hash, base_key, value, child_key)
           index = array_index(base_key)
 
           if index
             set_deep_hash_array_value(
-              new_hash, base_key, index,
+              hash, base_key, index,
               value, child_key
             )
           else
-            set_deep_hash_value(new_hash, base_key, value, child_key)
+            set_deep_hash_value(hash, base_key, value, child_key)
           end
         end
 
