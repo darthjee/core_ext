@@ -11,7 +11,7 @@ module Darthjee
         #
         # @return [::Hash] new hash with changed keys
         # @param [::Hash] options options of camelization
-        # @option options [::Boolean] uppercase_first_letter: flag
+        # @option options [::TrueClass,::FalseClass] uppercase_first_letter: flag
         #   defining the type of CamelCase
         #
         # @see Hash::KeyChanger#camelize_keys
@@ -39,7 +39,7 @@ module Darthjee
         #
         # @return [::Hash] new hash with changed keys
         # @param [::Hash] options options of camelization
-        # @option options [::Boolean] uppercase_first_letter: flag
+        # @option options [::TrueClass,::FalseClass] uppercase_first_letter: flag
         #   defining the type of CamelCase
         #
         # @example (see #camelize_keys)
