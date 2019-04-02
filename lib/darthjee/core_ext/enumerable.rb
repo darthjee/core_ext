@@ -157,7 +157,8 @@ module Enumerable
   #
   # @return [::TrueClass,::FalseClass]
   def empty_value?(value)
-    value.nil? || value.try(:empty?) ||
-      ((value.is_a?(Hash) || value.is_a?(Array)) && value.clean!.empty?)
+    return true if value.nil? || value.try(:empty?)
+    return unless value.is_a?(Hash) || value.is_a?(Array)
+    value.clean!.empty?
   end
 end
