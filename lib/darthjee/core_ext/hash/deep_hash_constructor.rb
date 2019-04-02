@@ -34,6 +34,8 @@ module Darthjee
       #                                #   }
       #                                # }
       class DeepHashConstructor
+        autoload :Setter, "#{PATH}/hash/deep_hash_constructor/setter"
+
         attr_accessor :separator
 
         # @param separator [::String] keys splitter
@@ -119,44 +121,7 @@ module Darthjee
         end
 
         def set_deep_hash_positioned_value(hash, base_key, value, child_key)
-          index = array_index(base_key)
-
-          if index
-            set_deep_hash_array_value(
-              hash, base_key, index,
-              value, child_key
-            )
-          else
-            set_deep_hash_value(hash, base_key, value, child_key)
-          end
-        end
-
-        def array_index(key)
-          match = key.match(/\[([^)]+)\]/)
-          return unless match
-
-          match[1].to_i
-        end
-
-        def set_deep_hash_array_value(hash, base_key, index, value, key)
-          key_without_index = base_key.tr("[#{index}]", '')
-          hash[key_without_index] ||= []
-
-          if key.nil?
-            hash[key_without_index][index] = value
-          else
-            hash[key_without_index][index] ||= {}
-            hash[key_without_index][index][key] = value
-          end
-        end
-
-        def set_deep_hash_value(hash, base_key, value, key)
-          if key.nil?
-            hash[base_key] = value
-          else
-            hash[base_key] ||= {}
-            hash[base_key][key] = value
-          end
+          Setter.new(hash, base_key).set(child_key, value)
         end
       end
     end
