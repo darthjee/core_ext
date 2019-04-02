@@ -75,14 +75,18 @@ module Darthjee
         #
         # @return [::Hash]
         def hash_deep_hash(hash)
+          split_hash(hash).tap do |new_hash|
+            new_hash.each do |k, v|
+              new_hash[k] = proccess_value(v)
+            end
+          end
+        end
+
+        def split_hash(hash)
           {}.tap do |new_hash|
             hash.each do |k, v|
               base_key, child_key = split_key(k, separator)
               set_deep_hash_positioned_value(new_hash, base_key, v, child_key)
-            end
-
-            new_hash.each do |k, v|
-              new_hash[k] = proccess_value(v)
             end
           end
         end
