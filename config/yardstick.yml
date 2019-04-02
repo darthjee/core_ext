@@ -19,17 +19,27 @@ rules:
   ReturnTag:
     enabled: true
     exclude:
+      - Darthjee::CoreExt::Array::HashBuilder#initialize
+      - Darthjee::CoreExt::Hash::ChainFetcher#initialize
       - Darthjee::CoreExt::Array::HashBuilder#values
       - Darthjee::CoreExt::Array::HashBuilder#keys
       - Darthjee::CoreExt::Array::HashBuilder#values=
       - Darthjee::CoreExt::Array::HashBuilder#keys=
+      - Darthjee::CoreExt::Hash::ChainFetcher#hash
+      - Darthjee::CoreExt::Hash::ChainFetcher#keys
+      - Darthjee::CoreExt::Hash::ChainFetcher#block
   Summary::Presence:
     enabled: true
     exclude:
+      - Darthjee::CoreExt::Array::HashBuilder#initialize
+      - Darthjee::CoreExt::Hash::ChainFetcher#initialize
       - Darthjee::CoreExt::Array::HashBuilder#values
       - Darthjee::CoreExt::Array::HashBuilder#keys
       - Darthjee::CoreExt::Array::HashBuilder#values=
       - Darthjee::CoreExt::Array::HashBuilder#keys=
+      - Darthjee::CoreExt::Hash::ChainFetcher#hash
+      - Darthjee::CoreExt::Hash::ChainFetcher#keys
+      - Darthjee::CoreExt::Hash::ChainFetcher#block
   Summary::Length:
     enabled: true
     exclude: []
