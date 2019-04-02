@@ -23,7 +23,8 @@ module Darthjee
         #
         # @return [Object] value fetched from array
         def fetch
-          block.present? ? fetch_with_block : fetch_without_block
+          return fetch_with_block if block.present?
+          fetch_without_block
         end
 
         private
