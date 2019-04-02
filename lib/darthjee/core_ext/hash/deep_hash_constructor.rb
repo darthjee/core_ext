@@ -138,7 +138,7 @@ module Darthjee
           match[1].to_i
         end
 
-        def set_deep_hash_array_value(hash, base_key, index, value, key = nil)
+        def set_deep_hash_array_value(hash, base_key, index, value, key)
           key_without_index = base_key.tr("[#{index}]", '')
           hash[key_without_index] ||= []
 
@@ -150,7 +150,7 @@ module Darthjee
           end
         end
 
-        def set_deep_hash_value(hash, base_key, value, key = nil)
+        def set_deep_hash_value(hash, base_key, value, key)
           if key.nil?
             hash[base_key] = value
           else
