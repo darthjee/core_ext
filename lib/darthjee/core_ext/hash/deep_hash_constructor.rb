@@ -118,18 +118,6 @@ module Darthjee
           match ? match[1..2] : key
         end
 
-        def set_deep_hash_array_value(hash, base_key, index, value, key = nil)
-          key_without_index = base_key.tr("[#{index}]", '')
-          hash[key_without_index] ||= []
-
-          if key.nil?
-            hash[key_without_index][index] = value
-          else
-            hash[key_without_index][index] ||= {}
-            hash[key_without_index][index][key] = value
-          end
-        end
-
         def set_deep_hash_positioned_value(hash, base_key, value, child_key)
           index = array_index(base_key)
 
@@ -148,6 +136,18 @@ module Darthjee
           return unless match
 
           match[1].to_i
+        end
+
+        def set_deep_hash_array_value(hash, base_key, index, value, key = nil)
+          key_without_index = base_key.tr("[#{index}]", '')
+          hash[key_without_index] ||= []
+
+          if key.nil?
+            hash[key_without_index][index] = value
+          else
+            hash[key_without_index][index] ||= {}
+            hash[key_without_index][index][key] = value
+          end
         end
 
         def set_deep_hash_value(hash, base_key, value, key = nil)
