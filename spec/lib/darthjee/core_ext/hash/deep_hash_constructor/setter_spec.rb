@@ -19,7 +19,7 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor::Setter do
           expect { setter.set(key, value) }
             .to change { hash }
             .from({})
-            .to({ base_key => value })
+            .to(base_key => value)
         end
       end
 
@@ -30,7 +30,7 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor::Setter do
           expect { setter.set(key, value) }
             .to change { hash }
             .from({})
-            .to({ base_key => { key => value } })
+            .to(base_key => { key => value })
         end
       end
     end
@@ -45,7 +45,7 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor::Setter do
           expect { setter.set(key, value) }
             .to change { hash }
             .from({})
-            .to({ 'person' => [value] })
+            .to('person' => [value])
         end
       end
 
@@ -56,7 +56,7 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor::Setter do
           expect { setter.set(key, value) }
             .to change { hash }
             .from({})
-            .to({ 'person' => [{ key => value }] })
+            .to('person' => [{ key => value }])
         end
       end
     end
