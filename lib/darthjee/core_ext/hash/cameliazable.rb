@@ -11,7 +11,8 @@ module Darthjee
         #
         # @return [::Hash] new hash with changed keys
         # @param [::Hash] options options of camelization
-        # @option options [::TrueClass,::FalseClass] uppercase_first_letter: flag
+        # @option options [::TrueClass,::FalseClass]
+        #   uppercase_first_letter: flag
         #   defining the type of CamelCase
         #
         # @see Hash::KeyChanger#camelize_keys
@@ -39,7 +40,8 @@ module Darthjee
         #
         # @return [::Hash] new hash with changed keys
         # @param [::Hash] options options of camelization
-        # @option options [::TrueClass,::FalseClass] uppercase_first_letter: flag
+        # @option options [::TrueClass,::FalseClass]
+        #   uppercase_first_letter: flag
         #   defining the type of CamelCase
         #
         # @example (see #camelize_keys)
@@ -80,7 +82,8 @@ module Darthjee
         # THis method does not change the original hash
         #
         # @param options [::Hash]
-        # @option options recursive [::TrueClass,::FalseClass] flag for recursive transformation
+        # @option options recursive [::TrueClass,::FalseClass]
+        #   flag for recursive transformation
         #
         # @see Hash::KeyChanger#change_keys
         #
@@ -102,7 +105,8 @@ module Darthjee
         # THis method changes the original hash
         #
         # @param options [::Hash]
-        # @option options recursive [::TrueClass,::FalseClass] flag for recursive transformation
+        # @option options recursive [::TrueClass,::FalseClass]
+        #   flag for recursive transformation
         #
         # @see Hash::KeyChanger#change_keys
         #
