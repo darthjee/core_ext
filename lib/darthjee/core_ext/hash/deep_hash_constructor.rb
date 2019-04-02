@@ -145,7 +145,9 @@ module Darthjee
 
         def array_index(key)
           match = key.match(/\[([^)]+)\]/)
-          match && match[1].to_i
+          return unless match
+
+          match[1].to_i
         end
 
         def set_deep_hash_value(hash, base_key, value, key = nil)
