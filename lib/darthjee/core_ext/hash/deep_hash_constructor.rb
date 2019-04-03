@@ -77,14 +77,14 @@ module Darthjee
         #
         # @return [::Hash]
         def hash_deep_hash(hash)
-          split_hash(hash).tap do |new_hash|
+          break_keys(hash).tap do |new_hash|
             new_hash.each do |key, value|
               new_hash[key] = proccess_value(value)
             end
           end
         end
 
-        def split_hash(hash)
+        def break_keys(hash)
           {}.tap do |new_hash|
             hash.each do |key, value|
               base_key, child_key = split_key(key, separator)
