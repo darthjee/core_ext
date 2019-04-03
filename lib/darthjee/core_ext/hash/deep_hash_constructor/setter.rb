@@ -57,34 +57,35 @@ module Darthjee
             return hash[base_key]    = value if key.nil? && index.nil?
             return array[index]      = value if key.nil?
 
-            base[key] = value
+            sub_hash[key] = value
           end
 
           private
 
+          # @private
           attr_reader :hash, :base_key, :key
 
+          # Extract index of array from base_key
+          #
+          # @return [::NilClass,::Integer]
           def index
-            @index ||= array_index
-          end
+            return @index if instance_variable_defined?("@index")
 
-          def array_index
             match = base_key.match(/\[([^)]+)\]/)
-            return unless match
+            return @index = nil unless match
 
-            match[1].to_i
+            @index = match[1].to_i
           end
 
           def array
-            @array ||= build_array
-          end
+            return @array if instance_variable_defined?("@array")
 
-          def build_array
             key_without_index = base_key.tr("[#{index}]", '')
-            hash[key_without_index] ||= []
+
+            @array = hash[key_without_index] ||= []
           end
 
-          def base
+          def sub_hash
             return array[index] ||= {} if index
 
             hash[base_key] ||= {}
