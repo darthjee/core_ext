@@ -112,13 +112,10 @@ module Darthjee
         #
         # @return [::Array<::String>,::String]
         def split_key(key, separator)
-          separator_rxp = separator == '.' ? "\\#{separator}" : separator
-          skipper = "[^#{separator}]"
-          regexp = Regexp.new("^(#{skipper}*)#{separator_rxp}(.*)")
-          match = key.match(regexp)
+          keys = key.to_s.split(separator)
+          return key.to_s unless keys.second
 
-          return key unless match
-          match[1..2]
+          [keys.first, keys[1..-1].join(separator)]
         end
       end
     end
