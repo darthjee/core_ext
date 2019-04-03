@@ -70,7 +70,7 @@ module Darthjee
           #
           # @return [::NilClass,::Integer]
           def index
-            return @index if instance_variable_defined?("@index")
+            return @index if instance_variable_defined?('@index')
 
             match = base_key.match(/\[([^)]+)\]/)
             return @index = nil unless match
@@ -86,7 +86,7 @@ module Darthjee
           #
           # @return [::Array]
           def array
-            return @array if instance_variable_defined?("@array")
+            return @array if instance_variable_defined?('@array')
 
             key_without_index = base_key.tr("[#{index}]", '')
 
@@ -95,7 +95,7 @@ module Darthjee
 
           # @private
           # Returns sub hash that will receive the value
-          # 
+          #
           # This sub_hash is only build when key is not nil
           #
           # @return [::Hash]
