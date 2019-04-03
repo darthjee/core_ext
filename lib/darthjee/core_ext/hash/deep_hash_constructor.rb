@@ -57,25 +57,12 @@ module Darthjee
         def deep_hash(hash)
           break_keys(hash).tap do |new_hash|
             new_hash.each do |key, value|
-              new_hash[key] = proccess_value(value)
+              new_hash[key] = deep_hash_value(value)
             end
           end
         end
 
         private
-
-        # @private
-        #
-        # Map array performing deep hash on its Hash elements
-        #
-        # @param array [::Array] array to be mapped
-        #
-        # @return [::Array]
-        def array_deep_hash(array)
-          array.map do |value|
-            proccess_value(value)
-          end
-        end
 
         # @private
         # break the keys creating sub-hashes
@@ -117,13 +104,31 @@ module Darthjee
           end
         end
 
-        def proccess_value(object)
+        # @private
+        #
+        # Recursively proccess a value calling deep hash on it
+        #
+        # @return [::Object]
+        def deep_hash_value(object)
           if object.is_a? Array
             array_deep_hash(object)
           elsif object.is_a? Hash
             deep_hash(object)
           else
             object
+          end
+        end
+
+        # @private
+        #
+        # Map array performing deep hash on its Hash elements
+        #
+        # @param array [::Array] array to be mapped
+        #
+        # @return [::Array]
+        def array_deep_hash(array)
+          array.map do |value|
+            deep_hash_value(value)
           end
         end
 
