@@ -28,6 +28,7 @@ rules:
       - Darthjee::CoreExt::Hash::ChainFetcher#hash
       - Darthjee::CoreExt::Hash::ChainFetcher#keys
       - Darthjee::CoreExt::Hash::ChainFetcher#block
+      - Darthjee::CoreExt::Hash::DeepHashConstructor#separator
   Summary::Presence:
     enabled: true
     exclude:
@@ -40,6 +41,7 @@ rules:
       - Darthjee::CoreExt::Hash::ChainFetcher#hash
       - Darthjee::CoreExt::Hash::ChainFetcher#keys
       - Darthjee::CoreExt::Hash::ChainFetcher#block
+      - Darthjee::CoreExt::Hash::DeepHashConstructor#separator
   Summary::Length:
     enabled: true
     exclude: []
