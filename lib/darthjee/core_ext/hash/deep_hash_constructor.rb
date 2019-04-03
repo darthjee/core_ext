@@ -15,18 +15,22 @@ module Darthjee
       #
       # @example General Usage
       #   hash = {
-      #     'person.name'   => 'John',
-      #     'person.age'    =>  20,
-      #     :'house.number' => 67,
-      #     :'house.zip'    => 12345
+      #     'account.person.name' => 'John',
+      #     'account.person.age'  =>  20,
+      #     'account.number'      => '102030',
+      #     :'house.number'       => 67,
+      #     :'house.zip'          => 12_345
       #   }
       #
       #   constructor = Darthjee::CoreExt::Hash::DeepHashConstructor.new('.')
       #
       #   constructor.deep_hash(hash)  # returns {
-      #                                #   'person' => {
-      #                                #     'name'   => 'John',
-      #                                #     'age'    =>  20
+      #                                #   'account' => {
+      #                                #     'person' => {
+      #                                #       'name'   => 'John',
+      #                                #       'age'    =>  20
+      #                                #     },
+      #                                #     'number' => '102030',
       #                                #   },
       #                                #   'house' => {
       #                                #     'number' => 67,
@@ -84,6 +88,37 @@ module Darthjee
           end
         end
 
+        # @private
+        # break the keys creating sub-hashes
+        #
+        # @param hash [::Hash] hash to be broken
+        #
+        # @example Breaking many level keys
+        #   hash = {
+        #     'account.person.name' => 'John',
+        #     'account.person.age'  =>  20,
+        #     'account.number'      => '102030',
+        #     :'house.number'       => 67,
+        #     :'house.zip'          => 12_345
+        #   }
+        #
+        #   constructor = Darthjee::CoreExt::Hash::DeepHashConstructor.new('.')
+        #
+        #   constructor.send(:break_keys, hash)
+        #
+        #   # Returns {
+        #   #   'account' => {
+        #   #     'person.name' => 'John',
+        #   #     'person.age'  =>  20,
+        #   #     'number'      => '102030'
+        #   #   },
+        #   #   'house' => {
+        #   #     'number' => 67,
+        #   #     'zip'    => 12_345
+        #   #   }
+        #   # }
+        #
+        # @return [Hash]
         def break_keys(hash)
           {}.tap do |new_hash|
             hash.each do |key, value|
