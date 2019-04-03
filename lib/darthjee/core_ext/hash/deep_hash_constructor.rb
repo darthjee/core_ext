@@ -40,8 +40,6 @@ module Darthjee
       class DeepHashConstructor
         autoload :Setter, "#{PATH}/hash/deep_hash_constructor/setter"
 
-        attr_accessor :separator
-
         # @param separator [::String] keys splitter
         def initialize(separator)
           @separator = separator
@@ -63,6 +61,9 @@ module Darthjee
         end
 
         private
+
+        # @private
+        attr_reader :separator
 
         # @private
         # break the keys creating sub-hashes
