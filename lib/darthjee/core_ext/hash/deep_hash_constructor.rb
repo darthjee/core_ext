@@ -49,13 +49,17 @@ module Darthjee
 
         # Performs deep hash transformation
         #
-        # @param hash [::Hash]
+        # @param hash [::Hash] On layered hash
         #
-        # @return [::Hash]
+        # @return [::Hash] Many layered hash
         #
         # @example (see DeepHashConstructor)
         def deep_hash(hash)
-          hash_deep_hash(hash)
+          break_keys(hash).tap do |new_hash|
+            new_hash.each do |key, value|
+              new_hash[key] = proccess_value(value)
+            end
+          end
         end
 
         private
@@ -70,21 +74,6 @@ module Darthjee
         def array_deep_hash(array)
           array.map do |value|
             proccess_value(value)
-          end
-        end
-
-        # @private
-        #
-        # Map Hash to new deep hashed Hash
-        #
-        # @param hash [::Hash]
-        #
-        # @return [::Hash]
-        def hash_deep_hash(hash)
-          break_keys(hash).tap do |new_hash|
-            new_hash.each do |key, value|
-              new_hash[key] = proccess_value(value)
-            end
           end
         end
 
@@ -132,7 +121,7 @@ module Darthjee
           if object.is_a? Array
             array_deep_hash(object)
           elsif object.is_a? Hash
-            hash_deep_hash(object)
+            deep_hash(object)
           else
             object
           end
