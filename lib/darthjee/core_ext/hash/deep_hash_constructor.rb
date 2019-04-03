@@ -78,17 +78,17 @@ module Darthjee
         # @return [::Hash]
         def hash_deep_hash(hash)
           split_hash(hash).tap do |new_hash|
-            new_hash.each do |k, v|
-              new_hash[k] = proccess_value(v)
+            new_hash.each do |key, value|
+              new_hash[key] = proccess_value(value)
             end
           end
         end
 
         def split_hash(hash)
           {}.tap do |new_hash|
-            hash.each do |k, v|
-              base_key, child_key = split_key(k, separator)
-              set_deep_hash_positioned_value(new_hash, base_key, v, child_key)
+            hash.each do |key, value|
+              base_key, child_key = split_key(key, separator)
+              Setter.new(new_hash, base_key).set(child_key, value)
             end
           end
         end
@@ -118,10 +118,6 @@ module Darthjee
           match = key.match(regexp)
 
           match ? match[1..2] : key
-        end
-
-        def set_deep_hash_positioned_value(hash, base_key, value, child_key)
-          Setter.new(hash, base_key).set(child_key, value)
         end
       end
     end
