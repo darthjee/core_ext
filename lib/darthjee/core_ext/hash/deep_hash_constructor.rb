@@ -117,7 +117,8 @@ module Darthjee
           regexp = Regexp.new("^(#{skipper}*)#{separator_rxp}(.*)")
           match = key.match(regexp)
 
-          match ? match[1..2] : key
+          return key unless match
+          match[1..2]
         end
       end
     end
