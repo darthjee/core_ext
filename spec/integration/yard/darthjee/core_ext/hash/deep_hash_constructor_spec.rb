@@ -43,13 +43,13 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
       let(:expected) do
         {
           'account' => {
-            'person.name' => 'John',
-            'person.age'  =>  20,
-            'number'      => '102030'
+            %w[person name] => 'John',
+            %w[person age]  =>  20,
+            %w[number]      => '102030'
           },
           'house' => {
-            'number' => 67,
-            'zip'    => 12_345
+            %w[number] => 67,
+            %w[zip]    => 12_345
           }
         }
       end

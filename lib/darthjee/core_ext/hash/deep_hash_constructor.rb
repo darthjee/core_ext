@@ -108,13 +108,13 @@ module Darthjee
         #
         #   # Returns {
         #   #   'account' => {
-        #   #     'person.name' => 'John',
-        #   #     'person.age'  =>  20,
-        #   #     'number'      => '102030'
+        #   #     %w[person name] => 'John',
+        #   #     %w[person age]  =>  20,
+        #   #     %w[number]      => '102030'
         #   #   },
         #   #   'house' => {
-        #   #     'number' => 67,
-        #   #     'zip'    => 12_345
+        #   #     %w[number] => 67,
+        #   #     %w[zip]    => 12_345
         #   #   }
         #   # }
         #
@@ -147,10 +147,10 @@ module Darthjee
         #
         # @return [::Array<::String>,::String]
         def split_key(key, separator)
-          keys = key.to_s.split(separator)
-          return key.to_s unless keys.second
+          keys = key.is_a?(Array) ? key : key.to_s.split(separator)
+          return keys.first unless keys.second
 
-          [keys.first, keys[1..-1].join(separator)]
+          [keys.first, keys[1..-1]]
         end
       end
     end
