@@ -110,13 +110,9 @@ module Darthjee
         #
         # @return [::Object]
         def deep_hash_value(object)
-          if object.is_a? Array
-            array_deep_hash(object)
-          elsif object.is_a? Hash
-            deep_hash(object)
-          else
-            object
-          end
+          return array_deep_hash(object) if object.is_a? Array
+          return deep_hash(object) if object.is_a? Hash
+          object
         end
 
         # @private
@@ -142,6 +138,7 @@ module Darthjee
         # @return [::Array<::String>,::String]
         def split_key(key, separator)
           keys = key.is_a?(Array) ? key : key.to_s.split(separator)
+
           return keys.first unless keys.second
 
           [keys.first, keys[1..-1]]
