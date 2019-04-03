@@ -65,6 +65,7 @@ module Darthjee
           # @private
           attr_reader :hash, :base_key, :key
 
+          # @private
           # Extract index of array from base_key
           #
           # @return [::NilClass,::Integer]
@@ -77,6 +78,13 @@ module Darthjee
             @index = match[1].to_i
           end
 
+          # @private
+          # Returns array that will receive value
+          #
+          # This array is only created / used when base_key
+          # contains index
+          #
+          # @return [::Array]
           def array
             return @array if instance_variable_defined?("@array")
 
@@ -85,6 +93,12 @@ module Darthjee
             @array = hash[key_without_index] ||= []
           end
 
+          # @private
+          # Returns sub hash that will receive the value
+          # 
+          # This sub_hash is only build when key is not nil
+          #
+          # @return [::Hash]
           def sub_hash
             return array[index] ||= {} if index
 
