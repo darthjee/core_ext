@@ -18,7 +18,7 @@ describe Darthjee::CoreExt::Hash::KeyChanger do
     describe '#change_keys' do
       let(:hash) { { a: 1, 'b' => { c: 3 } } }
       let(:expected) do
-        { "key_a" => 1, 'key_b' => { 'key_c' => 3 } }
+        { 'key_a' => 1, 'key_b' => { 'key_c' => 3 } }
       end
 
       it 'changes keys using block' do

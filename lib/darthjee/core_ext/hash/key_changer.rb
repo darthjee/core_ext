@@ -136,7 +136,7 @@ module Darthjee
         #   the change to happen also on inner hashes
         #
         # @yield (key) key transformation block
-        # 
+        #
         # @example
         #   hash = { key: { inner_key: 10 } }
         #   changer = Darthjee::CoreExt::Hash::KeyChanger.new(hash)
