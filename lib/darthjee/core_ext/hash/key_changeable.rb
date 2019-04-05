@@ -11,7 +11,7 @@ module Darthjee
       # @author Darthjee
       #
       # @see KeyChanger
-      # @see KeySorter
+      # @see KeysSorter
       module KeyChangeable
         ##########################################
         # Key change methods
