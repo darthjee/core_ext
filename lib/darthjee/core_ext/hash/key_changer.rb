@@ -4,6 +4,7 @@ module Darthjee
   module CoreExt
     module Hash
       # @api private
+      # @author Darthjee
       class KeyChanger
         def initialize(hash)
           @hash = hash
