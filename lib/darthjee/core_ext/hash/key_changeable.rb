@@ -258,7 +258,10 @@ module Darthjee
         #
         # @example
         #   hash = { a: 1, b: 2 }
-        #   hash.remap_keys(a: :b, b: :c) # returns { b: 1, c: 2 }
+        #   hash.remap_keys(a: :b, b: :c) # returns {
+        #                                 #   b: 1,
+        #                                 #   c: 2
+        #                                 # }
         def remap_keys(remap)
           dup.remap_keys!(remap)
         end
