@@ -43,8 +43,8 @@ module Darthjee
         # Change the keys of the given hash returning the new hash
         #
         # @param [::Hash] options options for transformation
-        # @option options [::TrueClass,::FalseClass]
-        #   recursive (true) flag defining
+        # @param [::TrueClass,::FalseClass]
+        #   recursive flag defining
         #   the change to happen also on inner hashes
         #
         # @return [::Hash] Given hash after keys tranformation
@@ -62,12 +62,8 @@ module Darthjee
         #        #     'key_c' => 3
         #        #   }
         #        # }
-        def change_keys(options = {}, &block)
-          options = {
-            recursive: true
-          }.merge!(options)
-
-          if options[:recursive]
+        def change_keys(recursive: true, &block)
+          if recursive
             hash.deep_transform_keys!(&block)
           else
             hash.transform_keys!(&block)
@@ -77,8 +73,8 @@ module Darthjee
         # Performs camelization of the keys of the hash
         #
         # @param [::Hash] options
-        # @option options [::TrueClass,::FalseClass]
-        #   uppercase_first_letter (true) flag
+        # @param [::TrueClass,::FalseClass]
+        #   uppercase_first_letter flag
         #   defining the type of CamelCase
         # @option options [::TrueClass,::FalseClass]
         #   recursive (true) flag defining
@@ -87,6 +83,9 @@ module Darthjee
         # @return [::Hash] the given hash with it's keys
         #   changed
         #
+        # @see #change_keys
+        # @see Cameliazable#camelize_keys
+        #
         # @example (see Cameliazable#camelize_keys)
         #
         # @example
@@ -94,12 +93,8 @@ module Darthjee
         #   changer = Darthjee::CoreExt::Hash::KeyChanger.new(hash)
         #   changer.camelize_keys
         #   hash   # changed to { MyKey: { InnerKey: 10 } }
-        def camelize_keys(options = {})
-          options = {
-            uppercase_first_letter: true
-          }.merge!(options)
-
-          type = options[:uppercase_first_letter] ? :upper : :lower
+        def camelize_keys(uppercase_first_letter: true, **options)
+          type = uppercase_first_letter ? :upper : :lower
 
           change_keys(options) do |k|
             k.camelize(type)
@@ -130,6 +125,10 @@ module Darthjee
         # Change keys considering them to be strings
         #
         # @param options [::Hash]
+        # @param type [::Symbol] type that key will be case
+        #   - keep: Cast the key back to the same type it was
+        #   - string cast the key to {String}
+        #   - symbol cast the key to {Symbol}
         #
         # @option options [::TrueClass,::FalseClass]
         #   recursive (true) flag defining
@@ -143,13 +142,9 @@ module Darthjee
         #   changer.change_text { |key| key.to_s.upcase }
         #
         #   hash  # changed to { KEY: { INNER_KEY: 10 } }
-        def change_text(options = {})
-          options = {
-            type: :keep
-          }.merge!(options)
-
-          change_keys(options) do |key|
-            cast_new_key yield(key), key.class, options
+        def change_text(type: :keep, **options)
+          change_keys(**options) do |key|
+            cast_new_key yield(key), key.class, type
           end
         end
 
@@ -157,8 +152,8 @@ module Darthjee
 
         attr_reader :hash
 
-        def cast_new_key(key, old_clazz, options)
-          case class_cast(old_clazz, options)
+        def cast_new_key(key, old_clazz, type)
+          case class_cast(old_clazz, type)
           when :symbol then
             key.to_sym
           when :string then
@@ -166,13 +161,13 @@ module Darthjee
           end
         end
 
-        def keep_class?(options)
-          options[:type] == :keep
+        def keep_class?(type)
+          type == :keep
         end
 
-        def class_cast(old_clazz, options)
-          klass = keep_class?(options) && old_clazz.to_s.downcase.to_sym
-          klass || options[:type]
+        def class_cast(old_clazz, type)
+          klass = keep_class?(type) && old_clazz.to_s.downcase.to_sym
+          klass || type
         end
       end
     end
