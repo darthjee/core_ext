@@ -42,7 +42,6 @@ module Darthjee
 
         # Change the keys of the given hash returning the new hash
         #
-        # @param [::Hash] options options for transformation
         # @param [::TrueClass,::FalseClass]
         #   recursive flag defining
         #   the change to happen also on inner hashes
@@ -136,6 +135,8 @@ module Darthjee
         #
         # @yield (key) key transformation block
         #
+        # @return [::Hash] the given hash with changed keys
+        #
         # @example
         #   hash = { key: { inner_key: 10 } }
         #   changer = Darthjee::CoreExt::Hash::KeyChanger.new(hash)
@@ -152,6 +153,20 @@ module Darthjee
 
         attr_reader :hash
 
+        # @api private
+        # @private
+        #
+        # Cast key to correct type (String or Symbol)
+        #
+        # @param key [::String] key to be cast
+        #   (after transformation)
+        # @param old_clazz [::Class] original class of the key
+        # @param type [::Symbol] option of type
+        #   - keep: Cast the key back to the same type it was
+        #   - string cast the key to {String}
+        #   - symbol cast the key to {Symbol}
+        #
+        # @return [::String,::Symbol]
         def cast_new_key(key, old_clazz, type)
           case class_cast(old_clazz, type)
           when :symbol then
@@ -161,6 +176,20 @@ module Darthjee
           end
         end
 
+        # @api private
+        # @private
+        #
+        # Returns the type of the cast to be applied
+        #
+        # @param old_clazz [::Class] original class of a key
+        # @param type [:symbol] option of castying
+        #   - keep: Cast the key back to the same type it was
+        #   - string cast the key to {String}
+        #   - symbol cast the key to {Symbol}
+        #
+        # @see #cast_new_key
+        #
+        # @return [::Symbol]
         def class_cast(old_clazz, type)
           return type unless type == :keep
           old_clazz.to_s.downcase.to_sym
