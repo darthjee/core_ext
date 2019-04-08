@@ -161,13 +161,9 @@ module Darthjee
           end
         end
 
-        def keep_class?(type)
-          type == :keep
-        end
-
         def class_cast(old_clazz, type)
-          klass = keep_class?(type) && old_clazz.to_s.downcase.to_sym
-          klass || type
+          return type unless type == :keep
+          old_clazz.to_s.downcase.to_sym
         end
       end
     end
