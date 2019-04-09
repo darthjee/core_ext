@@ -59,8 +59,9 @@ module Darthjee
         #
         # @return [::Object]
         def change_value(value)
-          return value unless value.is_a?(Hash) && recursive
-          value.sort_keys(recursive: true)
+          return value unless recursive
+          return value unless value.is_a?(Hash)
+          self.class.new(value).sort
         end
 
         attr_reader :hash, :recursive
