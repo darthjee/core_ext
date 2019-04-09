@@ -83,7 +83,19 @@ shared_examples 'a class with a keys sort method' do
 
       it 'sort recursevely on many levels' do
         expected = { a: { c: { f: 4, e: 3 }, d: 2 }, b: 1 }
-        expect(hash.sort_keys(recursive: true)).to eq(expected)
+        expect(result).to eq(expected)
+      end
+
+      it 'sorts keys' do
+        expect(result.keys).to eq(%i[a b])
+      end
+
+      it 'sorts inner keys' do
+        expect(result[:a].keys).to eq(%i[c d])
+      end
+
+      it 'sorts deeper inner keys' do
+        expect(result[:a][:c].keys).to eq(%i[e f])
       end
     end
 
@@ -92,7 +104,19 @@ shared_examples 'a class with a keys sort method' do
 
       it 'applies to arrays as well' do
         expected = { a: { c: [{ f: 4, e: 3 }], d: 2 }, b: 1 }
-        expect(hash.sort_keys(recursive: true)).to eq(expected)
+        expect(result).to eq(expected)
+      end
+
+      it 'sorts keys' do
+        expect(result.keys).to eq(%i[a b])
+      end
+
+      it 'sorts inner keys' do
+        expect(result[:a].keys).to eq(%i[c d])
+      end
+
+      it 'sorts deeper inner keys' do
+        expect(result[:a][:c].map(&:keys)).to eq([%i[e f]])
       end
     end
   end
