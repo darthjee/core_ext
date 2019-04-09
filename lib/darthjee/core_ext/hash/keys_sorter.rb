@@ -33,14 +33,16 @@ module Darthjee
         #                #   key: 10
         #                # }
         def sort
-          {}.tap do |new_hash|
+          hash.tap do
             sorted_keys.each do |key|
-              new_hash[key] = change_value(hash[key])
+              hash[key] = change_value(hash.delete(key))
             end
           end
         end
 
         private
+
+        attr_reader :hash, :recursive
 
         # @api private
         # @private
@@ -63,8 +65,6 @@ module Darthjee
           return value unless value.is_a?(Hash)
           self.class.new(value).sort
         end
-
-        attr_reader :hash, :recursive
       end
     end
   end
