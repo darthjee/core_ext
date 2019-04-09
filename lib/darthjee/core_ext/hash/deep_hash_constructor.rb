@@ -13,6 +13,10 @@ module Darthjee
       # (no sub hashes) has keys that, once explitted, can be
       # assembled in a hash with many layers
       #
+      # @see Transformable#squash
+      # @see Transformable#to_deep_hash
+      #
+      # @example (see Transformable#to_deep_hash)
       # @example General Usage
       #   hash = {
       #     'account.person.name' => 'John',
