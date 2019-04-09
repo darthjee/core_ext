@@ -13,6 +13,13 @@ describe Darthjee::CoreExt::Hash::KeysSorter do
         expect(sorter.sort)
           .to eq(a_key: { a: 10, z: 5 }, key: 10)
       end
+
+      it 'changes the original hash' do
+        expect{ sorter.sort }
+          .to change(hash, :keys)
+          .from(%i[key a_key])
+          .to(%i[a_key key])
+      end
     end
   end
 end

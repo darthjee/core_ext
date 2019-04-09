@@ -28,7 +28,7 @@ module Darthjee
         #   hash = { key: 10, a_key: { z: 5, a: 10 } }
         #   sorter = Darthjee::CoreExt::Hash::KeysSorter.new(hash)
         #
-        #   sorter.sort  # returns {
+        #   sorter.sort  # changes hash to {
         #                #   a_key: { a: 10, z: 5 },
         #                #   key: 10
         #                # }
