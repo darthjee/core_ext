@@ -189,9 +189,8 @@ module Darthjee
         #
         #   hash.sort_keys  # returns { a: 2, b: 1 }
         def sort_keys(options = {})
-          Hash::KeysSorter.new(self.deep_dup, **options).sort
+          Hash::KeysSorter.new(deep_dup, **options).sort
         end
-
 
         ##########################################
         # Value change methods

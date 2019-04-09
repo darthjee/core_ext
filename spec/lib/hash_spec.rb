@@ -24,20 +24,24 @@ describe Hash do
     let(:mapped) { hash.map_to_hash(&mapping_block) }
   end
 
-  it_behaves_like 'a class with a keys sort method' do
-    let(:result) { hash.sort_keys!(**options) }
+  describe '#sort_keys!' do
+    it_behaves_like 'a class with a keys sort method' do
+      let(:result) { hash.sort_keys!(**options) }
+    end
+
+    it_behaves_like 'a class with a keys sort method that changes original' do
+      let(:result) { hash.sort_keys!(**options) }
+    end
   end
 
-  it_behaves_like 'a class with a keys sort method that changes original' do
-    let(:result) { hash.sort_keys!(**options) }
-  end
+  describe '#sort_keys' do
+    it_behaves_like 'a class with a keys sort method' do
+      let(:result) { hash.sort_keys(**options) }
+    end
 
-  it_behaves_like 'a class with a keys sort method' do
-    let(:result) { hash.sort_keys(**options) }
-  end
-
-  it_behaves_like 'a class with a keys sort method that not change original' do
-    let(:result) { hash.sort_keys(**options) }
+    it_behaves_like 'a class with a keys sort method that not change original' do
+      let(:result) { hash.sort_keys(**options) }
+    end
   end
 
   describe '#exclusive_merge' do
