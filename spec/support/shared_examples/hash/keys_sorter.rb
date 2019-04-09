@@ -10,6 +10,10 @@ shared_examples 'a class with a keys sort method' do
       it 'sorts keys as symbols' do
         expect(result).to eq(a: 2, b: 1)
       end
+
+      it 'sorts keys' do
+        expect(result.keys).to eq(%i[a b])
+      end
     end
 
     context 'when keys are strings' do
@@ -17,6 +21,10 @@ shared_examples 'a class with a keys sort method' do
 
       it 'sorts keys as string' do
         expect(result).to eq('a' => 2, 'b' => 1)
+      end
+
+      it 'sorts keys' do
+        expect(result.keys).to eq(%w[a b])
       end
     end
 
@@ -27,6 +35,14 @@ shared_examples 'a class with a keys sort method' do
         it 'sorts keys recursively' do
           expect(result).to eq(a: { c: 4, d: 3 }, b: 1)
         end
+
+        it 'sorts keys' do
+          expect(result.keys).to eq(%i[a b])
+        end
+
+        it 'sorts inner keys' do
+          expect(result[:a].keys).to eq(%i[c d])
+        end
       end
 
       context 'when recursive option is given' do
@@ -35,6 +51,14 @@ shared_examples 'a class with a keys sort method' do
         it 'sorts keys recursively when argumen is passed' do
           expect(result).to eq(a: { c: 4, d: 3 }, b: 1)
         end
+
+        it 'sorts keys' do
+          expect(result.keys).to eq(%i[a b])
+        end
+
+        it 'sorts inner keys' do
+          expect(result[:a].keys).to eq(%i[c d])
+        end
       end
 
       context 'when no recursive option is given' do
@@ -42,6 +66,14 @@ shared_examples 'a class with a keys sort method' do
 
         it 'does not sorts keys recursively when argumen is passed' do
           expect(result).to eq(a: { d: 3, c: 4 }, b: 1)
+        end
+
+        it 'sorts keys' do
+          expect(result.keys).to eq(%i[a b])
+        end
+
+        it 'does not sort inner keys' do
+          expect(result[:a].keys).to eq(%i[d c])
         end
       end
     end
