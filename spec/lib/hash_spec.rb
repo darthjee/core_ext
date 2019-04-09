@@ -39,7 +39,7 @@ describe Hash do
       let(:result) { hash.sort_keys(**options) }
     end
 
-    it_behaves_like 'a class with a keys sort method that not change original' do
+    it_behaves_like 'a class with a keys sort method that not change self' do
       let(:result) { hash.sort_keys(**options) }
     end
   end

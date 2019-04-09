@@ -234,7 +234,7 @@ shared_examples 'a class with a keys sort method that changes original' do
   end
 end
 
-shared_examples 'a class with a keys sort method that not change original' do
+shared_examples 'a class with a keys sort method that not change self' do
   describe '#sort_keys' do
     let(:options) { {} }
 
