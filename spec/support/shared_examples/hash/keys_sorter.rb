@@ -184,7 +184,7 @@ shared_examples 'a class with a keys sort method' do
       end
 
       it 'does not change array deeper inner hash' do
-        expect { result }.not_to change { hash[:a][:c].map(&:keys) }
+        expect { result }.not_to(change { hash[:a][:c].map(&:keys) })
       end
     end
   end
