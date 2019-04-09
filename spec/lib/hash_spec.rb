@@ -25,10 +25,18 @@ describe Hash do
   end
 
   it_behaves_like 'a class with a keys sort method' do
-    let(:result) { hash.sort_keys(**options) }
+    let(:result) { hash.sort_keys!(**options) }
   end
 
   it_behaves_like 'a class with a keys sort method that changes original' do
+    let(:result) { hash.sort_keys!(**options) }
+  end
+
+  it_behaves_like 'a class with a keys sort method' do
+    let(:result) { hash.sort_keys(**options) }
+  end
+
+  it_behaves_like 'a class with a keys sort method that not change original' do
     let(:result) { hash.sort_keys(**options) }
   end
 

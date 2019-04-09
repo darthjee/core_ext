@@ -233,3 +233,95 @@ shared_examples 'a class with a keys sort method that changes original' do
     end
   end
 end
+
+shared_examples 'a class with a keys sort method that not change original' do
+  describe '#sort_keys' do
+    let(:options) { {} }
+
+    context 'when keys are symbols' do
+      let(:hash) { { b: 1, a: 2 } }
+
+      it 'changes original hash' do
+        expect { result }.not_to change(hash, :keys)
+      end
+    end
+
+    context 'when keys are strings' do
+      let(:hash) { { 'b' => 1, 'a' => 2 } }
+
+      it 'changes original hash' do
+        expect { result }.not_to change(hash, :keys)
+      end
+    end
+
+    context 'when there is a nested hash' do
+      let(:hash) { { b: 1, a: { d: 3, c: 4 } } }
+
+      context 'when no option is given' do
+        it 'changes original hash' do
+          expect { result }.not_to change(hash, :keys)
+        end
+
+        it 'changes inner hash' do
+          expect { result }.not_to change(hash[:a], :keys)
+        end
+      end
+
+      context 'when recursive option is given' do
+        let(:options) { { recursive: true } }
+
+        it 'changes original hash' do
+          expect { result }.not_to change(hash, :keys)
+        end
+
+        it 'changes inner hash' do
+          expect { result }.not_to change(hash[:a], :keys)
+        end
+      end
+
+      context 'when no recursive option is given' do
+        let(:options) { { recursive: false } }
+
+        it 'changes original hash' do
+          expect { result }.not_to change(hash, :keys)
+        end
+
+        it 'does not change inner hash' do
+          expect { result }.not_to change(hash[:a], :keys)
+        end
+      end
+    end
+
+    context 'when it is deep nestled' do
+      let(:hash) { { b: 1, a: { d: 2, c: { f: 3, e: 4 } } } }
+
+      it 'changes original hash' do
+        expect { result }.not_to change(hash, :keys)
+      end
+
+      it 'changes inner hash' do
+        expect { result }.not_to change(hash[:a], :keys)
+      end
+
+      it 'changes deeper inner hash' do
+        expect { result }.not_to change(hash[:a][:c], :keys)
+      end
+    end
+
+    context 'when it has a nestled array' do
+      let(:hash) { { b: 1, a: { d: 2, c: [{ f: 3, e: 4 }] } } }
+
+      it 'changes original hash' do
+        expect { result }.not_to change(hash, :keys)
+      end
+
+      it 'changes inner hash' do
+        expect { result }.not_to change(hash[:a], :keys)
+      end
+
+      it 'does not change array deeper inner hash' do
+        expect { result }.not_to(change { hash[:a][:c].map(&:keys) })
+      end
+    end
+  end
+end
