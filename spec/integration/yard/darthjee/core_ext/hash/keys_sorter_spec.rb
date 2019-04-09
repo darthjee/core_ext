@@ -15,7 +15,7 @@ describe Darthjee::CoreExt::Hash::KeysSorter do
       end
 
       it 'changes the original hash' do
-        expect{ sorter.sort }
+        expect { sorter.sort }
           .to change(hash, :keys)
           .from(%i[key a_key])
           .to(%i[a_key key])

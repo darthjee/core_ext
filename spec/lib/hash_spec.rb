@@ -28,6 +28,10 @@ describe Hash do
     let(:result) { hash.sort_keys(**options) }
   end
 
+  it_behaves_like 'a class with a keys sort method that changes original' do
+    let(:result) { hash.sort_keys(**options) }
+  end
+
   describe '#exclusive_merge' do
     subject(:hash) { { a: 1, b: 2 } }
 
