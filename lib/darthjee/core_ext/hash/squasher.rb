@@ -60,9 +60,13 @@ module Darthjee
         def build(key, value)
           return { key => value } unless value.is_a?(Hash)
 
-          squash(value).inject({}) do |hash, (k, v)|
-            new_key = [key, k].join(joiner)
-            hash.merge!(new_key => v)
+          prepend_key(key, squash(value))
+        end
+
+        def prepend_key(prefix, hash)
+          hash.inject({}) do |hash, (key, value)|
+            new_key = [prefix, key].join(joiner)
+            hash.merge!(new_key => value)
           end
         end
       end
