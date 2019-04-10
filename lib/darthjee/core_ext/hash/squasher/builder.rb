@@ -4,9 +4,21 @@ module Darthjee
   module CoreExt
     module Hash
       module Squasher
+        # @api private
+        #
+        # @author Darthjee
+        #
+        # Class responsible for squashing a key and it's sub-hash
         class Builder
           attr_reader :key, :value
 
+          # @param key [::String] main key where subhash lies
+          #
+          # @overload initialize(key, value)
+          #   @param value [::Hash] subhash
+          #
+          # @overload initialize(key, value)
+          #   @param value [::Object] value in the key
           def initialize(key, value)
             @value = value
             @key = key
