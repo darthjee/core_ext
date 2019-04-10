@@ -47,19 +47,15 @@ module Darthjee
         #                         # }
         def squash(hash)
           hash.keys.each do |key|
-            value = hash.delete(key)
-            hash.merge!(sub_hash(key, value))
+            next unless hash[key].is_a?(Hash)
+
+            value = squash(hash.delete(key))
+            hash.merge!(prepend_to_key(key, value))
           end
           hash
         end
 
         private
-
-        def sub_hash(key, value)
-          return { key => value } unless value.is_a?(Hash)
-
-          prepend_to_key(key, squash(value))
-        end
 
         # @private
         #
