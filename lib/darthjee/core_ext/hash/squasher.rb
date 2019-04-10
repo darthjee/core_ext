@@ -67,9 +67,9 @@ module Darthjee
         #
         # @return [::Hash] new hash already squashed
         def prepend_to_key(prefix, hash)
-          hash.inject({}) do |hash, (key, value)|
+          hash.inject({}) do |subhash, (key, value)|
             new_key = [prefix, key].join(joiner)
-            hash.merge!(new_key => value)
+            subhash.merge!(new_key => value)
           end
         end
       end
