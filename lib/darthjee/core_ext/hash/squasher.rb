@@ -14,7 +14,7 @@ module Darthjee
       #
       # @example (see Transformable#squash)
       # @example (see .squash)
-      module Squasher
+      class Squasher
         # Squash a hash creating a new hash
         #
         # Squash the hash so that it becomes a single level
@@ -40,15 +40,25 @@ module Darthjee
         #   #   'person.age'  => 22
         #   # }
         def self.squash(origin)
+          new.squash(origin)
+        end
+
+        attr_reader :joiner
+
+        def initialize(joiner = '.')
+          @joiner = joiner
+        end
+
+        def squash(origin)
           origin.inject({}) do |hash, (key, value)|
             hash.merge!(build(key, value))
           end
         end
 
-        def self.build(key, value)
+        def build(key, value)
           if value.is_a? Hash
-            value.squash.inject({}) do |hash, (k, v)|
-              new_key = [key, k].join('.')
+            squash(value).inject({}) do |hash, (k, v)|
+              new_key = [key, k].join(joiner)
               hash.merge!(new_key => v)
             end
           else
