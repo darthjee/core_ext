@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe Darthjee::CoreExt::Hash::Squasher do
-  subject(:squasher) { described_class }
+  subject(:squasher) { described_class.new }
 
   describe '.squash' do
     describe 'Simple Usage' do

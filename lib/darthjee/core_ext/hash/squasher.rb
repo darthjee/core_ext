@@ -13,8 +13,15 @@ module Darthjee
       # @see Transformable#to_deep_hash
       #
       # @example (see Transformable#squash)
-      # @example (see .squash)
+      # @example (see #squash)
       class Squasher
+        attr_reader :joiner
+
+        # @param joiner [::String] string used to join keys
+        def initialize(joiner = '.')
+          @joiner = joiner
+        end
+
         # Squash a hash creating a new hash
         #
         # Squash the hash so that it becomes a single level
@@ -32,23 +39,12 @@ module Darthjee
         #     }
         #   }
         #
-        #   Darthjee::CoreExt::Hash::Squasher.squash(hash)
-        #   # returns
-        #   #
-        #   # {
-        #   #   'person.name' => 'John',
-        #   #   'person.age'  => 22
-        #   # }
-        def self.squash(origin)
-          new.squash(origin)
-        end
-
-        attr_reader :joiner
-
-        def initialize(joiner = '.')
-          @joiner = joiner
-        end
-
+        #   squasher = Darthjee::CoreExt::Hash::Squasher.new
+        #
+        #   squasher.squash(hash) # returns {
+        #                         #   'person.name' => 'John',
+        #                         #   'person.age'  => 22
+        #                         # }
         def squash(origin)
           origin.inject({}) do |hash, (key, value)|
             hash.merge!(build(key, value))
@@ -60,10 +56,19 @@ module Darthjee
         def build(key, value)
           return { key => value } unless value.is_a?(Hash)
 
-          prepend_key(key, squash(value))
+          prepend_to_key(key, squash(value))
         end
 
-        def prepend_key(prefix, hash)
+        # @private
+        #
+        # Appends prefix to all keys of a hash
+        #
+        # @param prefix [::String] prefix to be prepended
+        # @param hash [::Hash] original hash to me changed
+        #   (already squashed)
+        #
+        # @return [::Hash] new hash already squashed
+        def prepend_to_key(prefix, hash)
           hash.inject({}) do |hash, (key, value)|
             new_key = [prefix, key].join(joiner)
             hash.merge!(new_key => value)
