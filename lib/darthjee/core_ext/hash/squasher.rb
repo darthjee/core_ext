@@ -15,7 +15,6 @@ module Darthjee
       # @example (see Transformable#squash)
       # @example (see .squash)
       module Squasher
-        autoload :Builder, 'darthjee/core_ext/hash/squasher/builder'
         # Squash a hash creating a new hash
         #
         # Squash the hash so that it becomes a single level
@@ -42,7 +41,18 @@ module Darthjee
         #   # }
         def self.squash(origin)
           origin.inject({}) do |hash, (key, value)|
-            hash.merge!(Builder.new(key, value).to_h)
+            hash.merge!(build(key, value))
+          end
+        end
+
+        def self.build(key, value)
+          if value.is_a? Hash
+            value.squash.inject({}) do |hash, (k, v)|
+              new_key = [key, k].join('.')
+              hash.merge!(new_key => v)
+            end
+          else
+            { key => value }
           end
         end
       end
