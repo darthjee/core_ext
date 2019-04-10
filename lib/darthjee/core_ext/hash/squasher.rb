@@ -55,14 +55,14 @@ module Darthjee
           end
         end
 
+        private
+
         def build(key, value)
-          if value.is_a? Hash
-            squash(value).inject({}) do |hash, (k, v)|
-              new_key = [key, k].join(joiner)
-              hash.merge!(new_key => v)
-            end
-          else
-            { key => value }
+          return { key => value } unless value.is_a?(Hash)
+
+          squash(value).inject({}) do |hash, (k, v)|
+            new_key = [key, k].join(joiner)
+            hash.merge!(new_key => v)
           end
         end
       end
