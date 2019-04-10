@@ -90,7 +90,7 @@ module Darthjee
         #                 #   'person.age' => 23
         #                 # }
         def squash
-          Hash::Squasher.new.squash(self)
+          Hash::Squasher.new.squash(self.deep_dup)
         end
 
         # Creates a new hash of multiple levels from a one level

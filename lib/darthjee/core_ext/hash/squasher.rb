@@ -45,15 +45,17 @@ module Darthjee
         #                         #   'person.name' => 'John',
         #                         #   'person.age'  => 22
         #                         # }
-        def squash(origin)
-          origin.inject({}) do |hash, (key, value)|
-            hash.merge!(build(key, value))
+        def squash(hash)
+          hash.keys.each do |key|
+            value = hash.delete(key)
+            hash.merge!(sub_hash(key, value))
           end
+          hash
         end
 
         private
 
-        def build(key, value)
+        def sub_hash(key, value)
           return { key => value } unless value.is_a?(Hash)
 
           prepend_to_key(key, squash(value))
