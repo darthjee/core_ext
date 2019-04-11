@@ -65,6 +65,9 @@ module Darthjee
         #
         # This operation is the oposite of {#to_deep_hash}
         #
+        # @param joiner [::String] String to be used when
+        #   joining keys
+        #
         # @return [::Hash] A one level hash
         #
         # @see Squash::Builder
@@ -89,8 +92,8 @@ module Darthjee
         #                 #   'person.name' => 'John',
         #                 #   'person.age' => 23
         #                 # }
-        def squash
-          Hash::Squasher.new.squash(deep_dup)
+        def squash(joiner = '.')
+          Hash::Squasher.new(joiner).squash(deep_dup)
         end
 
         # Creates a new hash of multiple levels from a one level

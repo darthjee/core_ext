@@ -16,8 +16,14 @@ describe Hash do
     let(:result) { hash.chain_fetch(*keys, &block) }
   end
 
-  it_behaves_like 'a class that has a method to squash a hash' do
-    let(:squashed) { hash.squash }
+  describe '#squash' do
+    it_behaves_like 'a method to squash a hash' do
+      let(:squashed) { hash.squash }
+    end
+
+    it_behaves_like 'a method to squash a hash', '/' do
+      let(:squashed) { hash.squash('/') }
+    end
   end
 
   it_behaves_like 'a hash with map_to_hash method' do
