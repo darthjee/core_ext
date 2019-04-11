@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-shared_examples 'a method to squash a hash' do |joiner='.'|
+shared_examples 'a method to squash a hash' do |joiner = '.'|
   let(:hash) { { a: { b: 1, c: { d: 2 } } } }
   let(:key1) { %w[a b].join(joiner) }
   let(:key2) { %w[a c d].join(joiner) }
