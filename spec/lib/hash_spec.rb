@@ -17,12 +17,38 @@ describe Hash do
   end
 
   describe '#squash' do
+    subject(:hash) { { a: { b: { c: 10 } } } }
+
     it_behaves_like 'a method to squash a hash' do
       let(:squashed) { hash.squash }
     end
 
     it_behaves_like 'a method to squash a hash', '/' do
       let(:squashed) { hash.squash('/') }
+    end
+
+    it 'does not change the hash' do
+      expect { hash.squash }
+        .not_to change { hash }
+    end
+  end
+
+  describe '#squash!' do
+    subject(:hash) { { a: { b: { c: 10 } } } }
+
+    it_behaves_like 'a method to squash a hash' do
+      let(:squashed) { hash.squash! }
+    end
+
+    it_behaves_like 'a method to squash a hash', '/' do
+      let(:squashed) { hash.squash!('/') }
+    end
+
+    it 'does not change the hash' do
+      expect { hash.squash! }
+        .to change { hash }
+        .from(a: { b: { c: 10 } })
+        .to('a.b.c' => 10)
     end
   end
 

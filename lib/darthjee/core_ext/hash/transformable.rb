@@ -60,7 +60,7 @@ module Darthjee
           Hash::ToHashMapper.new(self).map(&block)
         end
 
-        # Squash the hash so that it becomes a single level
+        # Squash the hash returning a single level hash
         #
         # The squashing happens by merging the keys of
         # outter and inner hashes
@@ -109,6 +109,26 @@ module Darthjee
         #                      # }
         def squash(joiner = '.')
           Hash::Squasher.new(joiner).squash(deep_dup)
+        end
+
+        # Squash the hash so that it becomes a single level hash
+        #
+        # The squashing happens by merging the keys of
+        # outter and inner hashes
+        #
+        # This operation is the oposite of {#to_deep_hash}
+        #
+        # @param joiner [::String] String to be used when
+        #   joining keys
+        #
+        # @return [::Hash] A new hash
+        #
+        # @see Squash::Builder
+        # @see #to_deep_hash
+        #
+        # @example (see #squash)
+        def squash!(joiner = '.')
+          Hash::Squasher.new(joiner).squash(self)
         end
 
         # Creates a new hash of multiple levels from a one level
