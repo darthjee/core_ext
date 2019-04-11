@@ -60,15 +60,17 @@ module Darthjee
           Hash::ToHashMapper.new(self).map(&block)
         end
 
-        # Squash the hash so that it becomes a single level hash
-        # merging the keys of outter and inner hashes
+        # Squash the hash so that it becomes a single level
+        #
+        # The squashing happens by merging the keys of
+        # outter and inner hashes
         #
         # This operation is the oposite of {#to_deep_hash}
         #
         # @param joiner [::String] String to be used when
         #   joining keys
         #
-        # @return [::Hash] A one level hash
+        # @return [::Hash] A new hash
         #
         # @see Squash::Builder
         # @see #to_deep_hash
