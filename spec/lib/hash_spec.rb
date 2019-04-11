@@ -29,7 +29,7 @@ describe Hash do
 
     it 'does not change the hash' do
       expect { hash.squash }
-        .not_to change { hash }
+        .not_to(change { hash })
     end
   end
 
