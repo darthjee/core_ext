@@ -73,7 +73,7 @@ module Darthjee
         # @see Squash::Builder
         # @see #to_deep_hash
         #
-        # @example a name hash
+        # @example Simple Usage
         #   hash = { name: { first: 'John', last: 'Doe' } }
         #
         #   hash.squash # returns {
@@ -92,6 +92,19 @@ module Darthjee
         #                 #   'person.name' => 'John',
         #                 #   'person.age' => 23
         #                 # }
+        #
+        # @example Giving a custom joiner
+        #   hash = {
+        #     links: {
+        #       home: '/',
+        #       products: '/products'
+        #     }
+        #   }
+        #
+        #   hash.squash('> ')  # returns {
+        #                      #   'links> home' => '/',
+        #                      #   'links> products' => '/products'
+        #                      # }
         def squash(joiner = '.')
           Hash::Squasher.new(joiner).squash(deep_dup)
         end

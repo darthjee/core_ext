@@ -56,24 +56,51 @@ describe Hash do
   end
 
   describe '#squash' do
-    subject(:hash) { { name: { first: 'John', last: 'Doe' } } }
+    describe 'Simple Usage' do
+      subject(:hash) do
+        { name: { first: 'John', last: 'Doe' } }
+      end
 
-    it 'squash the hash into a one level hash' do
-      expect(hash.squash).to eq('name.first' => 'John', 'name.last' => 'Doe')
+      it 'squash the hash into a one level hash' do
+        expect(hash.squash)
+          .to eq('name.first' => 'John', 'name.last' => 'Doe')
+      end
     end
 
-    context 'when squashing the result of a deep hash' do
-      let(:person_data) { { 'person.name' => 'John', 'person.age' => 23 } }
-      let(:person)      { person_data.to_deep_hash }
+    describe 'Reverting a #to_deep_hash call' do
+      let(:person) { person_data.to_deep_hash }
+      let(:person_data) do
+        { 'person.name' => 'John', 'person.age' => 23 }
+      end
 
       it 'is the reverse operation' do
         expect(person.squash).to eq(person_data)
       end
     end
+
+    describe 'Giving a custom joiner' do
+      subject(:hash) do
+        {
+          links: {
+            home: '/',
+            products: '/products'
+          }
+        }
+      end
+
+      it 'joins keys using custom joiner' do
+        expect(hash.squash('> ')).to eq(
+          'links> home' => '/',
+          'links> products' => '/products'
+        )
+      end
+    end
   end
 
   describe '#to_deep_hash' do
-    subject(:hash) { { 'name_first' => 'John', 'name_last' => 'Doe' } }
+    subject(:hash) do
+      { 'name_first' => 'John', 'name_last' => 'Doe' }
+    end
 
     it 'with custom separator' do
       expect(hash.to_deep_hash('_')).to eq(
