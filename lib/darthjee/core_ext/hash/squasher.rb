@@ -41,9 +41,24 @@ module Darthjee
         #
         #   squasher = Darthjee::CoreExt::Hash::Squasher.new
         #
-        #   squasher.squash(hash) # returns {
+        #   squasher.squash(hash) # changes hash to {
         #                         #   'person.name' => 'John',
         #                         #   'person.age'  => 22
+        #                         # }
+        #
+        # @example Custom joiner
+        #   hash = {
+        #     person: {
+        #       name: 'John',
+        #       age: 22
+        #     }
+        #   }
+        #
+        #   squasher = Darthjee::CoreExt::Hash::Squasher.new('> ')
+        #
+        #   squasher.squash(hash) # changes hash to {
+        #                         #   'person> name' => 'John',
+        #                         #   'person> age'  => 22
         #                         # }
         def squash(hash)
           hash.keys.each do |key|

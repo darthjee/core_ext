@@ -3,7 +3,7 @@
 describe Darthjee::CoreExt::Hash::Squasher do
   subject(:squasher) { described_class.new }
 
-  describe '.squash' do
+  describe '#squash' do
     describe 'Simple Usage' do
       let(:hash) do
         {
@@ -18,6 +18,30 @@ describe Darthjee::CoreExt::Hash::Squasher do
         {
           'person.name' => 'John',
           'person.age'  => 22
+        }
+      end
+
+      it 'squashes the hash' do
+        expect(squasher.squash(hash)).to eq(expected)
+      end
+    end
+
+    describe 'Passing custom joiner' do
+      subject(:squasher) { described_class.new('> ') }
+
+      let(:hash) do
+        {
+          person: {
+            name: 'John',
+            age: 22
+          }
+        }
+      end
+
+      let(:expected) do
+        {
+          'person> name' => 'John',
+          'person> age'  => 22
         }
       end
 
