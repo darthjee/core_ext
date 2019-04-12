@@ -116,7 +116,7 @@ module Darthjee
         # The squashing happens by merging the keys of
         # outter and inner hashes
         #
-        # This operation is the oposite of {#to_deep_hash}
+        # This operation is the oposite of {#to_deep_hash!}
         #
         # @param joiner [::String] String to be used when
         #   joining keys
@@ -124,7 +124,7 @@ module Darthjee
         # @return [::Hash] A new hash
         #
         # @see Squash::Builder
-        # @see #to_deep_hash
+        # @see #to_deep_hash!
         #
         # @example (see #squash)
         def squash!(joiner = '.')
@@ -167,7 +167,7 @@ module Darthjee
         #   #   }
         #   # }
         def to_deep_hash(separator = '.')
-          Hash::DeepHashConstructor.new(separator).deep_hash(self)
+          Hash::DeepHashConstructor.new(separator).deep_hash(deep_dup)
         end
       end
     end
