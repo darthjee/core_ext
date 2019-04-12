@@ -189,6 +189,10 @@ module Darthjee
           default_reader(name, value)
         end
       end
+
+      def duplicable?
+        false
+      end
     end
   end
 end
