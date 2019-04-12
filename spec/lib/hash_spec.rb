@@ -105,8 +105,20 @@ describe Hash do
   end
 
   describe '#to_deep_hash' do
+    subject(:hash) do
+      {
+        'person.name' => 'John',
+        'person.age' => '22'
+      }
+    end
+
     it_behaves_like 'a method that returns a deep hash' do
       let(:result) { hash.to_deep_hash(*args) }
+    end
+
+    it 'does not change hash' do
+      expect { hash.to_deep_hash }
+        .not_to(change { hash })
     end
   end
 
