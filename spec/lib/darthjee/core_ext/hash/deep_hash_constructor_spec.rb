@@ -3,10 +3,14 @@
 require 'spec_helper'
 
 describe Darthjee::CoreExt::Hash::DeepHashConstructor do
-  let(:subject)   { described_class.new('.') }
-  let(:deep_hash) { subject.deep_hash(hash) }
+  let(:constructor) { described_class.new('.') }
+  let(:deep_hash)   { constructor.deep_hash(hash) }
 
-  describe '.deep_hash' do
+  describe '#deep_hash' do
+    it_behaves_like 'a method that returns a deep hash' do
+      let(:constructor) { described_class.new(*args) }
+      let(:result)      { constructor.deep_hash(hash) }
+    end
     let(:hash) do
       {
         'person.name' => 'Some name',
@@ -129,7 +133,7 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
     end
 
     context 'with custom separator' do
-      let(:subject) { described_class.new('_') }
+      let(:constructor) { described_class.new('_') }
       let(:hash) do
         {
           'person_name' => 'Some name',
@@ -146,17 +150,17 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
     end
 
     context 'with custom separator on n level deep hash' do
-      let(:subject) { described_class.new('_') }
+      let(:constructor) { described_class.new('_') }
       let(:hash) do
         {
-          'person_name_clazz' => String
+          'person_name_clazz' => 'String'
         }
       end
 
       let(:expected) do
         {
           'person' => {
-            'name' => { 'clazz' => String }
+            'name' => { 'clazz' => 'String' }
           }
         }
       end

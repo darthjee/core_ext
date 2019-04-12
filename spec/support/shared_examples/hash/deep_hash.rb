@@ -93,9 +93,9 @@ shared_examples 'a method that returns a deep hash' do
         'quote_request.personal.person[0].age' => 22,
         'quote_request.personal.person[1].name' => 'Some name 2',
         'quote_request.personal.person[1].age' => 23,
-        'request[0].status.clazz' => String,
-        'request[1].status.clazz' => Integer,
-        'request[2].status.clazz' => Date,
+        'request[0].status.clazz' => 'String',
+        'request[1].status.clazz' => 'Integer',
+        'request[2].status.clazz' => 'Date',
         'trials' => 3
       }
     end
@@ -111,9 +111,9 @@ shared_examples 'a method that returns a deep hash' do
           }
         },
         'request' => [
-          { 'status' => { 'clazz' => String } },
-          { 'status' => { 'clazz' => Integer } },
-          { 'status' => { 'clazz' => Date } }
+          { 'status' => { 'clazz' => 'String' } },
+          { 'status' => { 'clazz' => 'Integer' } },
+          { 'status' => { 'clazz' => 'Date' } }
         ],
         'trials' => 3
       }
@@ -145,7 +145,7 @@ shared_examples 'a method that returns a deep hash' do
   context 'with custom separator on n level deep hash' do
     subject(:hash) do
       {
-        'person_name_clazz' => String
+        'person_name_clazz' => 'String'
       }
     end
 
@@ -154,7 +154,7 @@ shared_examples 'a method that returns a deep hash' do
     let(:expected) do
       {
         'person' => {
-          'name' => { 'clazz' => String }
+          'name' => { 'clazz' => 'String' }
         }
       }
     end

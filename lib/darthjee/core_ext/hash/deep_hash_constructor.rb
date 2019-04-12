@@ -45,7 +45,7 @@ module Darthjee
         autoload :Setter, "#{PATH}/hash/deep_hash_constructor/setter"
 
         # @param separator [::String] keys splitter
-        def initialize(separator)
+        def initialize(separator = '.')
           @separator = separator
         end
 
