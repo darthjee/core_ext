@@ -62,15 +62,26 @@ module Darthjee
         #                         # }
         def squash(hash)
           hash.keys.each do |key|
-            next unless hash[key].is_a?(Hash)
+            next unless hash[key].is_any?(Hash, Array)
 
-            value = squash(hash.delete(key))
-            hash.merge!(prepend_to_key(key, value))
+            if hash[key].is_a?(Hash)
+              value = squash(hash.delete(key))
+              hash.merge!(prepend_to_key(key, value))
+            else
+              value = squash_array(key, hash.delete(key))
+              hash.merge!(value)
+            end
           end
           hash
         end
 
         private
+
+        def squash_array(key, array)
+          array.map.with_index do |element, index|
+            ["#{key}[#{index}]",  element]
+          end.to_h
+        end
 
         # @private
         #
