@@ -142,7 +142,7 @@ module Darthjee
         # @see #squash
         #
         # @example construction of name hash
-        #   { 'name_first' => 'John', 'name_last' => 'Doe' }
+        #   hash = { 'name_first' => 'John', 'name_last' => 'Doe' }
         #
         #   hash.to_deep_hash # return {
         #                     #   'name' => {
@@ -170,6 +170,16 @@ module Darthjee
           Hash::DeepHashConstructor.new(separator).deep_hash(deep_dup)
         end
 
+        # Changes hash to be a multiple level hash
+        #
+        # this operation is the oposite from {#squash!}
+        #
+        # @return [::Hash] Self changed to be a multi-level hash
+        #
+        # @see Hash::DeepHashConstructor
+        # @see #squash
+        #
+        # @example (see #to_deep_hash)
         def to_deep_hash!(separator = '.')
           Hash::DeepHashConstructor.new(separator).deep_hash(self)
         end
