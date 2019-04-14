@@ -31,13 +31,19 @@ shared_examples 'a method to squash a hash' do |joiner = '.'|
     end
   end
 
-  xcontext 'with complex array value' do
+  context 'with complex array value' do
     let(:hash) { { a: { b: [1, { x: 3, y: { z: 4 } }] } } }
     let(:key)  { %w[a b].join(joiner) }
 
+    let(:expected) do
+      {
+        "#{key}[0]" => 1,
+        "#{key}[1]" => { x: 3, y: { z: 4 } }
+      }
+    end
+
     it 'flattens the hash' do
-      expect(squashed)
-        .to eq(key => [1, { x: 3, y: { z: 4 } }])
+      expect(squashed).to eq(expected)
     end
   end
 end
