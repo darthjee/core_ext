@@ -122,6 +122,26 @@ describe Hash do
     end
   end
 
+  describe '#to_deep_hash!' do
+    subject(:hash) do
+      {
+        'person.name' => 'John',
+        'person.age' => '22'
+      }
+    end
+
+    it_behaves_like 'a method that returns a deep hash' do
+      let(:result) { hash.to_deep_hash!(*args) }
+    end
+
+    it 'does changes hash' do
+      expect { hash.to_deep_hash! }
+        .to change { hash }
+        .from('person.name' => 'John', 'person.age' => '22')
+        .to('person' => { 'name' => 'John', 'age' => '22' })
+    end
+  end
+
   describe '#map_and_find' do
     let(:hash)  { { a: 1, b: 2, c: 3, d: 4 } }
     let(:value) { hash.map_and_find(&block) }

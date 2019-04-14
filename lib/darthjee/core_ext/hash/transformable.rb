@@ -169,6 +169,10 @@ module Darthjee
         def to_deep_hash(separator = '.')
           Hash::DeepHashConstructor.new(separator).deep_hash(deep_dup)
         end
+
+        def to_deep_hash!(separator = '.')
+          Hash::DeepHashConstructor.new(separator).deep_hash(self)
+        end
       end
     end
   end

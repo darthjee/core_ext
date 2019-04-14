@@ -101,12 +101,15 @@ module Darthjee
         #
         # @return [Hash]
         def break_keys(hash)
-          {}.tap do |new_hash|
-            hash.each do |key, value|
+          out = {}.tap do |new_hash|
+            hash.keys.each do |key|
+              value = hash.delete(key)
               base_key, child_key = split_key(key, separator)
               Setter.new(new_hash, base_key).set(child_key, value)
             end
           end
+
+          hash.merge!(out)
         end
 
         # @private
