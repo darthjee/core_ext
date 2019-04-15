@@ -85,7 +85,7 @@ module Darthjee
               value = squash(element)
               hash.merge!(prepend_to_key("#{key}[#{index}]", value))
             when Array
-              #squash_array('', element)
+              hash.merge!(squash_array("#{key}[#{index}]", element))
             else
               hash["#{key}[#{index}]"] = element
             end

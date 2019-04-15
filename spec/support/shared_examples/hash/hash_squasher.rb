@@ -47,4 +47,22 @@ shared_examples 'a method to squash a hash' do |joiner = '.'|
       expect(squashed).to eq(expected)
     end
   end
+
+  context 'with array containing arrays' do
+    let(:hash) { { a: { b: [[11, 12], [21, 22]] } } }
+    let(:key)  { %w[a b].join(joiner) }
+
+    let(:expected) do
+      {
+        "#{key}[0][0]" => 11,
+        "#{key}[0][1]" => 12,
+        "#{key}[1][0]" => 21,
+        "#{key}[1][1]" => 22,
+      }
+    end
+
+    it 'flattens the hash' do
+      expect(squashed).to eq(expected)
+    end
+  end
 end
