@@ -31,14 +31,15 @@ shared_examples 'a method to squash a hash' do |joiner = '.'|
     end
   end
 
-  context 'with complex array value' do
+  context 'with array containing hashes' do
     let(:hash) { { a: { b: [1, { x: 3, y: { z: 4 } }] } } }
     let(:key)  { %w[a b].join(joiner) }
 
     let(:expected) do
       {
         "#{key}[0]" => 1,
-        "#{key}[1]" => { x: 3, y: { z: 4 } }
+        "#{key}[1]#{joiner}x" => 3,
+        "#{key}[1]#{joiner}y#{joiner}z" => 4
       }
     end
 

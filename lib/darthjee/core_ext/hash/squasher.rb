@@ -78,9 +78,19 @@ module Darthjee
         private
 
         def squash_array(key, array)
+          hash = {}
           array.map.with_index do |element, index|
-            ["#{key}[#{index}]",  element]
-          end.to_h
+            case element
+            when Hash
+              value = squash(element)
+              hash.merge!(prepend_to_key("#{key}[#{index}]", value))
+            when Array
+              #squash_array('', element)
+            else
+              hash["#{key}[#{index}]"] = element
+            end
+          end
+          hash
         end
 
         # @private
