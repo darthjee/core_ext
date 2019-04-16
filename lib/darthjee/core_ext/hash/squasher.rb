@@ -64,13 +64,10 @@ module Darthjee
           hash.keys.each do |key|
             next unless hash[key].is_any?(Hash, Array)
 
-            if hash[key].is_a?(Hash)
-              value = squash(hash.delete(key))
-              hash.merge!(prepend_to_keys(key, value))
-            else
-              value = squash_array(key, hash.delete(key))
-              hash.merge!(value)
-            end
+            value = hash.delete(key)
+            sub_hash = sub_hash_for(key, value)
+
+            hash.merge!(sub_hash)
           end
           hash
         end
@@ -80,13 +77,13 @@ module Darthjee
         def squash_array(key, array)
           array.map.with_index.inject({}) do |hash, (element, index)|
             new_key = "#{key}[#{index}]"
-            sub_hash = hash_from_array_element(new_key, element)
+            sub_hash = sub_hash_for(new_key, element)
 
             hash.merge!(sub_hash)
           end
         end
 
-        def hash_from_array_element(new_key, element)
+        def sub_hash_for(new_key, element)
           case element
           when Hash
             value = squash(element)
