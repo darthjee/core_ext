@@ -24,10 +24,10 @@ shared_examples 'a method to squash a hash' do |joiner = '.'|
     end
 
     it 'squash also hash' do
-      expect(squashed).to eq({
+      expect(squashed).to eq(
         'person[0]' => 'John',
-        'person[1]' => 'Wick',
-      })
+        'person[1]' => 'Wick'
+      )
     end
   end
 
@@ -57,7 +57,7 @@ shared_examples 'a method to squash a hash' do |joiner = '.'|
         "#{key}[0][0]" => 11,
         "#{key}[0][1]" => 12,
         "#{key}[1][0]" => 21,
-        "#{key}[1][1]" => 22,
+        "#{key}[1][1]" => 22
       }
     end
 
