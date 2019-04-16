@@ -65,9 +65,7 @@ module Darthjee
             next unless hash[key].is_any?(Hash, Array)
 
             value = hash.delete(key)
-            sub_hash = sub_hash_for(key, value)
-
-            hash.merge!(sub_hash)
+            add_value_to_hash(hash, key, value)
           end
           hash
         end
@@ -77,21 +75,19 @@ module Darthjee
         def squash_array(key, array)
           array.map.with_index.inject({}) do |hash, (element, index)|
             new_key = "#{key}[#{index}]"
-            sub_hash = sub_hash_for(new_key, element)
-
-            hash.merge!(sub_hash)
+            add_value_to_hash(hash, new_key, element)
           end
         end
 
-        def sub_hash_for(new_key, element)
+        def add_value_to_hash(hash, new_key, element)
           case element
           when Hash
             value = squash(element)
-            prepend_to_keys(new_key, value)
+            hash.merge! prepend_to_keys(new_key, value)
           when Array
-            squash_array(new_key, element)
+            hash.merge! squash_array(new_key, element)
           else
-            { new_key => element }
+            hash.merge!(new_key => element)
           end
         end
 
