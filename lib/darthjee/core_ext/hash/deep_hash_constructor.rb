@@ -19,11 +19,12 @@ module Darthjee
       # @example (see Transformable#to_deep_hash)
       # @example General Usage
       #   hash = {
-      #     'account.person.name' => 'John',
-      #     'account.person.age'  =>  20,
-      #     'account.number'      => '102030',
-      #     :'house.number'       => 67,
-      #     :'house.zip'          => 12_345
+      #     'account.person.name[0]' => 'John',
+      #     'account.person.name[1]' => 'Wick',
+      #     'account.person.age'     =>  20,
+      #     'account.number'         => '102030',
+      #     :'house.number'          => 67,
+      #     :'house.zip'             => 12_345
       #   }
       #
       #   constructor = Darthjee::CoreExt::Hash::DeepHashConstructor.new('.')
@@ -31,7 +32,7 @@ module Darthjee
       #   constructor.deep_hash(hash)  # returns {
       #                                #   'account' => {
       #                                #     'person' => {
-      #                                #       'name'   => 'John',
+      #                                #       'name'   => ['John', 'Wick'],
       #                                #       'age'    =>  20
       #                                #     },
       #                                #     'number' => '102030',
@@ -76,11 +77,12 @@ module Darthjee
         #
         # @example Breaking many level keys
         #   hash = {
-        #     'account.person.name' => 'John',
-        #     'account.person.age'  =>  20,
-        #     'account.number'      => '102030',
-        #     :'house.number'       => 67,
-        #     :'house.zip'          => 12_345
+        #     'account.person.name[0]' => 'John',
+        #     'account.person.name[1]' => 'Wick',
+        #     'account.person.age'     =>  20,
+        #     'account.number'         => '102030',
+        #     :'house.number'          => 67,
+        #     :'house.zip'             => 12_345
         #   }
         #
         #   constructor = Darthjee::CoreExt::Hash::DeepHashConstructor.new('.')
@@ -89,9 +91,10 @@ module Darthjee
         #
         #   # Returns {
         #   #   'account' => {
-        #   #     %w[person name] => 'John',
-        #   #     %w[person age]  =>  20,
-        #   #     %w[number]      => '102030'
+        #   #     %w[person name[0]] => 'John',
+        #   #     %w[person name[1]] => 'Wick',
+        #   #     %w[person age]     =>  20,
+        #   #     %w[number]         => '102030'
         #   #   },
         #   #   'house' => {
         #   #     %w[number] => 67,

@@ -85,14 +85,24 @@ module Darthjee
         #
         # @example Reverting a #to_deep_hash call
         #   person_data = {
-        #     'person.name' => 'John',
-        #     'person.age' => 23
+        #     person: [{
+        #       name: %w[John Wick],
+        #       age: 22
+        #     }, {
+        #       name: %w[John Constantine],
+        #       age: 25
+        #     }]
         #   }
         #   person = person_data.to_deep_hash
         #
         #   person.squash # returns {
-        #                 #   'person.name' => 'John',
-        #                 #   'person.age' => 23
+        #                 #   'person' => [{
+        #                 #     'name' => %w[John Wick],
+        #                 #     'age' => 22
+        #                 #   }, {
+        #                 #     'name' => %w[John Constantine],
+        #                 #     'age' => 25
+        #                 #   }]
         #                 # }
         #
         # @example Giving a custom joiner

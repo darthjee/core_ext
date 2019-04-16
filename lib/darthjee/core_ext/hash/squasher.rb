@@ -27,23 +27,30 @@ module Darthjee
         # Squash the hash so that it becomes a single level
         # hash merging the keys of outter and inner hashes
         #
-        # @param origin [::Hash] hash to be squashed
+        # @param hash [::Hash] hash to be squashed
         #
         # @return [::Hash]
         #
         # @example Simple usage
         #   hash = {
-        #     person: {
-        #       name: 'John',
+        #     person: [{
+        #       name: %w[John Wick],
         #       age: 22
-        #     }
+        #     }, {
+        #       name: %w[John Constantine],
+        #       age: 25
+        #     }]
         #   }
         #
         #   squasher = Darthjee::CoreExt::Hash::Squasher.new
         #
         #   squasher.squash(hash) # changes hash to {
-        #                         #   'person.name' => 'John',
-        #                         #   'person.age'  => 22
+        #                         #   'person[0].name[0]' => 'John',
+        #                         #   'person[0].name[1]' => 'Wick',
+        #                         #   'person[0].age'  => 22,
+        #                         #   'person[1].name[0]' => 'John',
+        #                         #   'person[1].name[1]' => 'Constantine',
+        #                         #   'person[1].age'  => 25
         #                         # }
         #
         # @example Custom joiner
@@ -72,6 +79,15 @@ module Darthjee
 
         private
 
+        # @private
+        #
+        # Perform squashing on array
+        #
+        # @param key [::String] key to be prepended on
+        #   hash keys
+        # @param array [::Array] array to be squashed
+        #
+        # @return [::Hash] hash with indexed keys
         def squash_array(key, array)
           array.map.with_index.inject({}) do |hash, (element, index)|
             new_key = "#{key}[#{index}]"
@@ -79,15 +95,35 @@ module Darthjee
           end
         end
 
-        def add_value_to_hash(hash, new_key, element)
+        # @private
+        #
+        # Add positioned values to a hash
+        #
+        # @param hash [::Hash] hash to receive the values
+        # @param key [::String] String to be prepended
+        #
+        # @overload add_value_to_hash(hash, key, sub_hash)
+        #   @param sub_hash [::Hash] subhash to be squashed
+        #     key prepended and merged into hash
+        #
+        # @overload add_value_to_hash(hash, key, array)
+        #   @param array [::Array] array to be squashed into
+        #     {::Hash} and merged into hash
+        #
+        # @overload add_value_to_hash(hash, key, object)
+        #   @param object [::Object] object to be treated
+        #     as value
+        #
+        # @return [::Hash]
+        def add_value_to_hash(hash, key, element)
           case element
           when Hash
             value = squash(element)
-            hash.merge! prepend_to_keys(new_key, value)
+            hash.merge! prepend_to_keys(key, value)
           when Array
-            hash.merge! squash_array(new_key, element)
+            hash.merge! squash_array(key, element)
           else
-            hash.merge!(new_key => element)
+            hash.merge!(key => element)
           end
         end
 

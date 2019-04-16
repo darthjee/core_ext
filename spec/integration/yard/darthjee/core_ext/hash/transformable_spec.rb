@@ -111,16 +111,19 @@ describe Hash do
     context 'when squashing the result of a deep hash' do
       let(:person) do
         {
-          'person' => {
-            'name' => 'John',
-            'age' => 23
-          }
+          person: [{
+            name: %w[John Wick],
+            age: 22
+          }, {
+            name: %w[John Constantine],
+            age: 25
+          }]
         }
       end
       let(:person_data) { person.squash }
 
       it 'is the reverse operation' do
-        expect(person_data.to_deep_hash).to eq(person)
+        expect(person_data.to_deep_hash).to eq(person.deep_stringify_keys)
       end
     end
   end

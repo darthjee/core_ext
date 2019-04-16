@@ -7,17 +7,24 @@ describe Darthjee::CoreExt::Hash::Squasher do
     describe 'Simple Usage' do
       let(:hash) do
         {
-          person: {
-            name: 'John',
+          person: [{
+            name: %w[John Wick],
             age: 22
-          }
+          }, {
+            name: %w[John Constantine],
+            age: 25
+          }]
         }
       end
 
       let(:expected) do
         {
-          'person.name' => 'John',
-          'person.age'  => 22
+          'person[0].name[0]' => 'John',
+          'person[0].name[1]' => 'Wick',
+          'person[0].age'     => 22,
+          'person[1].name[0]' => 'John',
+          'person[1].name[1]' => 'Constantine',
+          'person[1].age'     => 25
         }
       end
 
