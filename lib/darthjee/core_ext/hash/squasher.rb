@@ -66,7 +66,7 @@ module Darthjee
 
             if hash[key].is_a?(Hash)
               value = squash(hash.delete(key))
-              hash.merge!(prepend_to_key(key, value))
+              hash.merge!(prepend_to_keys(key, value))
             else
               value = squash_array(key, hash.delete(key))
               hash.merge!(value)
@@ -85,7 +85,7 @@ module Darthjee
               case element
               when Hash
                 value = squash(element)
-                hash.merge!(prepend_to_key(new_key, value))
+                hash.merge!(prepend_to_keys(new_key, value))
               when Array
                 hash.merge!(squash_array(new_key, element))
               else
@@ -104,7 +104,7 @@ module Darthjee
         #   (already squashed)
         #
         # @return [::Hash] new hash already squashed
-        def prepend_to_key(prefix, hash)
+        def prepend_to_keys(prefix, hash)
           hash.inject({}) do |subhash, (key, value)|
             new_key = [prefix, key].join(joiner)
             subhash.merge!(new_key => value)
