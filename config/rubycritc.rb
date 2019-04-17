@@ -8,4 +8,5 @@ RubyCritic::RakeTask.new do |task|
     --no-browser
   ]
   task.options = options.join(' ')
+  task.paths   = %w[lib]
 end
