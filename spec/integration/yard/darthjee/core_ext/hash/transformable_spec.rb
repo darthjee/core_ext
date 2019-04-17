@@ -100,17 +100,32 @@ describe Hash do
   end
 
   describe '#to_deep_hash' do
-    subject(:hash) do
-      { 'name_first' => 'John', 'name_last' => 'Doe' }
+    describe 'With custom separator' do
+      subject(:hash) do
+        {
+          'person[0]_name_first' => 'John',
+          'person[0]_name_last'  => 'Doe',
+          'person[1]_name_first' => 'John',
+          'person[1]_name_last'  => 'Wick'
+        }
+      end
+
+      let(:expected) do
+        {
+          'person' => [{
+            'name' => { 'first' => 'John', 'last' => 'Doe' }
+          }, {
+            'name' => { 'first' => 'John', 'last' => 'Wick' }
+          }]
+        }
+      end
+
+      it 'with custom separator' do
+        expect(hash.to_deep_hash('_')).to eq(expected)
+      end
     end
 
-    it 'with custom separator' do
-      expect(hash.to_deep_hash('_')).to eq(
-        'name' => { 'first' => 'John', 'last' => 'Doe' }
-      )
-    end
-
-    context 'when squashing the result of a deep hash' do
+    describe 'Reverting the result of a squash' do
       let(:person) do
         {
           person: [{

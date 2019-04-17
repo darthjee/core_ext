@@ -151,30 +151,48 @@ module Darthjee
         # @see Hash::DeepHashConstructor
         # @see #squash
         #
-        # @example construction of name hash
-        #   hash = { 'name_first' => 'John', 'name_last' => 'Doe' }
+        # @example With custom separator
+        #   hash = {
+        #     'person[0]_name_first' => 'John',
+        #     'person[0]_name_last'  => 'Doe',
+        #     'person[1]_name_first' => 'John',
+        #     'person[1]_name_last'  => 'Wick'
+        #   }
         #
-        #   hash.to_deep_hash # return {
-        #                     #   'name' => {
-        #                     #     'first' => 'John',
-        #                     #     'last' => 'Doe'
-        #                     #   }
-        #                     # }
-        # @example Reverting squash
+        #   hash.to_deep_hash('_') # return {
+        #                          #   'person' => [{
+        #                          #     'name' => {
+        #                          #       'first' => 'John',
+        #                          #       'last'  => 'Doe'
+        #                          #   }, {
+        #                          #     'name' => {
+        #                          #       'first' => 'John',
+        #                          #       'last'  => 'Wick'
+        #                          #     }
+        #                          #   }]
+        #                          # }
+        #
+        # @example Reverting the result of a squash
         #   person = {
-        #     'person' => {
-        #       'name' => 'John',
-        #       'age' => 23
-        #     }
+        #     person: [{
+        #       name: ['John', 'Wick'],
+        #       age:  23
+        #     }, {
+        #       name: %w[John Constantine],
+        #       age:  25
+        #     }]
         #   }
         #   person_data = person.squash
         #
         #   person_data.to_deep_hash
         #   # returns {
-        #   #   'person' => {
-        #   #     'name' => 'John',
-        #   #     'age' => 23
-        #   #   }
+        #   #   'person' => [{
+        #   #     'name' => ['John', 'Wick'],
+        #   #     'age'  => 23
+        #   #   }, {
+        #   #     'name' => %w[John Constantine],
+        #   #     'age'  => 25
+        #   #   }]
         #   # }
         def to_deep_hash(separator = '.')
           Hash::DeepHashConstructor.new(separator).deep_hash(deep_dup)
