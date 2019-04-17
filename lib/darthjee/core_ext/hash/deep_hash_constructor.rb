@@ -58,9 +58,9 @@ module Darthjee
         #
         # @example (see DeepHashConstructor)
         def deep_hash(hash)
-          break_keys(hash).tap do |new_hash|
-            new_hash.each do |key, value|
-              new_hash[key] = deep_hash_value(value)
+          break_keys(hash).tap do
+            hash.each do |key, value|
+              hash[key] = deep_hash_value(value)
             end
           end
         end
