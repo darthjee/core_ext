@@ -10,7 +10,8 @@ describe Hash do
       let(:other)    { { b: 4, 'c' => 5, e: 6 } }
 
       it 'merges only the existing keys' do
-        expect(hash.exclusive_merge(other)).to eq(a: 1, b: 4, c: 3)
+        expect(hash.exclusive_merge(other))
+          .to eq(a: 1, b: 4, c: 3)
       end
 
       it 'does not change original hash' do
@@ -26,7 +27,8 @@ describe Hash do
       let(:other)    { { b: 4, 'c' => 5, e: 6 } }
 
       it 'merges only the existing keys' do
-        expect(hash.exclusive_merge!(other)).to eq(a: 1, b: 4, c: 3)
+        expect(hash.exclusive_merge!(other))
+          .to eq(a: 1, b: 4, c: 3)
       end
 
       it 'does not change original hash' do
@@ -123,7 +125,8 @@ describe Hash do
       let(:person_data) { person.squash }
 
       it 'is the reverse operation' do
-        expect(person_data.to_deep_hash).to eq(person.deep_stringify_keys)
+        expect(person_data.to_deep_hash)
+          .to eq(person.deep_stringify_keys)
       end
     end
   end
