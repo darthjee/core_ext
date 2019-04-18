@@ -3,6 +3,9 @@
 module Darthjee
   module CoreExt
     module Hash
+      # @api private
+      # @author darthjee
+      #
       # Class responsible for changing values on a hash
       #
       # @attribute [::TrueClass,::FalseClass] recursive
@@ -13,7 +16,7 @@ module Darthjee
       #   block to be called when changing the values
       #
       # @example
-      #   (see initialize)
+      #   (see #initialize)
       #
       # @example
       #   (see #change)
@@ -119,9 +122,13 @@ module Darthjee
 
         private
 
+        # @private
+        #
         # Apply change logic to hash object
         #
-        # @private
+        # @param original_hash [::Hash] hash to be changed
+        #
+        # @return [::Hash]
         def change_hash(original_hash)
           original_hash.tap do |hash|
             original_hash.each do |key, value|
@@ -130,9 +137,13 @@ module Darthjee
           end
         end
 
+        # @private
+        #
         # Apply change logic to iterator
         #
-        # @private
+        # @param array [::Array] array to be changed
+        #
+        # @return [::Array]
         def change_array(array)
           method = %w[map! map].find { |m| array.respond_to? m }
 
@@ -147,22 +158,48 @@ module Darthjee
           end
         end
 
-        # check wehether block should be called over
-        # value or not
+        # @private
+        #
+        # Check wehether block should be called over value
         #
         # when the block is not iterable (not Array or Hash)
         # or when skip_inner option is set to be false,
         # then block should be called
         #
-        # @private
+        # @param value [::Object] value to be checked
+        #
+        # @return [::TrueClass,::FalseClass]
         def change_value?(value)
           !iterable?(value) || !skip_inner
         end
 
+        # @private
+        #
+        # Checks if a value is iterable
+        #
+        # @param value [::Object] object to be checked
+        #
+        # @return [::TrueClass,::FalseClass]
         def iterable?(value)
           value.respond_to?(:each)
         end
 
+        # @private
+        #
+        # Performs recursive transformation
+        #
+        # @overload new_value(hash)
+        #   @param hash [::Hash] sub-hash to be processed recursively
+        #   @return [::Hash]
+        #
+        # @overload new_value(array)
+        #   @param array [::Array] array to be processed recursively
+        #   @return [::Array]
+        #
+        # @overload new_value(value)
+        #   @param value [::Object] value to be transformed
+        #
+        # @return [::Object]
         def new_value(value)
           value = block.call(value) if change_value?(value)
 
@@ -171,6 +208,13 @@ module Darthjee
           change(value)
         end
 
+        # @private
+        #
+        # Checks if recursion should be applied
+        #
+        # @param value [::Object]
+        #
+        # @return [::TrueClass,::FalseClass]
         def apply_recursion?(value)
           iterable?(value) && recursive
         end
