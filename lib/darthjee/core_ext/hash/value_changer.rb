@@ -21,8 +21,6 @@ module Darthjee
       # @example
       #   (see #change)
       class ValueChanger
-        attr_accessor :recursive, :skip_inner, :block
-
         # @param [::TrueClass,::FalseClass] recursive
         #   flag telling to apply transformation recursively
         # @param [::TrueClass,::FalseClass] skip_inner
@@ -121,6 +119,8 @@ module Darthjee
         end
 
         private
+
+        attr_reader :recursive, :skip_inner, :block
 
         # @private
         #
