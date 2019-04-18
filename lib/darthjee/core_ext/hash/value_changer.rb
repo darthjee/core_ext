@@ -109,7 +109,7 @@ module Darthjee
         #                         #   [{ e: 3 }]
         #                         # ]
         def change(object)
-          if object.respond_to?(:change_values)
+          if object.is_a?(Hash)
             change_hash(object)
           elsif iterable?(object)
             change_array(object)
@@ -148,7 +148,7 @@ module Darthjee
           method = %w[map! map].find { |m| array.respond_to? m }
 
           array.public_send(method) do |value|
-            if value.respond_to?(:change_values)
+            if value.is_a?(Hash)
               change(value)
             elsif iterable?(value)
               change_array(value)
