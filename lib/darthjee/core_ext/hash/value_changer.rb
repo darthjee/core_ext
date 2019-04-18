@@ -126,12 +126,12 @@ module Darthjee
         #
         # Apply change logic to hash object
         #
-        # @param original_hash [::Hash] hash to be changed
+        # @param hash [::Hash] hash to be changed
         #
         # @return [::Hash]
-        def change_hash(original_hash)
-          original_hash.tap do |hash|
-            original_hash.each do |key, value|
+        def change_hash(hash)
+          hash.tap do
+            hash.each do |key, value|
               hash[key] = new_value(value)
             end
           end
