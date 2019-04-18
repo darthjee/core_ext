@@ -216,8 +216,8 @@ describe Darthjee::CoreExt::Hash::ValueChanger do
         expect(changer.change(object)).to eq(expected)
       end
 
-      it 'does not change original array' do
-        expect { changer.change(object) }.not_to(change { array })
+      it 'change original array' do
+        expect { changer.change(object) }.to(change { array })
       end
     end
 
@@ -230,8 +230,8 @@ describe Darthjee::CoreExt::Hash::ValueChanger do
         expect(changer.change(object)).to eq(expected)
       end
 
-      it 'does not change original array' do
-        expect { changer.change(object) }.not_to(change { array })
+      it 'changes original array' do
+        expect { changer.change(object) }.to(change { array })
       end
     end
 

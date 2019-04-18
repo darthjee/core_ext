@@ -149,7 +149,7 @@ module Darthjee
 
           array.public_send(method) do |value|
             if value.respond_to?(:change_values)
-              value.change_values(options, &block)
+              change(value)
             elsif iterable?(value)
               change_array(value)
             else
@@ -217,13 +217,6 @@ module Darthjee
         # @return [::TrueClass,::FalseClass]
         def apply_recursion?(value)
           iterable?(value) && recursive
-        end
-
-        def options
-          @options ||= {
-            recursive: recursive,
-            skip_inner: skip_inner
-          }
         end
       end
     end
