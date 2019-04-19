@@ -147,11 +147,11 @@ module Darthjee
         #
         # @return [::Array]
         def change_array(array)
-          array.map!(&(method(:change)))
+          array.map!(&method(:change))
         end
 
         def change_iterator(array)
-          array.map(&(method(:change)))
+          array.map(&method(:change))
         end
 
         # @private
