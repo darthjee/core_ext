@@ -147,26 +147,20 @@ module Darthjee
         #
         # @return [::Array]
         def change_array(array)
-          array.map! do |value|
-            if value.is_a?(Hash)
-              change(value)
-            elsif iterable?(value)
-              change_array(value)
-            else
-              new_value(value)
-            end
-          end
+          array.map!(&(method(:change_value)))
         end
 
         def change_iterator(array)
-          array.map do |value|
-            if value.is_a?(Hash)
-              change(value)
-            elsif iterable?(value)
-              change_array(value)
-            else
-              new_value(value)
-            end
+          array.map(&(method(:change_value)))
+        end
+
+        def change_value(value)
+          if value.is_a?(Hash)
+            change(value)
+          elsif iterable?(value)
+            change_array(value)
+          else
+            new_value(value)
           end
         end
 
