@@ -111,8 +111,10 @@ module Darthjee
         def change(object)
           if object.is_a?(Hash)
             change_hash(object)
-          elsif iterable?(object)
+          elsif object.is_a?(Array)
             change_array(object)
+          elsif iterable?(object)
+            change_iterator(object)
           else
             object
           end
@@ -145,9 +147,19 @@ module Darthjee
         #
         # @return [::Array]
         def change_array(array)
-          method = %w[map! map].find { |m| array.respond_to? m }
+          array.map! do |value|
+            if value.is_a?(Hash)
+              change(value)
+            elsif iterable?(value)
+              change_array(value)
+            else
+              new_value(value)
+            end
+          end
+        end
 
-          array.public_send(method) do |value|
+        def change_iterator(array)
+          array.map do |value|
             if value.is_a?(Hash)
               change(value)
             elsif iterable?(value)
