@@ -5,20 +5,20 @@ describe Darthjee::CoreExt::Hash::Transposeable do
     subject(:hash) do
       {
         key1: :value1,
-        key2: :value2,
+        key2: :value2
       }
     end
 
     describe '#transpose' do
       it 'transpose rows and keys' do
-        expect(hash.transpose).to eq({
+        expect(hash.transpose).to eq(
           value1: :key1,
           value2: :key2
-        })
+        )
       end
 
       it do
-        expect { hash.transpose }.not_to change { hash }
+        expect { hash.transpose }.not_to(change { hash })
       end
     end
 
@@ -28,7 +28,7 @@ describe Darthjee::CoreExt::Hash::Transposeable do
           .to(
             value1: :key1,
             value2: :key2
-        )
+          )
       end
     end
   end
