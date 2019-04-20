@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
+# @api public
 module Math
+  # Calculates avarage from a series of values
+  #
+  # @param values [::Array] list of values
+  #
+  # @return [::Float]
   def self.average(values)
     values = values.map { |v| [v, 1] }.to_h unless values.is_a?(Hash)
 
