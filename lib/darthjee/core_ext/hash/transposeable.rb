@@ -23,12 +23,9 @@ module Darthjee
         #                  #   value2: :key2
         #                  # }
         def transpose!
-          aux = dup
+          transposed = transpose
           keys.each(&method(:delete))
-          aux.each do |key, value|
-            self[value] = key
-          end
-          self
+          merge!(transposed)
         end
 
         # Transpose matrix swapping keys by values
