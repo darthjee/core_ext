@@ -3,6 +3,10 @@
 module Darthjee
   module CoreExt
     module Hash
+      # @author darthjee
+      #
+      # Collection of methods for transposing keys
+      # and values of hash
       module Transposeable
         # Transpose matrix swapping keys by values
         #
