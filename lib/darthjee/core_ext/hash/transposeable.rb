@@ -24,9 +24,9 @@ module Darthjee
         #                  # }
         def transpose!
           aux = dup
-          keys.each { |k| delete(k) }
-          aux.each do |k, v|
-            self[v] = k
+          keys.each(&method(:delete))
+          aux.each do |key, value|
+            self[value] = key
           end
           self
         end
@@ -47,8 +47,8 @@ module Darthjee
         #                  # }
         def transpose
           {}.tap do |new_hash|
-            each do |k, v|
-              new_hash[v] = k
+            each do |key, value|
+              new_hash[value] = key
             end
           end
         end
