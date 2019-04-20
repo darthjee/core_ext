@@ -4,10 +4,10 @@ describe Math do
   describe 'yard' do
     describe '.average' do
       describe 'Average of array' do
-        let(:values) { [1,2,3,4] }
+        let(:values) { [1, 2, 3, 4] }
 
         it 'calculates the average' do
-          expect(Math.average(values)).to eq(2.5)
+          expect(described_class.average(values)).to eq(2.5)
         end
       end
 
@@ -20,7 +20,7 @@ describe Math do
         end
 
         it 'calculates the average' do
-          expect(Math.average(values)).to eq(2.5)
+          expect(described_class.average(values)).to eq(2.5)
         end
       end
     end

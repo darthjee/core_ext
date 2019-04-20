@@ -22,10 +22,13 @@ module Math
   #
   #   Math.average(values) # returns 2.5
   def self.average(values)
-    values = values.map { |v| [v, 1] }.to_h unless values.is_a?(Hash)
+    if values.is_a?(Hash)
+      weight_sum = values.values.sum
+      values = values.map { |value, weight| value * weight }
+    else
+      weight_sum = values.length
+    end
 
-    values.inject(0) do |sum, vals|
-      sum + vals.inject { |a, b| a * b }
-    end / values.values.sum.to_f
+    values.sum / weight_sum.to_f
   end
 end
