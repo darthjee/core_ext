@@ -150,8 +150,15 @@ module Darthjee
           array.map!(&method(:change))
         end
 
-        def change_iterator(array)
-          array.map(&method(:change))
+        # @private
+        #
+        # Change value from iterator
+        #
+        # @param iteraror [::Object] object responding to map
+        #
+        # @return [::Array]
+        def change_iterator(iterator)
+          iterator.map(&method(:change))
         end
 
         # @private
@@ -177,7 +184,7 @@ module Darthjee
         #
         # @return [::TrueClass,::FalseClass]
         def iterable?(value)
-          value.respond_to?(:each)
+          value.respond_to?(:map)
         end
 
         # @private
