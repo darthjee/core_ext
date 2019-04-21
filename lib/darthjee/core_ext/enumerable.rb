@@ -116,11 +116,8 @@ module Enumerable
   #   values # returns [3, 1]
   #
   # @return [::Array<::Object>]
-  def map_and_select
-    mapped = map do |*args|
-      yield(*args)
-    end
-    mapped.select { |e| e }
+  def map_and_select(&block)
+    map(&block).select(&:present?)
   end
 
   # Maps values and creates a hash
