@@ -1,12 +1,34 @@
 ## Enumerable
 
-### #clean!
-Cleans empty values from a hash
+### #clean
+Retruns a copy of the enumerator removing empty values from it
+
 ```ruby
-{ a: 1, b: [], c: nil, d: {}, e: '', f: { b: [], c: nil, d: {}, e: '' } }.clean!
+  hash  = { b: [], c: nil, d: {}, e: '' }
+  array = [1, [], nil, {}, '', hash]
+
+  array.clean # returns [1]
 ```
-returns
+
+
+### #clean!
+Cleans empty values from an enumerator
+
 ```ruby
-  {}
+hash = {
+  a: 1,
+  b: [],
+  c: nil,
+  d: {},
+  e: '',
+  f: {
+    b: [],
+    c: nil,
+    d: {},
+    e: ''
+  }
+}
+
+hash.clean! # changes hash to { a: 1 }
 ```
 
