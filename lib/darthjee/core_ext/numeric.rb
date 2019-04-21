@@ -2,7 +2,17 @@
 
 module Darthjee
   module CoreExt
+    # @api public
     module Numeric
+      # Returns the percentage over total
+      #
+      # @param total [::Numeric] total over which to calculate
+      #   the percentage
+      #
+      # @return [::Float]
+      #
+      # @example
+      #   10.percent_of(30) # returns 33.33333333333333
       def percent_of(total)
         return Float::INFINITY if total&.zero?
         (to_f / total.to_f) * 100.0

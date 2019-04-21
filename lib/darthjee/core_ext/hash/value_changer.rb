@@ -154,7 +154,7 @@ module Darthjee
         #
         # Change value from iterator
         #
-        # @param iteraror [::Object] object responding to map
+        # @param iterator [::Object] object responding to map
         #
         # @return [::Array]
         def change_iterator(iterator)

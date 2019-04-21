@@ -51,11 +51,7 @@ module Enumerable
   #
   # @return [::Enumerable] same class of +self+
   def clean!
-    if is_a?(Hash)
-      delete_if { |_k, v| empty_value?(v) }
-    else
-      delete_if { |v| empty_value?(v) }
-    end
+    delete_if { |*args| empty_value?(args.last) }
   end
 
   # Maps the elements into a new value, returning only one
@@ -120,11 +116,8 @@ module Enumerable
   #   values # returns [3, 1]
   #
   # @return [::Array<::Object>]
-  def map_and_select
-    mapped = map do |*args|
-      yield(*args)
-    end
-    mapped.select { |e| e }
+  def map_and_select(&block)
+    map(&block).select(&:present?)
   end
 
   # Maps values and creates a hash
@@ -158,7 +151,7 @@ module Enumerable
   #
   # @return [::TrueClass,::FalseClass]
   def empty_value?(value)
-    return true if value.nil? || value.try(:empty?)
+    return true unless value.present?
     return unless value.is_a?(Hash) || value.is_a?(Array)
     value.clean!.empty?
   end
