@@ -51,11 +51,7 @@ module Enumerable
   #
   # @return [::Enumerable] same class of +self+
   def clean!
-    if is_a?(Hash)
-      delete_if { |_k, v| empty_value?(v) }
-    else
-      delete_if { |v| empty_value?(v) }
-    end
+    delete_if { |*args| empty_value?(args.last) }
   end
 
   # Maps the elements into a new value, returning only one
