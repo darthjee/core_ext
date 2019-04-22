@@ -22,6 +22,10 @@ module Darthjee
           is_a?(clazz)
         end
       end
+
+      def truthy?
+        !! self
+      end
     end
   end
 end
