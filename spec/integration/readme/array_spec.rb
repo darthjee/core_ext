@@ -20,5 +20,25 @@ describe Array do
         expect(array.average).to eq(2.5)
       end
     end
+
+    describe '#chain_map' do
+      subject(:array) { %i[a long_name sym] }
+
+      it 'maps calling the methods' do
+        expect(array.chain_map(:to_s, :size, :to_s))
+          .to eq(%w[1 9 3])
+      end
+
+      context 'when giving a block' do
+        let(:mapped) do
+          array.chain_map(:to_s, :size) { |v| "final: #{v}" }
+        end
+
+        it 'maps calling the methods' do
+          expect(mapped)
+            .to eq(['final: 1', 'final: 9', 'final: 3'])
+        end
+      end
+    end
   end
 end
