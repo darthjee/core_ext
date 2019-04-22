@@ -50,5 +50,17 @@ describe Enumerable do
           .from([]).to([10, 21])
       end
     end
+
+    describe '#map_and_select' do
+      let(:ids)          { [10, 21, 30, 31, 51, 55] }
+      let(:client)       { Client.new(existing_ids) }
+      let(:existing_ids) { [1, 11, 21, 31, 41, 51] }
+      let(:request)      { client.method(:request) }
+
+      it 'returns all values found' do
+        expect(ids.map_and_select(&request))
+          .to eq([{ id: 21 }, { id: 31 }, { id: 51 }])
+      end
+    end
   end
 end
