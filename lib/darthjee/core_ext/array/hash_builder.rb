@@ -29,8 +29,6 @@ module Darthjee
       #
       #   builder.build == hash   # returns true
       class HashBuilder
-        attr_accessor :values, :keys
-
         # @param [::Array] values List of values of the hash
         # @param [::Array] keys List of keys of the hash
         def initialize(values, keys)
@@ -51,6 +49,8 @@ module Darthjee
         end
 
         private
+
+        attr_reader :values, :keys
 
         # @private
         #
