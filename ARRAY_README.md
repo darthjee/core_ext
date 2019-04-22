@@ -23,17 +23,21 @@ array.chain_map(:to_s, :size) { |v| "final: #{v}" }
 ```
 
 ### #as_hash
-Creates a hash from the array using the argumen array as keys
+Creates a hash from the array using the argument array as keys
 
 ```ruby
-  [1, 2, 3].as_hash %w(a b c)
-```
-returns
-```ruby
-  { 'a' => 1, 'b' => 2, 'c' => 3 } }
+array = [10, 20, 30, 40]
+keys  = %i[ten twenty thirty fourty]
+
+array.as_hash(keys) # returns {
+                    #   ten: 10,
+                    #   twenty: 20,
+                    #   thirty: 30,
+                    #   fourty: 40
+                    # }
 ```
 
-## Enumerable
+## Added by Enumerable
 - [#clean](ENUMERABLE_README.md#clean)
 - [#clean!](ENUMERABLE_README.md#clean!)
 - [#map_and_find](ENUMERABLE_README.md#map_and_find)
