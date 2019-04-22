@@ -40,5 +40,18 @@ describe Array do
         end
       end
     end
+
+    describe 'mapk' do
+      let(:array) do
+        [
+          { a: { b: 1 }, b: 2 },
+          { a: { b: 3 }, b: 4 }
+        ]
+      end
+
+      it 'maps fetching keys' do
+        expect(array.mapk(:a, :b)).to eq([1, 3])
+      end
+    end
   end
 end

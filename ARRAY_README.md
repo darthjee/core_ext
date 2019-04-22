@@ -38,6 +38,18 @@ array.chain_map(:to_s, :size) { |v| "final: #{v}" }
 [ 'final: 1', 'final: 9', 'final: 3' ]
 ```
 
+### #mapk
+Maps by fetching values from hashes inside array
+
+```ruby
+array = [
+  { a: { b: 1 }, b: 2 },
+  { a: { b: 3 }, b: 4 }
+]
+
+array.mapk(:a, :b) # return [1, 3]
+```
+
 ## Added by Enumerable
 - [#clean](ENUMERABLE_README.md#clean)
 - [#clean!](ENUMERABLE_README.md#clean!)
