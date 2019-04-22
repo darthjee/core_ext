@@ -127,14 +127,14 @@ module Darthjee
       #   end     # returns '1.0 +2.0 -3.0 -4.0 +5.0'
       def procedural_join(mapper = proc(&:to_s))
         return '' if empty?
-        list =     dup
+        list     = dup
         previous = first
-        list[0] = mapper.call(previous).to_s
+        list[0]  = mapper.call(previous).to_s
 
         list.inject do |string, value|
-          link =        yield(previous, value) if block_given?
+          link        = yield(previous, value) if block_given?
           next_string = mapper.call(value)
-          previous = value
+          previous    = value
 
           "#{string}#{link}#{next_string}"
         end
