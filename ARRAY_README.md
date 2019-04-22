@@ -43,3 +43,7 @@ array.as_hash(keys) # returns {
 - [#map_and_find](ENUMERABLE_README.md#map_and_find)
 - [#map_and_select](ENUMERABLE_README.md#map_and_select)
 - [#map_to_hash](ENUMERABLE_README.md#map_to_hash)
+
+## Added by Object
+- [#is_any?](ENUMERABLE_README.md#is_any?)
+- [#trueful?](ENUMERABLE_README.md#trueful?)
