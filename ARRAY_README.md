@@ -7,15 +7,6 @@ array = [1, 2, 3, 4]
 array.average # returns 2.5
 ```
 
-### #map_to_hash
-map returning a hash with the original array for keys
-
-```ruby
-array = %w(a ab)
-arrays.map_to_hash { |val| val.length }
-{ 'a' => 1, 'b' => 2 }
-```
-
 ### #chain_map
 applies map in a chain
 
@@ -41,3 +32,10 @@ returns
 ```ruby
   { 'a' => 1, 'b' => 2, 'c' => 3 } }
 ```
+
+## Enumerable
+- [#clean](ENUMERABLE_README.md#clean)
+- [#clean!](ENUMERABLE_README.md#clean!)
+- [#map_and_find](ENUMERABLE_README.md#map_and_find)
+- [#map_and_select](ENUMERABLE_README.md#map_and_select)
+- [#map_to_hash](ENUMERABLE_README.md#map_to_hash)
