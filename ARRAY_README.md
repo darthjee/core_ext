@@ -1,12 +1,4 @@
 ## Array
-### #average
-returns the average of the values in the array
-
-```ruby
-array = [1, 2, 3, 4]
-array.average # returns 2.5
-```
-
 ### #chain_map
 applies map in a chain
 
@@ -36,6 +28,15 @@ array.as_hash(keys) # returns {
                     #   fourty: 40
                     # }
 ```
+
+### #average
+Returns the average of the values in the array
+
+```ruby
+array = [1, 2, 3, 4]
+array.average # returns 2.5
+```
+
 
 ## Added by Enumerable
 - [#clean](ENUMERABLE_README.md#clean)
