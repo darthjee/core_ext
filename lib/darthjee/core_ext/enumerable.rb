@@ -117,7 +117,7 @@ module Enumerable
   #
   # @return [::Array<::Object>]
   def map_and_select(&block)
-    map(&block).select(&:truthy?)
+    map(&block).select(&:trueful?)
   end
 
   # Maps values and creates a hash

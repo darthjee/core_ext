@@ -28,11 +28,11 @@ module Darthjee
       # @return [::TrueClass,::FalseClass]
       #
       # @example
-      #   nil.truthy? # returns false
-      #   [].truthy?  # returns true
-      #   {}.truthy?  # returns true
-      #   "".truthy?  # returns true
-      def truthy?
+      #   nil.trueful? # returns false
+      #   [].trueful?  # returns true
+      #   {}.trueful?  # returns true
+      #   "".trueful?  # returns true
+      def trueful?
         !!self
       end
     end

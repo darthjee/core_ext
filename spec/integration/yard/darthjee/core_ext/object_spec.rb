@@ -24,21 +24,21 @@ describe Darthjee::CoreExt::Object do
       end
     end
 
-    describe '#truthy?' do
+    describe '#trueful?' do
       describe 'Calling on nil object' do
-        it { expect(nil.truthy?).not_to be_truthy }
+        it { expect(nil.trueful?).not_to be_truthy }
       end
 
       describe 'Calling on empty array' do
-        it { expect([].truthy?).to be_truthy }
+        it { expect([].trueful?).to be_truthy }
       end
 
       describe 'Calling on empty hash' do
-        it { expect({}.truthy?).to be_truthy }
+        it { expect({}.trueful?).to be_truthy }
       end
 
       describe 'Calling on empty string' do
-        it { expect(''.truthy?).to be_truthy }
+        it { expect(''.trueful?).to be_truthy }
       end
     end
   end
