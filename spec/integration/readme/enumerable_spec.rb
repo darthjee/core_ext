@@ -62,5 +62,26 @@ describe Enumerable do
           .to eq([{ id: 21 }, { id: 31 }, { id: 51 }])
       end
     end
+
+    describe '#map_to_hash' do
+      let(:ids)          { [10, 21, 30, 31, 51, 55] }
+      let(:client)       { Client.new(existing_ids) }
+      let(:existing_ids) { [1, 11, 21, 31, 41, 51] }
+      let(:request)      { client.method(:request) }
+      let(:expected) do
+        {
+          10 => nil,
+          21 => { id: 21 },
+          30 => nil,
+          31 => { id: 31 },
+          51 => { id: 51 },
+          55 => nil
+        }
+      end
+
+      it 'returns a hash with the mapped' do
+        expect(ids.map_to_hash(&request)).to eq(expected)
+      end
+    end
   end
 end
