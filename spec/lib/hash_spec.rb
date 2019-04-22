@@ -223,7 +223,7 @@ describe Hash do
     end
 
     context 'when mapping returns empty strings' do
-      let(:block) { proc { "" } }
+      let(:block) { proc { '' } }
 
       it { expect(list).not_to be_empty }
     end

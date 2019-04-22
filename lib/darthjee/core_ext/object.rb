@@ -23,8 +23,17 @@ module Darthjee
         end
       end
 
+      # Checks if object is evaluated to true
+      #
+      # @return [::TrueClass,::FalseClass]
+      #
+      # @example
+      #   nil.truthy? # returns false
+      #   [].truthy?  # returns true
+      #   {}.truthy?  # returns true
+      #   "".truthy?  # returns true
       def truthy?
-        !! self
+        !!self
       end
     end
   end

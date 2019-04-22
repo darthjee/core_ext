@@ -45,11 +45,11 @@ describe Object do
     end
 
     context 'when object is an empty string' do
-      it { expect("".truthy?).to be_truthy }
+      it { expect(''.truthy?).to be_truthy }
     end
 
     context 'when object is a simple object' do
-      it { expect(Object.new.truthy?).to be_truthy }
+      it { expect(described_class.new).to be_truthy }
     end
 
     context 'when object is true' do
@@ -57,11 +57,11 @@ describe Object do
     end
 
     context 'when object is nil' do
-      it { expect(nil.truthy?).to be_falsey }
+      it { expect(nil.truthy?).not_to be_truthy }
     end
 
     context 'when object is false' do
-      it { expect(nil.truthy?).to be_falsey }
+      it { expect(false.truthy?).not_to be_truthy }
     end
   end
 end
