@@ -34,4 +34,34 @@ describe Object do
       end
     end
   end
+
+  describe '#truthy?' do
+    context 'when object is an empty array' do
+      it { expect([].truthy?).to be_truthy }
+    end
+
+    context 'when object is an empty hash' do
+      it { expect({}.truthy?).to be_truthy }
+    end
+
+    context 'when object is an empty string' do
+      it { expect("".truthy?).to be_truthy }
+    end
+
+    context 'when object is a simple object' do
+      it { expect(Object.new.truthy?).to be_truthy }
+    end
+
+    context 'when object is true' do
+      it { expect(true.truthy?).to be_truthy }
+    end
+
+    context 'when object is nil' do
+      it { expect(nil.truthy?).to be_falsey }
+    end
+
+    context 'when object is false' do
+      it { expect(nil.truthy?).to be_falsey }
+    end
+  end
 end
