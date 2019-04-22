@@ -33,7 +33,9 @@ module Darthjee
       #   {}.trueful?  # returns true
       #   "".trueful?  # returns true
       def trueful?
+        # rubocop: disable Style/DoubleNegation
         !!self
+        # rubocop: enable Style/DoubleNegation
       end
     end
   end

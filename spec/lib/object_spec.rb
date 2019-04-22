@@ -35,6 +35,7 @@ describe Object do
     end
   end
 
+  # rubocop: disable RSpec/PredicateMatcher
   describe '#trueful?' do
     context 'when object is an empty array' do
       it { expect([].trueful?).to be_truthy }
@@ -64,4 +65,5 @@ describe Object do
       it { expect(false.trueful?).not_to be_truthy }
     end
   end
+  # rubocop: enable RSpec/PredicateMatcher
 end
