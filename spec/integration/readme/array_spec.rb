@@ -75,6 +75,26 @@ describe Array do
       it 'returns a random element' do
         expect(array).to include(array.random)
       end
+
+      it 'element comes from array' do
+        expect(array.include?(array.random)).to be_truthy
+      end
+    end
+
+    describe '#random!' do
+      let(:array) { [10, 20, 30] }
+
+      it 'returns a random element' do
+        expect(array.dup).to include(array.random!)
+      end
+
+      it 'removes an element from array' do
+        expect { array.random! }.to change(array, :size).by(-1)
+      end
+
+      it 'no longer includes removed element' do
+        expect(array.include?(array.random!)).to be_falsey
+      end
     end
   end
 end

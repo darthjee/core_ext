@@ -66,7 +66,19 @@ Returns a random element of the array
 
 ```ruby
 array = [10, 20, 30]
-array.random # returns any of the elements
+array.random                  # returns any of the elements
+array.include?(array.random!) # returns true
+```
+
+### #random!
+Removes a random element of the array
+
+```ruby
+array = [10, 20, 30]
+array.random! # returns any of the elements
+
+array = [10, 20, 30]
+array.include?(array.random!) # returns false
 ```
 
 ## Added by Enumerable
