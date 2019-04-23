@@ -12,8 +12,9 @@ hash.map_to_hash { |k, v| "#{k}_#{v}" }
 Applies fetch in a chain
 
 ```ruby
-{ a: { b: { c: { d: 10 } } } }.chain_fetch(:a, :b, :c, :d)
-10
+hash = { a: { b: { c: { d: 10 } } } }
+
+hash.chain_fetch(:a, :b, :c, :d) # returns 10
 ```
 
 A block can be passed so that when a key is not found, the block will define the value to be returned
