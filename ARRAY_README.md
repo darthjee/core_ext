@@ -50,6 +50,17 @@ array = [
 array.mapk(:a, :b) # return [1, 3]
 ```
 
+### #procedural_join
+Maps values to strings and joins then by evaluating which
+string to be used on joining
+
+```ruby
+mapper = proc { |value| value.to_f.to_s }
+array.procedural_join(mapper) do |_previous, nexte|
+  nexte.positive? ? ' +' : ' '
+end     # returns '1.0 +2.0 -3.0 -4.0 +5.0'
+```
+
 ## Added by Enumerable
 - [#clean](ENUMERABLE_README.md#clean)
 - [#clean!](ENUMERABLE_README.md#clean!)

@@ -53,5 +53,20 @@ describe Array do
         expect(array.mapk(:a, :b)).to eq([1, 3])
       end
     end
+
+    describe '#procedural_join' do
+      subject(:array) { [1, 2, -3, -4, 5] }
+
+      let(:mapper) { proc { |value| value.to_f.to_s } }
+      let(:string) do
+        array.procedural_join(mapper) do |_previous, nexte|
+          nexte.positive? ? ' +' : ' '
+        end
+      end
+
+      it 'joins with grace' do
+        expect(string).to eq('1.0 +2.0 -3.0 -4.0 +5.0')
+      end
+    end
   end
 end

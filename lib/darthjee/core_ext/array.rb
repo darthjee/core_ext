@@ -101,8 +101,8 @@ module Darthjee
 
       # Joins elements in a string using a proc
       #
-      # Uses the proc given
-      # to convert elements to Strig and a block for joining
+      # Uses the proc given elements to Strig and a
+      # block for determinating the joining string
       #
       # @param [Proc] mapper Proc that will be used to map values
       # to string before joining
