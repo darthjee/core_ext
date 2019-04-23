@@ -88,38 +88,34 @@ Change the keys camelizing them and accepting parameters:
 - recursive: when true, does it recursivly through inner arrays (default: true)
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.camelize_keys
-```
-returns
-```ruby
-  {:CaB=>1, :K=>[{:AB=>1}]}
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+  
+hash.camelize_keys # return { CaB: 1, K: [{ AB: 1 }] }
 ```
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.camelize_keys(recursive: false)
-```
-returns
-```ruby
-  {:CaB=>1, :K=>[{:a_b=>1}]}
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys(recursive: false)
+# returns { CaB: 1, K: [{ a_b: 1 }] }
 ```
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.camelize_keys(uppercase_first_letter: false)
-```
-returns
-```ruby
-  {:caB=>1, :k=>[{:aB=>1}]}
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys(uppercase_first_letter: false)
+
+# returns { caB: 1, k: [{ aB: 1 }] }
 ```
 
 ### #lower_camelize_keys
 Alias for [#camelize_keys](camelize_keys)(uppercase_first_letter: false)
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.lower_camelize_keys
-```
-returns
-```ruby
-  {:caB=>1, :k=>[{:aB=>1}]}
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.lower_camelize_keys
+# returns { caB: 1, k: [{ aB: 1 }] }
 ```
 
 ### #underscore_keys
@@ -127,11 +123,10 @@ Change the keys from camelcase to snakecase (underscore)
  - recursive: when true, does it recursivly through inner arrays (default: true)
 
 ```ruby
-  { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] }.underscore_keys
-```
-returns
-```ruby
-{ca_b: 1, "k_b"=>[{keys_hash: 1}]}
+hash = { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] }
+
+hash.underscore_keys
+# returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
 ### #change_values
