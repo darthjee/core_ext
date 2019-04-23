@@ -20,9 +20,13 @@ hash.chain_fetch(:a, :b, :c, :d) # returns 10
 A block can be passed so that when a key is not found, the block will define the value to be returned
 
 ```ruby
-h = { a: { b: { c: { d: 10 } } } }
-h.chain_fetch(:a, :x, :y, :z) { |key, missed_keys| "returned #{key}" }
-'returned x'
+hash = { a: { b: { c: { d: 10 } } } }
+
+hash.chain_fetch(:a, :x, :y, :z) do |key, missed_keys|
+  "returned: #{key}\nmissed [#{missed_keys.join(',')}]"
+end
+
+# returns "returned x\nmissed: [y,z]"
 ```
 
 ### #squash
