@@ -61,6 +61,14 @@ array.procedural_join(mapper) do |_previous, nexte|
 end     # returns '1.0 +2.0 -3.0 -4.0 +5.0'
 ```
 
+### #random
+Returns a random element of the array
+
+```ruby
+array = [10, 20, 30]
+array.random # returns any of the elements
+```
+
 ## Added by Enumerable
 - [#clean](ENUMERABLE_README.md#clean)
 - [#clean!](ENUMERABLE_README.md#clean!)

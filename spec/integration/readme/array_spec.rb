@@ -68,5 +68,13 @@ describe Array do
         expect(string).to eq('1.0 +2.0 -3.0 -4.0 +5.0')
       end
     end
+
+    describe '#random' do
+      let(:array) { [10, 20, 30] }
+
+      it 'returns a random element' do
+        expect(array).to include(array.random)
+      end
+    end
   end
 end
