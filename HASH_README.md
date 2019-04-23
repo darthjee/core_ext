@@ -29,6 +29,39 @@ end
 # returns "returned x\nmissed: [y,z]"
 ```
 
+### #change_values
+Change the values of the array accepting parametes:
+ - recursive: when true, does it recursivly through inner arrays and hashes (default: true)
+ - skip_inner: when true, do not call the block for iterators such as Hash and Arrays (default: true)
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }] }
+
+hash.change_values { |v| (v+1).to_s }
+# returns { a: '2', b: [{ c: '3' }] }
+```
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }] }
+hash.change_values(recursive: false) { |v| (v+1).to_s }
+# returns { a: '2' b: [{ c: 2 }] }
+```
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }], d: { e: 3 } }
+hash.change_values(skip_inner: false) do |v|
+  case value
+  when Integer
+    (value + 1).to_s
+  when Hash
+    value.to_s
+  else
+    value.class
+  end
+end
+# returns { a: '2' b: Array, d: "{:e=>3}" }
+```
+
 ### #squash
 Squash a deep hash into a simple level hash
 
@@ -119,7 +152,9 @@ hash.lower_camelize_keys
 ```
 
 ### #underscore_keys
-Change the keys from camelcase to snakecase (underscore)
+Creates a new hash changing keys from camelcase to snakecase (underscore)
+
+options:
  - recursive: when true, does it recursivly through inner arrays (default: true)
 
 ```ruby
@@ -129,35 +164,17 @@ hash.underscore_keys
 # returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
-### #change_values
-Change the values of the array accepting parametes:
- - recursive: when true, does it recursivly through inner arrays and hashes (default: true)
- - skip_inner: when true, do not call the block for iterators such as Hash and Arrays (default: true)
+### #underscore_keys!
+Change the keys from camelcase to snakecase (underscore)
+
+options:
+ - recursive: when true, does it recursivly through inner arrays (default: true)
 
 ```ruby
-  { a: 1, b: [{ c: 2 }] }.change_values { |v| (v+1).to_s }
-```
-returns
-```ruby
-  { a: '2' b: [{ c: '3' }] }
-```
+hash = { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] }
 
-```ruby
-  { a: 1, b: [{ c: 2 }] }.change_values(recursive: false) { |v| (v+1).to_s }
-```
-returns
-```ruby
-  { a: '2' b: [{ c: 2 }] }
-```
-
-```ruby
-  { a: 1, b: [{ c: 2 }] }.change_values(skip_inner: false) do |v|
-    v.is_a?(Integer) ? (v+1).to_s : v.class
-  end
-```
-returns
-```ruby
-  { a: '2' b: Array }
+hash.underscore_keys!
+# returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
 ### #prepend_to_keys

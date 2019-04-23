@@ -22,6 +22,43 @@ describe Hash do
       end
     end
 
+    describe '#change_values' do
+      subject(:hash) { { a: 1, b: [{ c: 2 }] }  }
+
+      it 'changes the values of the hash' do
+        expect(hash.change_values { |v| (v+1).to_s })
+          .to eq(a: '2', b: [{ c: '3' }])
+      end
+
+      context 'when setting recursive to false' do
+        it 'changes the values of the hash' do
+          expect(hash.change_values(recursive: false) { |v| (v+1).to_s })
+            .to eq(a: '2', b: [{ c: 2 }])
+        end
+      end
+
+      context 'when skipping inner hash' do
+        subject(:hash) { { a: 1, b: [{ c: 2 }], d: { e: 3 } } }
+
+        let(:result) do
+          hash.change_values(skip_inner: false) do |value|
+            case value
+            when Integer
+              (value + 1).to_s
+            when Hash
+              value.to_s
+            else
+              value.class
+            end
+          end
+        end
+
+        it 'changes the values skipping inner' do
+          expect(result).to eq( a: '2', b: Array, d: '{:e=>3}' )
+        end
+      end
+    end
+
     describe '#camelize_keys' do
       subject(:hash) { { ca_b: 1, k: [{ a_b: 1 }] } }
 
@@ -60,6 +97,15 @@ describe Hash do
       it 'camelize with lower case' do
         expect(hash.underscore_keys)
           .to eq(ca_b: 1, 'k_b' => [{ keys_hash: 1 }])
+      end
+    end
+
+    describe '#undescore_keys!' do
+      subject(:hash) { { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] } }
+
+      it 'camelize with lower case' do
+        expect(hash.underscore_keys!).to change { hash }
+          .to(ca_b: 1, 'k_b' => [{ keys_hash: 1 }])
       end
     end
   end
