@@ -75,10 +75,6 @@ describe Array do
       it 'returns a random element' do
         expect(array).to include(array.random)
       end
-
-      it 'element comes from array' do
-        expect(array).to include(array.random)
-      end
     end
 
     describe '#random!' do
