@@ -77,7 +77,7 @@ describe Array do
       end
 
       it 'element comes from array' do
-        expect(array.include?(array.random)).to be_truthy
+        expect(array).to include(array.random)
       end
     end
 
@@ -93,7 +93,7 @@ describe Array do
       end
 
       it 'no longer includes removed element' do
-        expect(array.include?(array.random!)).to be_falsey
+        expect(array).not_to include(array.random!)
       end
     end
   end
