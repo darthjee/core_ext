@@ -56,8 +56,8 @@ module Darthjee
           #        #   }]
           #        # }
           def set(key, value)
-            return hash[base_key]    = value if key.nil? && index.nil?
-            return array[index]      = value if key.nil?
+            return hash[base_key] = value unless key || index
+            return array[index]   = value unless key
 
             sub_hash[key] = value
           end
