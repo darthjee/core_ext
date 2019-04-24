@@ -23,16 +23,16 @@ describe Hash do
     end
 
     describe '#change_values' do
-      subject(:hash) { { a: 1, b: [{ c: 2 }] }  }
+      subject(:hash) { { a: 1, b: [{ c: 2 }] } }
 
       it 'changes the values of the hash' do
-        expect(hash.change_values { |v| (v+1).to_s })
+        expect(hash.change_values { |v| (v + 1).to_s })
           .to eq(a: '2', b: [{ c: '3' }])
       end
 
       context 'when setting recursive to false' do
         it 'changes the values of the hash' do
-          expect(hash.change_values(recursive: false) { |v| (v+1).to_s })
+          expect(hash.change_values(recursive: false) { |v| (v + 1).to_s })
             .to eq(a: '2', b: [{ c: 2 }])
         end
       end
@@ -45,7 +45,7 @@ describe Hash do
             case value
             when Integer
               (value + 1).to_s
-            when Hash
+            when described_class
               value.to_s
             else
               value.class
@@ -54,7 +54,7 @@ describe Hash do
         end
 
         it 'changes the values skipping inner' do
-          expect(result).to eq( a: '2', b: Array, d: '{:e=>3}' )
+          expect(result).to eq(a: '2', b: Array, d: '{:e=>3}')
         end
       end
     end
@@ -104,7 +104,7 @@ describe Hash do
       subject(:hash) { { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] } }
 
       it 'camelize with lower case' do
-        expect(hash.underscore_keys!).to change { hash }
+        expect { hash.underscore_keys! }.to change { hash }
           .to(ca_b: 1, 'k_b' => [{ keys_hash: 1 }])
       end
     end
