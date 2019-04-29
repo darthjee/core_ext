@@ -30,7 +30,7 @@ end
 ```
 
 ### #change_values
-Change the values of the array accepting parametes:
+Change the values of the hash accepting parametes:
  - recursive: when true, does it recursivly through inner arrays and hashes (default: true)
  - skip_inner: when true, do not call the block for iterators such as Hash and Arrays (default: true)
 
