@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'darthjee/core_ext/hash/cameliazable'
+require 'darthjee/core_ext/hash/changeable'
 require 'darthjee/core_ext/hash/key_changeable'
 require 'darthjee/core_ext/hash/transposeable'
 require 'darthjee/core_ext/hash/transformable'
@@ -18,6 +19,7 @@ module Darthjee
 
       include Hash::Cameliazable
       include Hash::KeyChangeable
+      include Hash::Changeable
       include Hash::Transposeable
       include Hash::Transformable
 
