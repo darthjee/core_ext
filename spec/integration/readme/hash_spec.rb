@@ -172,5 +172,45 @@ describe Hash do
           .to(CA_B: 1)
       end
     end
+
+    describe '#change_keys' do
+      subject(:hash) do
+        { ca_b: 1, k: [{ a_b: 1 }] }
+      end
+
+      it 'changes keys' do
+        expect(hash.change_keys { |k| k.to_s.upcase })
+          .to eq('CA_B' => 1, 'K' => [{ 'A_B' => 1 }])
+      end
+
+      context 'when passing recursive option false' do
+        it 'changes keys not recursively' do
+          expect(hash.change_keys(recursive: false) { |k| k.to_s.upcase })
+            .to eq('CA_B' => 1, 'K' => [{ a_b: 1 }])
+        end
+      end
+    end
+
+    describe '#change_keys!' do
+      subject(:hash) do
+        { ca_b: 1, k: [{ a_b: 1 }] }
+      end
+
+      it 'changes keys' do
+        expect { hash.change_keys! { |k| k.to_s.upcase } }
+          .to change { hash }
+          .to('CA_B' => 1, 'K' => [{ 'A_B' => 1 }])
+      end
+
+      context 'when passing recursive option false' do
+        it 'changes keys not recursively' do
+          expect do
+            hash.change_keys!(recursive: false) { |k| k.to_s.upcase }
+          end
+            .to change { hash }
+            .to('CA_B' => 1, 'K' => [{ a_b: 1 }])
+        end
+      end
+    end
   end
 end

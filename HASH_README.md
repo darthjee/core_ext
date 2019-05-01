@@ -128,19 +128,31 @@ Change the array keys using a block accepting parameters:
  - recursive: when true, does it recursivly through inner arrays (default: true)
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.change_keys { |k| k.to_s.upcase }
-```
-returns
-```ruby
-  {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys { |k| k.to_s.upcase }
+
+# reutrns {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
 ```
 
 ```ruby
-  { ca_b: 1, k: [{ a_b: 1 }] }.change_keys(recursive: false) { |k| k.to_s.upcase }
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys(recursive: false) { |k| k.to_s.upcase }
+
+# returns {"CA_B"=>1, "K"=>[{:a_b=>1}]}
 ```
-returns
+
+### #change_keys!
+Change the array keys using a block accepting parameters:
+ - recursive: when true, does it recursivly through inner arrays (default: true)
+
 ```ruby
-  {"CA_B"=>1, "K"=>[{:a_b=>1}]}
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys! { |k| k.to_s.upcase }
+
+# changes hash to {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
+```
+
+```ruby
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys!(recursive: false) { |k| k.to_s.upcase }
+
+# changes hash to {"CA_B"=>1, "K"=>[{:a_b=>1}]}
 ```
 
 ### #chain_change_keys
