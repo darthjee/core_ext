@@ -230,5 +230,14 @@ describe Hash do
           .to eq(keys: 1)
       end
     end
+
+    describe 'map_to_hash' do
+      subject(:hash) { { a: 1, b: 2 } }
+
+      it 'mapscreating hash' do
+        expect(hash.map_to_hash { |k, v| "#{k}_#{v}" })
+          .to eq(a: 'a_1', b: 'b_2')
+      end
+    end
   end
 end
