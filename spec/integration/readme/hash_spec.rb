@@ -212,5 +212,23 @@ describe Hash do
         end
       end
     end
+
+    describe 'prepend_to_keys' do
+      subject(:hash) { { key: 1 } }
+
+      it 'prepends string to keys' do
+        expect(hash.prepend_to_keys('scope:'))
+          .to eq('scope:key': 1)
+      end
+    end
+
+    describe 'append_to_keys' do
+      subject(:hash) { { key: 1 } }
+
+      it 'prepends string to keys' do
+        expect(hash.append_to_keys('s'))
+          .to eq(keys: 1)
+      end
+    end
   end
 end

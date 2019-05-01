@@ -239,21 +239,17 @@ hash.underscore_keys!
 Change each keys prepending an string
 
 ```ruby
-  { key: 1 }.prepend_to_keys 'scope:'
-```
-returns
-```ruby
-  { :'scope:key' => 1 }
+{ key: 1 }.prepend_to_keys 'scope:'
+
+# returns { :'scope:key' => 1 }
 ```
 ### #append_to_keys
 Change each keys appending an string
 
 ```ruby
-  { key: 1 }.append_to_keys 's'
-```
-returns
-```ruby
-  { keys: 1 }
+{ key: 1 }.append_to_keys 's'
+
+# returns { keys: 1 }
 ```
 
 ### #sort_keys
