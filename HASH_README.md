@@ -30,7 +30,7 @@ end
 ```
 
 ### #change_values
-Change the values of the hash accepting parametes:
+Returns new hash changing the values of the hash, accepting parametes:
  - recursive: when true, does it recursivly through inner arrays and hashes (default: true)
  - skip_inner: when true, do not call the block for iterators such as Hash and Arrays (default: true)
 
@@ -144,14 +144,21 @@ returns
 ```
 
 ### #chain_change_keys
-Change the hash keys usin a chained method call
+Returns new hash changing the keys using a chained method call
 
 ```ruby
-  { ca_b: 1 }.chain_change_keys(:to_s, :upcase, :to_sym)
+{ ca_b: 1 }.chain_change_keys(:to_s, :upcase, :to_sym)
+
+# returns { CA_B: 1 }
 ```
-returns
+
+### #chain_change_keys!
+Change the hash keys using a chained method call
+
 ```ruby
-  { CA_B: 1 }
+{ ca_b: 1 }.chain_change_keys!(:to_s, :upcase, :to_sym)
+
+# changes hash to { CA_B: 1 }
 ```
 
 ### #camelize_keys
