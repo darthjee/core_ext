@@ -152,24 +152,24 @@ describe Hash do
       end
     end
 
-    describe "#chain_change_keys" do
+    describe '#chain_change_keys' do
       subject(:hash) { { ca_b: 1 } }
-      
-      it "changes the keys in order" do
+
+      it 'changes the keys in order' do
         expect(hash.chain_change_keys(:to_s, :upcase, :to_sym))
-          .to eq( CA_B: 1 )
+          .to eq(CA_B: 1)
       end
     end
 
-    describe "#chain_change_keys!" do
+    describe '#chain_change_keys!' do
       subject(:hash) { { ca_b: 1 } }
-      
-      it "changes the keys in order" do
+
+      it 'changes the keys in order' do
         expect do
           hash.chain_change_keys!(:to_s, :upcase, :to_sym)
         end
           .to change { hash }
-          .to( CA_B: 1 )
+          .to(CA_B: 1)
       end
     end
   end
