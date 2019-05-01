@@ -239,5 +239,14 @@ describe Hash do
           .to eq(a: 'a_1', b: 'b_2')
       end
     end
+
+    describe '#remap_keys' do
+      subject(:hash) { { a: 1, b: 2 } }
+
+      it 'remap the keys' do
+        expect(hash.remap_keys(a: :c, d: :e))
+          .to eq(c: 1, b: 2, e: nil)
+      end
+    end
   end
 end
