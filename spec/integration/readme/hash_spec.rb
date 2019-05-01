@@ -248,5 +248,14 @@ describe Hash do
           .to eq(c: 1, b: 2, e: nil)
       end
     end
+
+    describe 'exclusive_merge' do
+      subject(:hash) { { a: 1, b: 2 } }
+
+      it 'merges exclusively' do
+        expect(hash.exclusive_merge(b: 3, c: 4))
+          .to eq(a: 1, b: 3)
+      end
+    end
   end
 end

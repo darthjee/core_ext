@@ -289,7 +289,8 @@ Like #merge but only for existing keys
 
 ```ruby
 { a: 1, b: 2 }.exclusive_merge(b: 3, c: 4)
-{ a: 1, b: 3 }
+
+# returns { a: 1, b: 3 }
 ```
 
 ### #clean
