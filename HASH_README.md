@@ -38,12 +38,14 @@ Change the values of the hash accepting parametes:
 hash = { a: 1, b: [{ c: 2 }] }
 
 hash.change_values { |v| (v+1).to_s }
+
 # returns { a: '2', b: [{ c: '3' }] }
 ```
 
 ```ruby
 hash = { a: 1, b: [{ c: 2 }] }
 hash.change_values(recursive: false) { |v| (v+1).to_s }
+
 # returns { a: '2' b: [{ c: 2 }] }
 ```
 
@@ -59,7 +61,44 @@ hash.change_values(skip_inner: false) do |v|
     value.class
   end
 end
+
 # returns { a: '2' b: Array, d: "{:e=>3}" }
+```
+
+### #change_values!
+Change the values of the hash accepting parametes:
+ - recursive: when true, does it recursivly through inner arrays and hashes (default: true)
+ - skip_inner: when true, do not call the block for iterators such as Hash and Arrays (default: true)
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }] }
+
+hash.change_values! { |v| (v+1).to_s }
+
+# changes hash to { a: '2', b: [{ c: '3' }] }
+```
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }] }
+hash.change_values!(recursive: false) { |v| (v+1).to_s }
+
+# changes hash to { a: '2' b: [{ c: 2 }] }
+```
+
+```ruby
+hash = { a: 1, b: [{ c: 2 }], d: { e: 3 } }
+hash.change_values!(skip_inner: false) do |v|
+  case value
+  when Integer
+    (value + 1).to_s
+  when Hash
+    value.to_s
+  else
+    value.class
+  end
+end
+
+# changes hash to { a: '2' b: Array, d: "{:e=>3}" }
 ```
 
 ### #squash
