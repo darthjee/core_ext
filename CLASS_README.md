@@ -1,4 +1,5 @@
-## CLASS
+## Class
+
 ### #default_value
 Adds a method that will return a default value
 
@@ -106,7 +107,6 @@ return a default value when the instance variables
 ware never set
 
 ```ruby
-xample Defining default values
 class Person
   attr_writer :cars, :houses
   default_reader :cars, :houses, 'none'

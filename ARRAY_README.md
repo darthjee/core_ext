@@ -1,4 +1,5 @@
 ## Array
+
 ### #as_hash
 Creates a hash from the array using the argument array as keys
 
