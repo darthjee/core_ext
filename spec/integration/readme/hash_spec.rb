@@ -134,6 +134,16 @@ describe Hash do
       end
     end
 
+    describe '#lower_camelize_keys!' do
+      subject(:hash) { { ca_b: 1, k: [{ a_b: 1 }] } }
+
+      it 'camelize with lower case' do
+        expect { hash.lower_camelize_keys! }
+          .to change { hash }
+          .to(caB: 1, k: [{ aB: 1 }])
+      end
+    end
+
     describe '#undescore_keys' do
       subject(:hash) { { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] } }
 

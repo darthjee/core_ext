@@ -206,6 +206,16 @@ hash.lower_camelize_keys
 # returns { caB: 1, k: [{ aB: 1 }] }
 ```
 
+### #lower_camelize_keys!
+Alias for [#camelize_keys](camelize_keys)(uppercase_first_letter: false)
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.lower_camelize_keys!
+# changes hash to { caB: 1, k: [{ aB: 1 }] }
+```
+
 ### #map_to_hash
 map returning a hash with the original keys for keys
 
