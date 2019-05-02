@@ -313,5 +313,24 @@ describe Hash do
           .to('a' => { 'b' => [1, 2] })
       end
     end
+
+    describe '#sort_keys' do
+      subject(:hash) { { b: 1, a: 2 } }
+
+      it 'sort hash keys' do
+        expect(hash.sort_keys.keys)
+          .to eq(%i[a b])
+      end
+    end
+
+    describe '#sort_keys' do
+      subject(:hash) { { b: 1, a: 2 } }
+
+      it 'sort hash keys' do
+        expect { hash.sort_keys! }
+          .to change(hash, :keys)
+          .to(%i[a b])
+      end
+    end
   end
 end

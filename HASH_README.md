@@ -247,6 +247,26 @@ hash.remap_keys!(a: :c, d: :e)
 # change hash to { c: 1, b: 2, e: nil }
 ```
 
+### #sort_keys
+Sort the hash usig the keys
+
+```ruby
+{ b: 1, a: 2 }.sort_keys.keys
+
+# returns [:a, :b]
+```
+
+### #sort_keys!
+Sort the hash usig the keys
+
+```ruby
+hash = { b: 1, a: 2 }
+hash.sort_keys
+hash.keys
+
+# returns [:a, :b]
+```
+
 ### #squash
 Squash a deep hash into a simple level hash
 
@@ -309,17 +329,6 @@ hash = { 'a.b[0]' => 1, 'a.b[1]' => 2 }
 hash.to_deep_hash!
 
 # changes hash to { 'a' => { 'b' => 1 } }
-```
-
-### #sort_keys
-Sort the hash usig the keys
-
-```ruby
-  { b:1, a:2 }.sort_keys
-```
-returns
-```ruby
-  { a:2, b:1 }
 ```
 
 ### #clean
