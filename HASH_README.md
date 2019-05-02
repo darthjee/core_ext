@@ -1,11 +1,56 @@
 ## Hash
-### #map_to_hash
-map returning a hash with the original keys
+
+### #append_to_keys
+Change each keys appending an string
 
 ```ruby
-hash = { a: 1, b: 2 }
-hash.map_to_hash { |k, v| "#{k}_#{v}" }
-{ a: "a_1", b: "b_2" }
+{ key: 1 }.append_to_keys 's'
+
+# returns { keys: 1 }
+```
+
+### #camelize_keys
+Change the keys camelizing them and accepting parameters:
+- uppercase_first_letter: Use the java or javascript format (default: true)
+- recursive: when true, does it recursivly through inner arrays (default: true)
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys # return { CaB: 1, K: [{ AB: 1 }] }
+```
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys(recursive: false)
+# returns { CaB: 1, K: [{ a_b: 1 }] }
+```
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys(uppercase_first_letter: false)
+
+# returns { caB: 1, k: [{ aB: 1 }] }
+```
+
+### #chain_change_keys
+Returns new hash changing the keys using a chained method call
+
+```ruby
+{ ca_b: 1 }.chain_change_keys(:to_s, :upcase, :to_sym)
+
+# returns { CA_B: 1 }
+```
+
+### #chain_change_keys!
+Change the hash keys using a chained method call
+
+```ruby
+{ ca_b: 1 }.chain_change_keys!(:to_s, :upcase, :to_sym)
+
+# changes hash to { CA_B: 1 }
 ```
 
 ### #chain_fetch
@@ -27,6 +72,38 @@ hash.chain_fetch(:a, :x, :y, :z) do |key, missed_keys|
 end
 
 # returns "returned x\nmissed: [y,z]"
+```
+
+### #change_keys
+Change the array keys using a block accepting parameters:
+ - recursive: when true, does it recursivly through inner arrays (default: true)
+
+```ruby
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys { |k| k.to_s.upcase }
+
+# reutrns {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
+```
+
+```ruby
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys(recursive: false) { |k| k.to_s.upcase }
+
+# returns {"CA_B"=>1, "K"=>[{:a_b=>1}]}
+```
+
+### #change_keys!
+Change the array keys using a block accepting parameters:
+ - recursive: when true, does it recursivly through inner arrays (default: true)
+
+```ruby
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys! { |k| k.to_s.upcase }
+
+# changes hash to {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
+```
+
+```ruby
+{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys!(recursive: false) { |k| k.to_s.upcase }
+
+# changes hash to {"CA_B"=>1, "K"=>[{:a_b=>1}]}
 ```
 
 ### #change_values
@@ -101,102 +178,13 @@ end
 # changes hash to { a: '2' b: Array, d: "{:e=>3}" }
 ```
 
-### #squash
-Squash a deep hash into a simple level hash
+### #exclusive_merge
+Like #merge but only for existing keys
 
 ```ruby
-  { a: { b:1 } }.squash
-```
-returns
-```ruby
-  { 'a.b' => 1 }
-```
+{ a: 1, b: 2 }.exclusive_merge(b: 3, c: 4)
 
-### #to_deep_hash
-Changes a hash spliting keys into inner hashs
-
-```ruby
-  { 'a.b' => 1 }.to_deep_hash
-```
-returns
-```ruby
-  { 'a' => { 'b' => 1 } }
-```
-
-### #change_keys
-Change the array keys using a block accepting parameters:
- - recursive: when true, does it recursivly through inner arrays (default: true)
-
-```ruby
-{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys { |k| k.to_s.upcase }
-
-# reutrns {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
-```
-
-```ruby
-{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys(recursive: false) { |k| k.to_s.upcase }
-
-# returns {"CA_B"=>1, "K"=>[{:a_b=>1}]}
-```
-
-### #change_keys!
-Change the array keys using a block accepting parameters:
- - recursive: when true, does it recursivly through inner arrays (default: true)
-
-```ruby
-{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys! { |k| k.to_s.upcase }
-
-# changes hash to {"CA_B"=>1, "K"=>[{"A_B"=>1}]}
-```
-
-```ruby
-{ ca_b: 1, k: [{ a_b: 1 }] }.change_keys!(recursive: false) { |k| k.to_s.upcase }
-
-# changes hash to {"CA_B"=>1, "K"=>[{:a_b=>1}]}
-```
-
-### #chain_change_keys
-Returns new hash changing the keys using a chained method call
-
-```ruby
-{ ca_b: 1 }.chain_change_keys(:to_s, :upcase, :to_sym)
-
-# returns { CA_B: 1 }
-```
-
-### #chain_change_keys!
-Change the hash keys using a chained method call
-
-```ruby
-{ ca_b: 1 }.chain_change_keys!(:to_s, :upcase, :to_sym)
-
-# changes hash to { CA_B: 1 }
-```
-
-### #camelize_keys
-Change the keys camelizing them and accepting parameters:
-- uppercase_first_letter: Use the java or javascript format (default: true)
-- recursive: when true, does it recursivly through inner arrays (default: true)
-
-```ruby
-hash = { ca_b: 1, k: [{ a_b: 1 }] }
-  
-hash.camelize_keys # return { CaB: 1, K: [{ AB: 1 }] }
-```
-
-```ruby
-hash = { ca_b: 1, k: [{ a_b: 1 }] }
-
-hash.camelize_keys(recursive: false)
-# returns { CaB: 1, K: [{ a_b: 1 }] }
-```
-
-```ruby
-hash = { ca_b: 1, k: [{ a_b: 1 }] }
-
-hash.camelize_keys(uppercase_first_letter: false)
-
-# returns { caB: 1, k: [{ aB: 1 }] }
+# returns { a: 1, b: 3 }
 ```
 
 ### #lower_camelize_keys
@@ -207,6 +195,47 @@ hash = { ca_b: 1, k: [{ a_b: 1 }] }
 
 hash.lower_camelize_keys
 # returns { caB: 1, k: [{ aB: 1 }] }
+```
+
+### #map_to_hash
+map returning a hash with the original keys for keys
+
+```ruby
+hash = { a: 1, b: 2 }
+
+hash.map_to_hash { |k, v| "#{k}_#{v}" }
+
+# returns { a: 'a_1', b: 'b_2' }
+```
+
+### #prepend_to_keys
+Change each keys prepending an string
+
+```ruby
+{ key: 1 }.prepend_to_keys 'scope:'
+
+# returns { :'scope:key' => 1 }
+```
+
+### #remap_keys
+Returns new hash changing the keys of the hash based
+on a map of { old: new } value
+
+```ruby
+hash = { a: 1, b: 2 }
+hash.remap_keys(a: :c, d: :e)
+
+# returns { c: 1, b: 2, e: nil }
+```
+
+### #remap_keys!
+Changes the keys of the hash based on a map of { old: new } value
+
+```ruby
+hash = { a: 1, b: 2 }
+hash.remap_keys!(a: :c, d: :e)
+
+# change hash to { c: 1, b: 2, e: nil }
 ```
 
 ### #underscore_keys
@@ -235,21 +264,26 @@ hash.underscore_keys!
 # returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
-### #prepend_to_keys
-Change each keys prepending an string
+### #squash
+Squash a deep hash into a simple level hash
 
 ```ruby
-{ key: 1 }.prepend_to_keys 'scope:'
-
-# returns { :'scope:key' => 1 }
+  { a: { b:1 } }.squash
 ```
-### #append_to_keys
-Change each keys appending an string
+returns
+```ruby
+  { 'a.b' => 1 }
+```
+
+### #to_deep_hash
+Changes a hash spliting keys into inner hashs
 
 ```ruby
-{ key: 1 }.append_to_keys 's'
-
-# returns { keys: 1 }
+  { 'a.b' => 1 }.to_deep_hash
+```
+returns
+```ruby
+  { 'a' => { 'b' => 1 } }
 ```
 
 ### #sort_keys
@@ -261,47 +295,6 @@ Sort the hash usig the keys
 returns
 ```ruby
   { a:2, b:1 }
-```
-
-### #map_to_hash
-map returning a hash with the original keys for keys
-
-```ruby
-hash = { a: 1, b: 2 }
-
-hash.map_to_hash { |k, v| "#{k}_#{v}" }
-
-# returns { a: 'a_1', b: 'b_2' }
-```
-
-### #remap_keys
-Returns new hash changing the keys of the hash based
-on a map of { old: new } value
-
-```ruby
-hash = { a: 1, b: 2 }
-hash.remap_keys(a: :c, d: :e)
-
-# returns { c: 1, b: 2, e: nil }
-```
-
-### #remap_keys!
-Changes the keys of the hash based on a map of { old: new } value
-
-```ruby
-hash = { a: 1, b: 2 }
-hash.remap_keys!(a: :c, d: :e)
-
-# change hash to { c: 1, b: 2, e: nil }
-```
-
-### #exclusive_merge
-Like #merge but only for existing keys
-
-```ruby
-{ a: 1, b: 2 }.exclusive_merge(b: 3, c: 4)
-
-# returns { a: 1, b: 3 }
 ```
 
 ### #clean
