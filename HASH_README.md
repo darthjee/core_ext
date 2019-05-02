@@ -253,7 +253,7 @@ Squash a deep hash into a simple level hash
 ```ruby
 { a: { b: [1, 2] } }.squash!
 
-#returns { 'a.b[0]' => 1, 'a.b[1]' => 2 }
+# changes hash to { 'a.b[0]' => 1, 'a.b[1]' => 2 }
 ```
 
 ### #underscore_keys
@@ -279,18 +279,27 @@ options:
 hash = { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] }
 
 hash.underscore_keys!
-# returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
+# changes hash to { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
 ### #to_deep_hash
 Changes a hash spliting keys into inner hashs
 
 ```ruby
-  { 'a.b' => 1 }.to_deep_hash
+hash = { 'a.b[0]' => 1, 'a.b[1]' => 2 }
+hash.to_deep_hash
+
+# returns { 'a' => { 'b' => 1 } }
 ```
-returns
+
+### #to_deep_hash!
+Changes a hash spliting keys into inner hashs
+
 ```ruby
-  { 'a' => { 'b' => 1 } }
+hash = { 'a.b[0]' => 1, 'a.b[1]' => 2 }
+hash.to_deep_hash!
+
+# changes hash to { 'a' => { 'b' => 1 } }
 ```
 
 ### #sort_keys

@@ -285,5 +285,23 @@ describe Hash do
           .to('a.b[0]' => 1, 'a.b[1]' => 2)
       end
     end
+
+    describe '#to_deep_hash' do
+      subject(:hash) { { 'a.b[0]' => 1, 'a.b[1]' => 2 } }
+
+      it 'builds hash' do
+        expect(hash.to_deep_hash)
+          .to eq('a' => { 'b' => [1, 2] })
+      end
+    end
+
+    describe '#to_deep_hash!' do
+      subject(:hash) { { 'a.b[0]' => 1, 'a.b[1]' => 2 } }
+
+      it 'builds hash' do
+        expect { hash.to_deep_hash! }.to change { hash }
+          .to('a' => { 'b' => [1, 2] })
+      end
+    end
   end
 end
