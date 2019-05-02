@@ -267,5 +267,23 @@ describe Hash do
           .to eq(a: 1, b: 3)
       end
     end
+
+    describe '#squash' do
+      subject(:hash) { { a: { b: [1, 2] } } }
+
+      it 'squash keys' do
+        expect(hash.squash)
+          .to eq('a.b[0]' => 1, 'a.b[1]' => 2)
+      end
+    end
+
+    describe '#squash!' do
+      subject(:hash) { { a: { b: [1, 2] } } }
+
+      it 'squash keys' do
+        expect { hash.squash! }.to change { hash }
+          .to('a.b[0]' => 1, 'a.b[1]' => 2)
+      end
+    end
   end
 end

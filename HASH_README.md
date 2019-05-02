@@ -238,6 +238,24 @@ hash.remap_keys!(a: :c, d: :e)
 # change hash to { c: 1, b: 2, e: nil }
 ```
 
+### #squash
+Squash a deep hash into a simple level hash
+
+```ruby
+{ a: { b: [1, 2] } }.squash
+
+#returns { 'a.b[0]' => 1, 'a.b[1]' => 2 }
+```
+
+### #squash!
+Squash a deep hash into a simple level hash
+
+```ruby
+{ a: { b: [1, 2] } }.squash!
+
+#returns { 'a.b[0]' => 1, 'a.b[1]' => 2 }
+```
+
 ### #underscore_keys
 Creates a new hash changing keys from camelcase to snakecase (underscore)
 
@@ -262,17 +280,6 @@ hash = { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] }
 
 hash.underscore_keys!
 # returns { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
-```
-
-### #squash
-Squash a deep hash into a simple level hash
-
-```ruby
-  { a: { b:1 } }.squash
-```
-returns
-```ruby
-  { 'a.b' => 1 }
 ```
 
 ### #to_deep_hash
