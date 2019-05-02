@@ -187,6 +187,15 @@ Like #merge but only for existing keys
 # returns { a: 1, b: 3 }
 ```
 
+### #exclusive_merge!
+Like #merge! but only for existing keys
+
+```ruby
+{ a: 1, b: 2 }.exclusive_merge!(b: 3, c: 4)
+
+# changes hash to { a: 1, b: 3 }
+```
+
 ### #lower_camelize_keys
 Alias for [#camelize_keys](camelize_keys)(uppercase_first_letter: false)
 

@@ -268,6 +268,16 @@ describe Hash do
       end
     end
 
+    describe 'exclusive_merge!' do
+      subject(:hash) { { a: 1, b: 2 } }
+
+      it 'merges exclusively' do
+        expect { hash.exclusive_merge!(b: 3, c: 4) }
+          .to change { hash }
+          .to(a: 1, b: 3)
+      end
+    end
+
     describe '#squash' do
       subject(:hash) { { a: { b: [1, 2] } } }
 
