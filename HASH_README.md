@@ -331,39 +331,6 @@ hash.to_deep_hash!
 # changes hash to { 'a' => { 'b' => 1 } }
 ```
 
-### #clean
-Cleans empty values from a hash
-```ruby
-{ a: 1, b: [], c: nil, d: {}, e: '', f: { b: [], c: nil, d: {}, e: '' } }.clean
-```
-returns
-```ruby
-  {}
-```
-
-### #map_and_find
-Operates like map, but will stop as soon as a non false value is found returning the value found
-
-```ruby
-class Ob
-  attr_reader :v
-  def initialize(v = nil)
-    @v = v
-  end
-end
-hash = { a: Ob.new, b: Ob.new(false), c: Ob.new(1), d: Ob.new(3) }
-```
-
-```ruby
-hash.map_and_find { |k,o| o.v }
-1
-```
-
-```ruby
-hash.map_and_find { |k,o| o.v && k }
-:c
-```
-
 ### #transpose
 swap keys with values of the hash
 
@@ -376,3 +343,14 @@ returns
 ```ruby
 { 1 => :a, a: b, [2, 3] => :c }
 ```
+
+## Added by Enumerable
+- [#clean](ENUMERABLE_README.md#clean)
+- [#clean!](ENUMERABLE_README.md#clean!)
+- [#map_and_find](ENUMERABLE_README.md#map_and_find)
+- [#map_and_select](ENUMERABLE_README.md#map_and_select)
+- [#map_to_hash](ENUMERABLE_README.md#map_to_hash)
+
+## Added by Object
+- [#is_any?](ENUMERABLE_README.md#is_any?)
+- [#trueful?](ENUMERABLE_README.md#trueful?)
