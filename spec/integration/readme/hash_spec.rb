@@ -332,5 +332,24 @@ describe Hash do
           .to(%i[a b])
       end
     end
+
+    describe '#transpose' do
+      subject(:hash) { { a: 1, b: :a, c: [2, 3] } }
+
+      it 'transpose keys and values' do
+        expect(hash.transpose)
+          .to eq(1 => :a, a: :b, [2, 3] => :c)
+      end
+    end
+
+    describe '#transpose!' do
+      subject(:hash) { { a: 1, b: :a, c: [2, 3] } }
+
+      it 'transpose keys and values' do
+        expect { hash.transpose! }
+          .to change { hash }
+          .to(1 => :a, a: :b, [2, 3] => :c)
+      end
+    end
   end
 end

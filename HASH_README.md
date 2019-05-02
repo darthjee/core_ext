@@ -311,6 +311,24 @@ hash.underscore_keys!
 # changes hash to { ca_b: 1, 'k_b' => [{ keys_hash: 1 }] }
 ```
 
+### #transpose
+swap keys with values of the hash
+
+```ruby
+{ a: 1, b: :a, c: [2, 3] }.transpose
+
+# returns { 1 => :a, a: :b, [2, 3] => :c }
+```
+
+### #transpose!
+Changes hash swapping keys with values of the hash
+
+```ruby
+{ a: 1, b: :a, c: [2, 3] }.transpose!
+
+# changes hash to { 1 => :a, a: :b, [2, 3] => :c }
+```
+
 ### #to_deep_hash
 Changes a hash spliting keys into inner hashs
 
@@ -329,19 +347,6 @@ hash = { 'a.b[0]' => 1, 'a.b[1]' => 2 }
 hash.to_deep_hash!
 
 # changes hash to { 'a' => { 'b' => 1 } }
-```
-
-### #transpose
-swap keys with values of the hash
-
-```ruby
-{ a: 1, b: :a, c: [2, 3] }.transpose
-```
-
-returns
-
-```ruby
-{ 1 => :a, a: b, [2, 3] => :c }
 ```
 
 ## Added by Enumerable
