@@ -249,6 +249,16 @@ describe Hash do
       end
     end
 
+    describe '#remap_keys!' do
+      subject(:hash) { { a: 1, b: 2 } }
+
+      it 'remap the keys' do
+        expect { hash.remap_keys!(a: :c, d: :e) }
+          .to change { hash }
+          .to(c: 1, b: 2, e: nil)
+      end
+    end
+
     describe 'exclusive_merge' do
       subject(:hash) { { a: 1, b: 2 } }
 
