@@ -35,6 +35,35 @@ hash.camelize_keys(uppercase_first_letter: false)
 # returns { caB: 1, k: [{ aB: 1 }] }
 ```
 
+### #camelize_keys!
+Change the keys camelizing them and accepting parameters:
+- uppercase_first_letter: Use the java or javascript format (default: true)
+- recursive: when true, does it recursivly through inner arrays (default: true)
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys!
+
+# changes hash to { CaB: 1, K: [{ AB: 1 }] }
+```
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys!(recursive: false)
+
+# changes hash to { CaB: 1, K: [{ a_b: 1 }] }
+```
+
+```ruby
+hash = { ca_b: 1, k: [{ a_b: 1 }] }
+
+hash.camelize_keys!(uppercase_first_letter: false)
+
+# changes hash to { caB: 1, k: [{ aB: 1 }] }
+```
+
 ### #chain_change_keys
 Returns new hash changing the keys using a chained method call
 

@@ -125,6 +125,32 @@ describe Hash do
       end
     end
 
+    describe '#camelize_keys!' do
+      subject(:hash) { { ca_b: 1, k: [{ a_b: 1 }] } }
+
+      it 'camelize all keys' do
+        expect { hash.camelize_keys! }
+          .to change { hash }
+          .to(CaB: 1, K: [{ AB: 1 }])
+      end
+
+      context 'when passing recursive false' do
+        it 'camelize all keys without recursion' do
+          expect { hash.camelize_keys!(recursive: false) }
+            .to change { hash }
+            .to(CaB: 1, K: [{ a_b: 1 }])
+        end
+      end
+
+      context 'when not upcasing first letter' do
+        it 'camelize all keys' do
+          expect { hash.camelize_keys!(uppercase_first_letter: false) }
+            .to change { hash }
+            .to(caB: 1, k: [{ aB: 1 }])
+        end
+      end
+    end
+
     describe '#lower_camelize_keys' do
       subject(:hash) { { ca_b: 1, k: [{ a_b: 1 }] } }
 
@@ -137,7 +163,7 @@ describe Hash do
     describe '#lower_camelize_keys!' do
       subject(:hash) { { ca_b: 1, k: [{ a_b: 1 }] } }
 
-      it 'camelize with lower case' do
+      it 'underscores keys' do
         expect { hash.lower_camelize_keys! }
           .to change { hash }
           .to(caB: 1, k: [{ aB: 1 }])
@@ -147,7 +173,7 @@ describe Hash do
     describe '#undescore_keys' do
       subject(:hash) { { Ca_B: 1, 'kB' => [{ KeysHash: 1 }] } }
 
-      it 'camelize with lower case' do
+      it 'underscores keys' do
         expect(hash.underscore_keys)
           .to eq(ca_b: 1, 'k_b' => [{ keys_hash: 1 }])
       end
