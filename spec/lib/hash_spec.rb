@@ -210,6 +210,24 @@ describe Hash do
       it { expect(list).to be_empty }
     end
 
+    context 'when mapping returns empty arrays' do
+      let(:block) { proc { [] } }
+
+      it { expect(list).not_to be_empty }
+    end
+
+    context 'when mapping returns empty arrays' do
+      let(:block) { proc { [] } }
+
+      it { expect(list).not_to be_empty }
+    end
+
+    context 'when mapping returns empty strings' do
+      let(:block) { proc { '' } }
+
+      it { expect(list).not_to be_empty }
+    end
+
     context 'when block returns false' do
       let(:block) { proc { false } }
 
@@ -242,6 +260,7 @@ describe Hash do
         end
 
         it { expect(list).to eq(hash.values[1..-1].map(&:to_s)) }
+
         it 'calls the mapping only once for each value' do
           expect(transformer).to have_received(:transform).exactly(4)
         end

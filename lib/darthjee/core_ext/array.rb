@@ -101,8 +101,8 @@ module Darthjee
 
       # Joins elements in a string using a proc
       #
-      # Uses the proc given
-      # to convert elements to Strig and a block for joining
+      # Uses the proc given elements to Strig and a
+      # block for determinating the joining string
       #
       # @param [Proc] mapper Proc that will be used to map values
       # to string before joining
@@ -127,17 +127,13 @@ module Darthjee
       #   end     # returns '1.0 +2.0 -3.0 -4.0 +5.0'
       def procedural_join(mapper = proc(&:to_s))
         return '' if empty?
-        list =     dup
-        previous = first
-        list[0] = mapper.call(previous).to_s
+        map = map_to_hash(&mapper)
 
-        list.inject do |string, value|
-          link =        yield(previous, value) if block_given?
-          next_string = mapper.call(value)
-          previous = value
+        map.inject do |(previous, string), (nexte, nexte_string)|
+          link = yield(previous, nexte) if block_given?
 
-          "#{string}#{link}#{next_string}"
-        end
+          [nexte, "#{string}#{link}#{nexte_string}"]
+        end.last.to_s
       end
 
       # Reeturns a random element of the array without altering it

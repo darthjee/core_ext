@@ -148,9 +148,9 @@ module Darthjee
         def split_key(key, separator)
           keys = key.is_a?(Array) ? key : key.to_s.split(separator)
 
-          return keys.first unless keys.second
+          return keys unless keys.second
 
-          [keys.first, keys[1..-1]]
+          [keys.shift, keys]
         end
       end
     end

@@ -34,4 +34,36 @@ describe Object do
       end
     end
   end
+
+  # rubocop: disable RSpec/PredicateMatcher
+  describe '#trueful?' do
+    context 'when object is an empty array' do
+      it { expect([].trueful?).to be_truthy }
+    end
+
+    context 'when object is an empty hash' do
+      it { expect({}.trueful?).to be_truthy }
+    end
+
+    context 'when object is an empty string' do
+      it { expect(''.trueful?).to be_truthy }
+    end
+
+    context 'when object is a simple object' do
+      it { expect(described_class.new.trueful?).to be_truthy }
+    end
+
+    context 'when object is true' do
+      it { expect(true.trueful?).to be_truthy }
+    end
+
+    context 'when object is nil' do
+      it { expect(nil.trueful?).not_to be_truthy }
+    end
+
+    context 'when object is false' do
+      it { expect(false.trueful?).not_to be_truthy }
+    end
+  end
+  # rubocop: enable RSpec/PredicateMatcher
 end

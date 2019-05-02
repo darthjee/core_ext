@@ -117,7 +117,7 @@ module Enumerable
   #
   # @return [::Array<::Object>]
   def map_and_select(&block)
-    map(&block).select(&:present?)
+    map(&block).select(&:trueful?)
   end
 
   # Maps values and creates a hash
@@ -152,7 +152,7 @@ module Enumerable
   # @return [::TrueClass,::FalseClass]
   def empty_value?(value)
     return true unless value.present?
-    return unless value.is_a?(Hash) || value.is_a?(Array)
+    return unless value.is_a?(Enumerable)
     value.clean!.empty?
   end
 end

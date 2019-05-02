@@ -23,5 +23,25 @@ describe Darthjee::CoreExt::Object do
         end
       end
     end
+
+    # rubocop: disable RSpec/PredicateMatcher
+    describe '#trueful?' do
+      describe 'Calling on nil object' do
+        it { expect(nil.trueful?).not_to be_truthy }
+      end
+
+      describe 'Calling on empty array' do
+        it { expect([].trueful?).to be_truthy }
+      end
+
+      describe 'Calling on empty hash' do
+        it { expect({}.trueful?).to be_truthy }
+      end
+
+      describe 'Calling on empty string' do
+        it { expect(''.trueful?).to be_truthy }
+      end
+    end
+    # rubocop: enable RSpec/PredicateMatcher
   end
 end

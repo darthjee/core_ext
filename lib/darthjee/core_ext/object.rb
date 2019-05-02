@@ -22,6 +22,21 @@ module Darthjee
           is_a?(clazz)
         end
       end
+
+      # Checks if object is evaluated to true
+      #
+      # @return [::TrueClass,::FalseClass]
+      #
+      # @example
+      #   nil.trueful? # returns false
+      #   [].trueful?  # returns true
+      #   {}.trueful?  # returns true
+      #   "".trueful?  # returns true
+      def trueful?
+        # rubocop: disable Style/DoubleNegation
+        !!self
+        # rubocop: enable Style/DoubleNegation
+      end
     end
   end
 end
