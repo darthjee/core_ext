@@ -5,15 +5,15 @@
 Returns the number of days between 2 dates
 
 ```ruby
-d1 = Date.new(2106, 10, 11)
-d2 = d1 + 1.year
-d3 = d1 - 1,year
-```
+date   = Date.new(2106, 10, 11)
+future = date + 1.year
+past   = date - 1.year
 
-```ruby
-d1.days_between(d2) == 365
-```
+date.days_between(future)
 
-```ruby
-d1.days_between(d3) = 366
+# returns 365
+
+date.days_between(past)
+
+# returns 366
 ```
