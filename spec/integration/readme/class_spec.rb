@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 describe Class do
   describe 'readme' do
@@ -74,15 +74,48 @@ describe Class do
             instance.name = nil
           end
 
-          it do
-            expect(instance.name).to be_nil
-          end
+          it { expect(instance.name).to be_nil }
         end
 
         context 'when another instance calls the method' do
           it 'does not change the result of another instance' do
             expect(instance.name).not_to eq(other.name)
           end
+        end
+      end
+    end
+
+    describe '#default_readers' do
+      let(:klass) do
+        Class.new do |clazz|
+          clazz.send(:attr_writer, :cars, :houses)
+          clazz.send(:default_readers, :cars, :houses, 'none')
+        end
+      end
+
+      it 'adds method returning default value' do
+        expect(instance.cars).to eq('none')
+      end
+
+      it 'returns the same instance for both methods' do
+        expect(instance.cars).to be_equal(instance.houses)
+      end
+
+      context 'when setting cars' do
+        before { instance.cars = ['volvo'] }
+
+        it 'sets the value' do
+          expect(instance.cars).to eq(['volvo'])
+        end
+
+        it 'does not change the value on the other method' do
+          expect(instance.houses).to eq('none')
+        end
+
+        context 'when setting to nil' do
+          before { instance.cars = nil }
+
+          it { expect(instance.cars).to be_nil }
         end
       end
     end

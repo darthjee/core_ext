@@ -134,7 +134,7 @@ model.cars # returns 'none'
 
 model.cars = ['volvo']
 model.cars # returns ['volvo']
-Person.new.cars # returns 'none'
+Person.new.houses # returns 'none'
 ```
 
 ```ruby
