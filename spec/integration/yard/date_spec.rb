@@ -2,7 +2,7 @@
 
 describe Date do
   describe 'readme' do
-    subject(:date) { Date.new(2106, 10, 11) }
+    subject(:date) { described_class.new(2106, 10, 11) }
 
     let(:future) { date + 1.year }
     let(:past)   { date - 1.year }
