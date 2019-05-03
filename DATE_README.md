@@ -17,3 +17,7 @@ date.days_between(past)
 
 # returns 366
 ```
+
+## Added by Object
+- [#is_any?](ENUMERABLE_README.md#is_any?)
+- [#trueful?](ENUMERABLE_README.md#trueful?)

@@ -29,3 +29,7 @@ underscore the symbol 'just like String#underscore'
 
 # returns :sym_bol
 ```
+
+## Added by Object
+- [#is_any?](ENUMERABLE_README.md#is_any?)
+- [#trueful?](ENUMERABLE_README.md#trueful?)
