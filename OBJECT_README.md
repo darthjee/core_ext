@@ -25,3 +25,9 @@ nil.trueful?         # returns false
 0.trueful?           # returns true
 Object.new.trueful?  # returns true
 ```
+
+## Added by Class
+- [.default_value](CLASS_README.md#default_value)
+- [.default_values](CLASS_README.md#default_values)
+- [.default_reader](CLASS_README.md#default_reader)
+- [.default_readers](CLASS_README.md#default_readers)

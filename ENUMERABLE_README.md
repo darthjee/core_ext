@@ -150,3 +150,13 @@ end                   # returns {
                       #   55 => nil
                       # }
 ```
+
+## Added by Object
+- [#is_any?](OBJECT_README.md#is_any?)
+- [#trueful?](OBJECT_README.md#trueful?)
+
+## Added by Class
+- [.default_value](CLASS_README.md#default_value)
+- [.default_values](CLASS_README.md#default_values)
+- [.default_reader](CLASS_README.md#default_reader)
+- [.default_readers](CLASS_README.md#default_readers)
