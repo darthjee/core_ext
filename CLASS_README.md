@@ -142,3 +142,7 @@ model.cars                           # returns 'none'
 model.cars.equal?('none')            # returns false
 model.nick_name.equal?(model.houses) # returns true
 ```
+
+## Added by Object
+- [#is_any?](ENUMERABLE_README.md#is_any?)
+- [#trueful?](ENUMERABLE_README.md#trueful?)
