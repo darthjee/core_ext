@@ -1,4 +1,5 @@
-## CLASS
+## Class
+
 ### #default_value
 Adds a method that will return a default value
 
@@ -106,7 +107,6 @@ return a default value when the instance variables
 ware never set
 
 ```ruby
-xample Defining default values
 class Person
   attr_writer :cars, :houses
   default_reader :cars, :houses, 'none'
@@ -134,7 +134,7 @@ model.cars # returns 'none'
 
 model.cars = ['volvo']
 model.cars # returns ['volvo']
-Person.new.cars # returns 'none'
+Person.new.houses # returns 'none'
 ```
 
 ```ruby
@@ -142,3 +142,13 @@ model.cars                           # returns 'none'
 model.cars.equal?('none')            # returns false
 model.nick_name.equal?(model.houses) # returns true
 ```
+
+## Added by Object
+- [#is_any?](OBJECT_README.md#is_any?)
+- [#trueful?](OBJECT_README.md#trueful?)
+
+## Added by Class
+- [.default_value](CLASS_README.md#default_value)
+- [.default_values](CLASS_README.md#default_values)
+- [.default_reader](CLASS_README.md#default_reader)
+- [.default_readers](CLASS_README.md#default_readers)
