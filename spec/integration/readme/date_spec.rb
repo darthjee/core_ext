@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 describe Date do
   describe 'readme' do
     subject(:date) { described_class.new(2106, 10, 11) }
