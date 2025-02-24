@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Darthjee::CoreExt::Hash::ValueChanger do
-  subject(:changer) { described_class.new(options, &block) }
+  subject(:changer) { described_class.new(**options, &block) }
 
   let(:block) { proc { |value| value.to_s.size } }
 
