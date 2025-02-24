@@ -44,8 +44,8 @@ module Darthjee
         #                               #   a: "1",
         #                               #   b: "{:c=>1}"
         #                               # }
-        def change_values(options = {}, &block)
-          deep_dup.change_values!(options, &block)
+        def change_values(**options, &block)
+          deep_dup.change_values!(**options, &block)
         end
 
         # Changes the values of a hash
@@ -79,8 +79,8 @@ module Darthjee
         #
         #   hash       # changed to { a: "1", b: "{:c=>2}" }
         #   inner_hash # still      { c: 2 }
-        def change_values!(options = {}, &block)
-          Hash::ValueChanger.new(options, &block).change(self)
+        def change_values!(**options, &block)
+          Hash::ValueChanger.new(**options, &block).change(self)
         end
       end
     end

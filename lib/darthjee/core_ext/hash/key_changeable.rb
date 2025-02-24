@@ -51,7 +51,7 @@ module Darthjee
           options = calls.extract_options!
 
           calls.inject(self) do |h, m|
-            h.change_keys!(options, &m)
+            h.change_keys!(*options, &m)
           end
         end
 
@@ -80,8 +80,8 @@ module Darthjee
         #     (k.to_i + 1).to_s.to_sym
         #   end
         #   result    # returns { :'2' => 1, :'3' => { '3' => 2 } }
-        def change_keys(options = {}, &block)
-          deep_dup.change_keys!(options, &block)
+        def change_keys(**options, &block)
+          deep_dup.change_keys!(**options, &block)
         end
 
         # Change all keys modifying and returning the hash
@@ -98,8 +98,8 @@ module Darthjee
         # @see Hash::KeyChanger#change_keys
         #
         # @example (see #change_keys)
-        def change_keys!(options = {}, &block)
-          Hash::KeyChanger.new(self).change_keys(options, &block)
+        def change_keys!(**options, &block)
+          Hash::KeyChanger.new(self).change_keys(**options, &block)
         end
 
         # prepend a string to all keys
@@ -126,8 +126,8 @@ module Darthjee
         #                                #   :foo_a => 1,
         #                                #   "foo_b"=> 2
         #                                # }
-        def prepend_to_keys(str, options = {})
-          change_key_text(options) do |key|
+        def prepend_to_keys(str, **options)
+          change_key_text(**options) do |key|
             "#{str}#{key}"
           end
         end
@@ -150,8 +150,8 @@ module Darthjee
         # @see KeyChanger#change_keys
         #
         # @example (see #prepend_to_keys)
-        def append_to_keys(str, options = {})
-          change_key_text(options) do |key|
+        def append_to_keys(str, **options)
+          change_key_text(**options) do |key|
             "#{key}#{str}"
           end
         end
