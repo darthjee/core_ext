@@ -51,7 +51,7 @@ module Darthjee
           options = calls.extract_options!
 
           calls.inject(self) do |h, m|
-            h.change_keys!(*options, &m)
+            h.change_keys!(**options, &m)
           end
         end
 
@@ -170,7 +170,7 @@ module Darthjee
         #   hash = { b: 1, a: 2 }
         #
         #   hash.sort_keys  # changes hash to { a: 2, b: 1 }
-        def sort_keys!(options = {})
+        def sort_keys!(**options)
           Hash::KeysSorter.new(self, **options).sort
         end
 
@@ -188,7 +188,7 @@ module Darthjee
         #   hash = { b: 1, a: 2 }
         #
         #   hash.sort_keys  # returns { a: 2, b: 1 }
-        def sort_keys(options = {})
+        def sort_keys(**options)
           Hash::KeysSorter.new(deep_dup, **options).sort
         end
 
@@ -238,8 +238,8 @@ module Darthjee
         # @return [::Hash]
         #
         # @see KeyChanger
-        def change_key_text(options = {}, &block)
-          Hash::KeyChanger.new(self).change_text(options, &block)
+        def change_key_text(**options, &block)
+          Hash::KeyChanger.new(self).change_text(**options, &block)
         end
       end
     end

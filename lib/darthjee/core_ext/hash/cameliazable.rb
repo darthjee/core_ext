@@ -27,13 +27,13 @@ module Darthjee
         # @example
         #   hash = { first_key: 1, 'second_key' => 2 }
         #   options = { uppercase_first_letter: false }
-        #   hash.camelize_keys(options) # returns {
+        #   hash.camelize_keys(**options) # returns {
         #                               #   firstKey: 1,
         #                               #   'secondKey' => 2
         #                               # }
         #
-        def camelize_keys(options = {})
-          dup.camelize_keys!(options)
+        def camelize_keys(**options)
+          dup.camelize_keys!(**options)
         end
 
         # Change keys to CamelCase changing the original hash
@@ -62,8 +62,8 @@ module Darthjee
         #                            #   'secondKey' => 2
         #                            # }
         #
-        def lower_camelize_keys(options = {})
-          dup.lower_camelize_keys!(options)
+        def lower_camelize_keys(**options)
+          dup.lower_camelize_keys!(**options)
         end
 
         # Camelize all keys in the hash
@@ -96,8 +96,8 @@ module Darthjee
         #                         # }
         #
         # @return [::Hash]
-        def underscore_keys(options = {})
-          dup.underscore_keys!(options)
+        def underscore_keys(**options)
+          dup.underscore_keys!(**options)
         end
 
         # Change all keys to be snakecase
@@ -113,8 +113,8 @@ module Darthjee
         # @example (see #underscore_keys)
         #
         # @return [::Hash]
-        def underscore_keys!(options = {})
-          Hash::KeyChanger.new(self).underscore_keys(options)
+        def underscore_keys!(**options)
+          Hash::KeyChanger.new(self).underscore_keys(**options)
         end
       end
     end
