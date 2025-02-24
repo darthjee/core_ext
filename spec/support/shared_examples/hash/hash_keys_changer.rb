@@ -52,7 +52,7 @@ shared_examples 'a method that is able to change keys' do |method|
 
   context 'with recursive hash' do
     let(:hash) { { 'a' => 1, b: { c: 3, 'd' => 4 } } }
-    let(:result) { hash.public_send(method, options) { |k| "foo_#{k}" } }
+    let(:result) { hash.public_send(method, **options) { |k| "foo_#{k}" } }
     let(:expected) do
       { 'foo_a' => 1, 'foo_b' => { 'foo_c' => 3, 'foo_d' => 4 } }
     end
