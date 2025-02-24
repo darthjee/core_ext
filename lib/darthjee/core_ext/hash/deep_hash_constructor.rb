@@ -59,8 +59,8 @@ module Darthjee
         # @example (see DeepHashConstructor)
         def deep_hash(hash)
           break_keys(hash).tap do
-            hash.each do |key, value|
-              hash[key] = deep_hash_value(value)
+            hash.keys.each do |key|
+              hash[key] = deep_hash_value(hash[key])
             end
           end
         end
@@ -104,7 +104,7 @@ module Darthjee
         #
         # @return [Hash]
         def break_keys(hash)
-          hash.each_key do |key|
+          hash.keys.each do |key|
             value = hash.delete(key)
             base_key, child_key = split_key(key, separator)
             Setter.new(hash, base_key).set(child_key, value)
