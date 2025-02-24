@@ -6,12 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-# Configuration parameters: Max, AllowedIdentifiers, AllowedPatterns.
-RSpec/IndexedLet:
-  Exclude:
-    - 'spec/support/shared_examples/hash/hash_squasher.rb'
-
 # Offense count: 4
 RSpec/MultipleExpectations:
   Max: 2
