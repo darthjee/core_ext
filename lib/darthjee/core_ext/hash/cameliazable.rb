@@ -47,8 +47,8 @@ module Darthjee
         # @example (see #camelize_keys)
         #
         # @see #camelize_keys
-        def camelize_keys!(options = {})
-          Hash::KeyChanger.new(self).camelize_keys(options)
+        def camelize_keys!(**options)
+          Hash::KeyChanger.new(self).camelize_keys(**options)
         end
 
         # Camelize all keys in the hash as `key.camelize(:lower)
@@ -71,10 +71,10 @@ module Darthjee
         # @return [::Hash] self after changing the keys
         #
         # @example (see #lower_camelize_keys)
-        def lower_camelize_keys!(options = {})
+        def lower_camelize_keys!(**options)
           options = options.merge(uppercase_first_letter: false)
 
-          camelize_keys!(options)
+          camelize_keys!(**options)
         end
 
         # Change all keys to be snakecase

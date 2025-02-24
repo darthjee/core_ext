@@ -95,7 +95,7 @@ module Darthjee
         def camelize_keys(uppercase_first_letter: true, **options)
           type = uppercase_first_letter ? :upper : :lower
 
-          change_keys(options) do |key|
+          change_keys(**options) do |key|
             key.camelize(type)
           end
         end
@@ -117,8 +117,8 @@ module Darthjee
         #   changer.underscore_keys
         #
         #   hash  # changed to { my_key: { inner_key: 10 } }
-        def underscore_keys(options = {})
-          change_keys(options, &:underscore)
+        def underscore_keys(**options)
+          change_keys(**options, &:underscore)
         end
 
         # Change keys considering them to be strings
