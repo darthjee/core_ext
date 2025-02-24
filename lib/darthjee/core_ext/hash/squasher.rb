@@ -68,7 +68,7 @@ module Darthjee
         #                         #   'person> age'  => 22
         #                         # }
         def squash(hash)
-          hash.keys.each do |key|
+          hash.each_key do |key|
             next unless hash[key].is_any?(Hash, Array)
 
             value = hash.delete(key)

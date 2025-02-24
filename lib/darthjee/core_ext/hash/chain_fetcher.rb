@@ -24,6 +24,7 @@ module Darthjee
         # @return [Object] value fetched from array
         def fetch
           return fetch_with_block if block.present?
+
           fetch_without_block
         end
 

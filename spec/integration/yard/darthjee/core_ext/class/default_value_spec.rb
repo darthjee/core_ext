@@ -19,8 +19,8 @@ describe Class do
         end
 
         it 'returns the same instance accros instances of the class' do
-          expect(instance.name).not_to be_equal('John')
-          expect(instance.name).to be_equal(klass.new.name)
+          expect(instance.name).not_to equal('John')
+          expect(instance.name).to equal(klass.new.name)
         end
       end
     end
@@ -42,13 +42,13 @@ describe Class do
         end
 
         it 'returns the same instance accros instances of the class' do
-          expect(instance.name).not_to be_equal('John')
-          expect(instance.name).to be_equal(klass.new.name)
+          expect(instance.name).not_to equal('John')
+          expect(instance.name).to equal(klass.new.name)
         end
 
         it 'returns the same instance for all methods' do
-          expect(instance.nick_name).not_to be_equal('John')
-          expect(instance.name).to be_equal(instance.nick_name)
+          expect(instance.nick_name).not_to equal('John')
+          expect(instance.name).to equal(instance.nick_name)
         end
       end
     end
@@ -57,6 +57,7 @@ describe Class do
       let(:klass) do
         Class.new do
           attr_writer :name
+
           default_reader :name, 'John Doe'
         end
       end
@@ -96,6 +97,7 @@ describe Class do
       let(:klass) do
         Class.new do
           attr_writer :cars, :houses
+
           default_readers :cars, :houses, 'none'
         end
       end
@@ -134,8 +136,8 @@ describe Class do
         end
 
         it 'returns the same instance for all methods' do
-          expect(instance.cars).not_to be_equal('none')
-          expect(instance.cars).to be_equal(instance.houses)
+          expect(instance.cars).not_to equal('none')
+          expect(instance.cars).to equal(instance.houses)
         end
       end
     end

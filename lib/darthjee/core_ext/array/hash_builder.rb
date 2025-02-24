@@ -59,6 +59,7 @@ module Darthjee
         # @return [::Array]
         def fixes_sizes
           return unless needs_resizing?
+
           values.concat ::Array.new(keys.size - values.size)
         end
 

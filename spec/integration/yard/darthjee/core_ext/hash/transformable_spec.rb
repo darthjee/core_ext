@@ -86,9 +86,9 @@ describe Hash do
       subject(:hash) do
         {
           'person[0]_name_first' => 'John',
-          'person[0]_name_last'  => 'Doe',
+          'person[0]_name_last' => 'Doe',
           'person[1]_name_first' => 'John',
-          'person[1]_name_last'  => 'Wick'
+          'person[1]_name_last' => 'Wick'
         }
       end
 

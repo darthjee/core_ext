@@ -104,7 +104,7 @@ module Darthjee
         #
         # @return [Hash]
         def break_keys(hash)
-          hash.keys.each do |key|
+          hash.each_key do |key|
             value = hash.delete(key)
             base_key, child_key = split_key(key, separator)
             Setter.new(hash, base_key).set(child_key, value)
@@ -121,6 +121,7 @@ module Darthjee
         def deep_hash_value(object)
           return array_deep_hash(object) if object.is_a? Array
           return deep_hash(object) if object.is_a? Hash
+
           object
         end
 

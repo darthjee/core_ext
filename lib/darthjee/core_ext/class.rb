@@ -132,6 +132,7 @@ module Darthjee
       def default_reader(name, value)
         define_method(name) do
           return value unless instance_variable_defined?("@#{name}")
+
           instance_variable_get("@#{name}")
         end
       end

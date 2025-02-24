@@ -169,9 +169,9 @@ module Darthjee
         # @return [::String,::Symbol]
         def cast_new_key(key, old_clazz, type)
           case class_cast(old_clazz, type)
-          when :symbol then
+          when :symbol
             key.to_sym
-          when :string then
+          when :string
             key.to_s
           end
         end
@@ -192,6 +192,7 @@ module Darthjee
         # @return [::Symbol]
         def class_cast(old_clazz, type)
           return type unless type == :keep
+
           old_clazz.to_s.downcase.to_sym
         end
       end

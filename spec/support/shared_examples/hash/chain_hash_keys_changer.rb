@@ -60,7 +60,7 @@ shared_examples 'a method that is able to chain change keys' do |method|
     end
 
     context 'when options are given' do
-      let(:options) { { recursive: recursive } }
+      let(:options) { { recursive: } }
 
       context 'with recursion' do
         let(:recursive) { true }

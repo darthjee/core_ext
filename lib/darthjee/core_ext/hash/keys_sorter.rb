@@ -63,6 +63,7 @@ module Darthjee
         def change_value(value)
           return value unless recursive
           return value unless value.is_a?(Hash)
+
           self.class.new(value).sort
         end
       end

@@ -15,7 +15,8 @@ module Darthjee
       #   10.percent_of(30) # returns 33.33333333333333
       def percent_of(total)
         return Float::INFINITY if total&.zero?
-        (to_f / total.to_f) * 100.0
+
+        (to_f / total) * 100.0
       end
     end
   end

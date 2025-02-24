@@ -153,6 +153,7 @@ module Enumerable
   def empty_value?(value)
     return true unless value.present?
     return unless value.is_a?(Enumerable)
+
     value.clean!.empty?
   end
 end
