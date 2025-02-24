@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary               = 'Core Extensions'
   gem.homepage              = 'https://github.com/darthjee/core_ext'
   gem.description           = 'Extension of basic classes with usefull methods'
-  gem.required_ruby_version = '>= 2.4.0'
+  gem.required_ruby_version = '>= 3.3.1'
 
   gem.files         = `git ls-files -z`.split("\x0")
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
