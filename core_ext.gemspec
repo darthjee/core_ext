@@ -19,16 +19,16 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'activesupport', '>= 5.2.x'
+  gem.add_runtime_dependency 'activesupport',     '~> 7.0.x'
 
-  gem.add_development_dependency 'bundler',       '~> 1.17.3'
-  gem.add_development_dependency 'pry-nav',       '~> 0.2.4'
-  gem.add_development_dependency 'rake',          '>= 12.3.1'
-  gem.add_development_dependency 'rspec',         '>= 3.8'
-  gem.add_development_dependency 'rubocop',       '0.58.1'
-  gem.add_development_dependency 'rubocop-rspec', '1.30.0'
-  gem.add_development_dependency 'rubycritic',    '>= 4.0.2'
-  gem.add_development_dependency 'simplecov',     '~> 0.16.x'
-  gem.add_development_dependency 'yard',          '>= 0.9.18'
-  gem.add_development_dependency 'yardstick',     '>= 0.9.9'
+  gem.add_development_dependency 'bundler',       '~> 2.5.13'
+  gem.add_development_dependency 'pry-nav',       '1.0.0'
+  gem.add_development_dependency 'rake',          '13.0.6'
+  gem.add_development_dependency 'rspec',         '3.11.0'
+  gem.add_development_dependency 'rubocop',       '0.80.1'
+  gem.add_development_dependency 'rubocop-rspec', '1.38.1'
+  gem.add_development_dependency 'rubycritic',    '4.7.0'
+  gem.add_development_dependency 'simplecov',     '0.21.2'
+  gem.add_development_dependency 'yard',          '0.9.27'
+  gem.add_development_dependency 'yardstick',     '0.9.9'
 end
