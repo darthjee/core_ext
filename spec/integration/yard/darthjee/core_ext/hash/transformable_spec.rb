@@ -21,7 +21,7 @@ describe Hash do
       end
     end
 
-    describe '#exclusive_merge' do
+    describe '#exclusive_merge!' do
       subject(:hash) { { a: 1, b: 2, c: 3 } }
 
       let(:other)    { { b: 4, 'c' => 5, e: 6 } }
