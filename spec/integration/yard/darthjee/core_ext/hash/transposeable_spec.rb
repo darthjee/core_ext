@@ -22,7 +22,7 @@ describe Darthjee::CoreExt::Hash::Transposeable do
       end
     end
 
-    describe '#transpose' do
+    describe '#transpose!' do
       it 'transpose rows and keys' do
         expect { hash.transpose! }.to change { hash }
           .to(
