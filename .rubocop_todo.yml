@@ -11,12 +11,6 @@
 RSpec/MultipleMemoizedHelpers:
   Max: 6
 
-# Offense count: 10
-RSpec/RepeatedExampleGroupDescription:
-  Exclude:
-    - 'spec/lib/hash_spec.rb'
-    - 'spec/support/shared_examples/hash/remap.rb'
-
 # Offense count: 3
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, IgnoreMetadata.
 # Include: **/*_spec.rb
