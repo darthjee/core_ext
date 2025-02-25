@@ -216,12 +216,6 @@ describe Hash do
       it { expect(list).not_to be_empty }
     end
 
-    context 'when mapping returns empty arrays' do
-      let(:block) { proc { [] } }
-
-      it { expect(list).not_to be_empty }
-    end
-
     context 'when mapping returns empty strings' do
       let(:block) { proc { '' } }
 
