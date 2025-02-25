@@ -14,7 +14,6 @@ RSpec/MultipleMemoizedHelpers:
 # Offense count: 10
 RSpec/RepeatedExampleGroupDescription:
   Exclude:
-    - 'spec/integration/readme/hash_spec.rb'
     - 'spec/integration/yard/darthjee/core_ext/hash/transformable_spec.rb'
     - 'spec/integration/yard/darthjee/core_ext/hash/transposeable_spec.rb'
     - 'spec/lib/hash_spec.rb'

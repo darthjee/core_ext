@@ -359,9 +359,14 @@ describe Hash do
         expect(hash.sort_keys.keys)
           .to eq(%i[a b])
       end
+
+      it 'does not change the original hash' do
+        expect { hash.sort_keys }
+          .not_to change(hash, :keys)
+      end
     end
 
-    describe '#sort_keys' do
+    describe '#sort_keys!' do
       subject(:hash) { { b: 1, a: 2 } }
 
       it 'sort hash keys' do
