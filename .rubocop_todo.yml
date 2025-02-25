@@ -7,10 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 4
-RSpec/MultipleExpectations:
-  Max: 2
-
-# Offense count: 4
 # Configuration parameters: AllowSubject.
 RSpec/MultipleMemoizedHelpers:
   Max: 6
