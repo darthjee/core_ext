@@ -25,3 +25,7 @@ RSpec/NestedGroups:
 
 RSpec/IndexedLet:
   Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - 'spec/integration/**/*_spec.rb'

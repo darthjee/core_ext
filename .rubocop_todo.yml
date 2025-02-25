@@ -11,16 +11,6 @@
 RSpec/MultipleMemoizedHelpers:
   Max: 6
 
-# Offense count: 3
-# Configuration parameters: Include, CustomTransform, IgnoreMethods, IgnoreMetadata.
-# Include: **/*_spec.rb
-RSpec/SpecFilePathFormat:
-  Exclude:
-    - '**/spec/routing/**/*'
-    - 'spec/integration/yard/darthjee/core_ext/class/default_value_spec.rb'
-    - 'spec/integration/yard/darthjee/core_ext/date/days_between_spec.rb'
-    - 'spec/integration/yard/darthjee/core_ext/hash/transformable_spec.rb'
-
 # Offense count: 4
 # Configuration parameters: AllowedConstants.
 Style/Documentation:
