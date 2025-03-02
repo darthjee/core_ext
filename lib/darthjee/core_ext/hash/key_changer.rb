@@ -92,10 +92,10 @@ module Darthjee
         #   changer = Darthjee::CoreExt::Hash::KeyChanger.new(hash)
         #   changer.camelize_keys
         #   hash   # changed to { MyKey: { InnerKey: 10 } }
-        def camelize_keys(uppercase_first_letter: true, **options)
+        def camelize_keys(uppercase_first_letter: true, **)
           type = uppercase_first_letter ? :upper : :lower
 
-          change_keys(**options) do |key|
+          change_keys(**) do |key|
             key.camelize(type)
           end
         end
@@ -117,8 +117,8 @@ module Darthjee
         #   changer.underscore_keys
         #
         #   hash  # changed to { my_key: { inner_key: 10 } }
-        def underscore_keys(**options)
-          change_keys(**options, &:underscore)
+        def underscore_keys(**)
+          change_keys(**, &:underscore)
         end
 
         # Change keys considering them to be strings
@@ -143,8 +143,8 @@ module Darthjee
         #   changer.change_text { |key| key.to_s.upcase }
         #
         #   hash  # changed to { KEY: { INNER_KEY: 10 } }
-        def change_text(type: :keep, **options)
-          change_keys(**options) do |key|
+        def change_text(type: :keep, **)
+          change_keys(**) do |key|
             cast_new_key yield(key), key.class, type
           end
         end

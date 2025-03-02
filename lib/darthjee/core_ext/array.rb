@@ -61,14 +61,14 @@ module Darthjee
       #   output = words.chain_map(:size) do |size|
       #     (size % 2).zero? ? 'even size' : 'odd size'
       #   end  # returns ["even size", "even size", "odd size"]
-      def chain_map(*methods, &block)
+      def chain_map(*methods, &)
         result = methods.inject(self) do |array, method|
           array.map(&method)
         end
 
         return result unless block_given?
 
-        result.map(&block)
+        result.map(&)
       end
 
       # Maps array chain fetching the keys of the hashes inside

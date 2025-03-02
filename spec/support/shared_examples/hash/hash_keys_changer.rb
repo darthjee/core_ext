@@ -27,7 +27,7 @@ end
 
 shared_examples 'a method that is able to change keys' do |method|
   let(:foo_sym_transformation) do
-    hash.public_send(method) { |k| "foo_#{k}".to_sym }
+    hash.public_send(method) { |k| :"foo_#{k}" }
   end
 
   context 'with simple level hash' do

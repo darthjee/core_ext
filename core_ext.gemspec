@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
 
   gem.files         = `git ls-files -z`.split("\x0")
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
   gem.add_runtime_dependency 'activesupport',     '~> 7.0.x'
@@ -31,4 +30,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'simplecov',     '0.21.2'
   gem.add_development_dependency 'yard',          '0.9.27'
   gem.add_development_dependency 'yardstick',     '0.9.9'
+  gem.metadata['rubygems_mfa_required'] = 'true'
 end

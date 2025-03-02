@@ -55,8 +55,8 @@ module Darthjee
       #   hash.chain_fetch(:a, :c, :d) { 10 } # returns 10
       #   hash.chain_fetch(:a, :c, :d) { |key, _| key } # returns :c
       #   hash.chain_fetch(:a, :c, :d) { |_, missing| missing } # returns [:d]
-      def chain_fetch(*keys, &block)
-        ::Hash::ChainFetcher.new(self, *keys, &block).fetch
+      def chain_fetch(*keys, &)
+        ::Hash::ChainFetcher.new(self, *keys, &).fetch
       end
     end
   end

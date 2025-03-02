@@ -45,7 +45,7 @@ module Darthjee
         def build
           fixes_sizes
 
-          ::Hash[[keys, values].transpose]
+          [keys, values].transpose.to_h
         end
 
         private
