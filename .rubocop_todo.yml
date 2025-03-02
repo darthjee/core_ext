@@ -4,7 +4,7 @@
 # The point is for the user to remove these configuration records
 # one by one as the offenses are removed from the code base.
 # Note that changes in the inspected code, or installation of new
-# versions of RuboCop, may require this file to be generated again.
+# versionsuof RuboCop, may require this file to be generated again.
 
 # Offense count: 4
 # Configuration parameters: AllowSubject.
@@ -21,12 +21,3 @@ Style/Documentation:
     - 'lib/darthjee/core_ext.rb'
     - 'lib/darthjee/core_ext/hash/transformable.rb'
     - 'lib/darthjee/core_ext/time.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowedReceivers.
-# AllowedReceivers: Thread.current
-Style/HashEachMethods:
-  Exclude:
-    - 'lib/darthjee/core_ext/hash/deep_hash_constructor.rb'
-    - 'lib/darthjee/core_ext/hash/squasher.rb'

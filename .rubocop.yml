@@ -29,3 +29,8 @@ RSpec/IndexedLet:
 RSpec/SpecFilePathFormat:
   Exclude:
     - 'spec/integration/**/*_spec.rb'
+
+Style/HashEachMethods:
+  Exclude:
+    - 'lib/darthjee/core_ext/hash/deep_hash_constructor.rb'
+    - 'lib/darthjee/core_ext/hash/squasher.rb'
