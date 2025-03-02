@@ -134,9 +134,9 @@ module Enumerable
   #
   #   strings.map_to_hash(&:size) # returns { 'word' => 4, 'big_word' => 8 }
   def map_to_hash
-    map do |value|
+    to_h do |value|
       [value, yield(value)]
-    end.to_h
+    end
   end
 
   private

@@ -68,7 +68,7 @@ module Darthjee
         #            #   c: 'c->1'
         #            # }
         def map_to_hash
-          map do |key, value|
+          to_h do |key, value|
             [key, yield(key, value)]
           end.to_h
         end
