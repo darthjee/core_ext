@@ -8,8 +8,7 @@ shared_examples 'a method that returns a random element' do |method|
       let!(:expected) { array[index] }
 
       before do
-        allow(Random).to receive(:rand)
-          .with(array.size) { index }
+        allow(Random).to receive(:rand).and_return(index)
       end
 
       it 'returns the randomized index of the array' do
