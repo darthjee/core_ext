@@ -1,8 +1,30 @@
 version: 2
+workflows:
+  version: 2
+  test-and-build:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - checks:
+          filters:
+            tags:
+              only: /.*/
+      - build-and-release:
+          requires: [test, checks]
+          filters:
+            tags:
+              only: /\d+\.\d+\.\d+/
+            branches:
+              only:
+                - main
 jobs:
-  build:
+  test:
     docker:
-      - image: darthjee/circleci_ruby_gems_240:0.0.2
+      - image: darthjee/circleci_ruby_331:1.0.1
+        environment:
+          PROJECT: core_ext
     steps:
       - checkout
       - run:
@@ -15,17 +37,49 @@ jobs:
           name: RSpec
           command: bundle exec rspec
       - run:
-          name: Rubocop
-          command: rubocop
-      - run:
           name: Coverage Test Report
           command: cc-test-reporter after-build --exit-code $?
+  checks:
+    docker:
+      - image: darthjee/circleci_ruby_331:1.0.1
+        environment:
+          PROJECT: core_ext
+    steps:
+      - checkout
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Rubocop
+          command: rubocop
       - run:
           name: Yardstick coverage check
           command: bundle exec rake verify_measurements
       - run:
           name: Check version documentation
-          command: scripts/check_readme.sh
+          command: check_readme.sh
       - run:
           name: Rubycritcs check
-          command: scripts/rubycritic.sh
+          command: rubycritic.sh
+      - run:
+          name: Check unit tests
+          command: check_specs
+  build-and-release:
+    docker:
+      - image: darthjee/circleci_ruby_331:1.0.1
+        environment:
+          PROJECT: core_ext
+    steps:
+      - checkout
+      - run:
+          name: Bundle Install
+          command: bundle install
+      - run:
+          name: Signin
+          command: build_gem.sh signin
+      - run:
+          name: Build Gem
+          command: build_gem.sh build
+      - run:
+          name: Push Gem
+          command: build_gem.sh push
