@@ -57,7 +57,7 @@ jobs:
           command: bundle exec rake verify_measurements
       - run:
           name: Check version documentation
-          command: check_readme.sh
+          command: PROJECT=darthjee/core_ext check_readme.sh
       - run:
           name: Rubycritcs check
           command: rubycritic.sh
