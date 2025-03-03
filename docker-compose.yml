@@ -26,3 +26,5 @@ services:
     image: darthjee/circleci_ruby_331:1.0.1
     container_name: core_ext_circleci
     command: /bin/bash
+    volumes:
+      - .:/home/circleci/project
