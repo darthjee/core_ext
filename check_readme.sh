@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ ! $VERSION_PATH ]; then
-  VERSION_PATH="lib/$PROJECT/version.rb"
+  VERSION_PATH="lib/$(echo $PROJECT | sed -e "s/-/\\//g")/version.rb"
 fi
 
 if [ ! $GEM_NAME ]; then
