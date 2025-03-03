@@ -21,3 +21,8 @@ services:
     <<: *base
     depends_on: [base_build]
     command: /bin/bash -c 'rspec && yard && rake yardstick_measure && rake verify_measurements'
+
+  core_ext_circleci:
+    image: darthjee/circleci_ruby_331:1.0.1
+    container_name: core_ext_circleci
+    command: /bin/bash
