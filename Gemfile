@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'bundler',       '~> 2.5.13'
-gem 'pry',           '0.15.2'
+gem 'pry',           '0.14.2'
 gem 'pry-nav',       '1.0.0'
 gem 'rake',          '13.2.1'
 gem 'rspec',         '3.13.0'
