@@ -37,6 +37,9 @@ jobs:
           name: RSpec
           command: COVERAGE_JSON=true bundle exec rspec
       - run:
+          name: DEBUG
+          command: ls coverage/
+      - run:
           name: Coverage Test Report
           command: cc-test-reporter after-build -t simplecov --exit-code $?
   checks:
