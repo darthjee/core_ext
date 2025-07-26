@@ -38,7 +38,7 @@ jobs:
           command: bundle exec rspec
       - run:
           name: Coverage Test Report
-          command: cc-test-reporter after-build --exit-code $? -t simplecov
+          command: cc-test-reporter after-build -t simplecov --exit-code $?
   checks:
     docker:
       - image: darthjee/circleci_ruby_331:1.0.2
