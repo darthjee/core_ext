@@ -5,7 +5,10 @@ require 'simplecov_json_formatter'
 
 SimpleCov.start do
   add_filter '/spec/'
-  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+
+  if ENV['COVERAGE_JSON'] == 'true'
+    SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+  end
 end
 
 require 'pry-nav'
