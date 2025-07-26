@@ -45,7 +45,7 @@ module Darthjee
         def build
           fixes_sizes
 
-          ::Hash[[keys, values].transpose]
+          [keys, values].transpose.to_h
         end
 
         private
@@ -59,6 +59,7 @@ module Darthjee
         # @return [::Array]
         def fixes_sizes
           return unless needs_resizing?
+
           values.concat ::Array.new(keys.size - values.size)
         end
 

@@ -1,0 +1,20 @@
+ignore:
+  - lib/darthjee/core_ext/array/hash_builder.rb
+  - lib/darthjee/core_ext/array.rb
+  - lib/darthjee/core_ext/class.rb
+  - lib/darthjee/core_ext/date.rb
+  - lib/darthjee/core_ext/enumerable.rb
+  - lib/darthjee/core_ext/hash/cameliazable.rb
+  - lib/darthjee/core_ext/hash/changeable.rb
+  - lib/darthjee/core_ext/hash/key_changeable.rb
+  - lib/darthjee/core_ext/hash/transformable.rb
+  - lib/darthjee/core_ext/hash/transposeable.rb
+  - lib/darthjee/core_ext/hash.rb
+  - lib/darthjee/core_ext/math.rb
+  - lib/darthjee/core_ext/numeric.rb
+  - lib/darthjee/core_ext/object.rb
+  - lib/darthjee/core_ext/symbol.rb
+  - lib/darthjee/core_ext/time.rb
+  - lib/darthjee/core_ext/version.rb
+  - lib/darthjee/core_ext.rb
+  - lib/darthjee.rb

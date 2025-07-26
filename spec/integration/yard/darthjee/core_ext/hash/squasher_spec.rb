@@ -21,10 +21,10 @@ describe Darthjee::CoreExt::Hash::Squasher do
         {
           'person[0].name[0]' => 'John',
           'person[0].name[1]' => 'Wick',
-          'person[0].age'     => 22,
+          'person[0].age' => 22,
           'person[1].name[0]' => 'John',
           'person[1].name[1]' => 'Constantine',
-          'person[1].age'     => 25
+          'person[1].age' => 25
         }
       end
 
@@ -48,7 +48,7 @@ describe Darthjee::CoreExt::Hash::Squasher do
       let(:expected) do
         {
           'person> name' => 'John',
-          'person> age'  => 22
+          'person> age' => 22
         }
       end
 

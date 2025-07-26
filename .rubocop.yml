@@ -2,7 +2,12 @@ require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 3.3
+  NewCops: enable
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/integration/**/*_spec.rb'
 
 Naming/PredicateName:
   Exclude:
@@ -18,3 +23,15 @@ RSpec/AlignLeftLetBrace:
 
 RSpec/NestedGroups:
   Max: 5
+
+RSpec/IndexedLet:
+  Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - 'spec/integration/**/*_spec.rb'
+
+Style/HashEachMethods:
+  Exclude:
+    - 'lib/darthjee/core_ext/hash/deep_hash_constructor.rb'
+    - 'lib/darthjee/core_ext/hash/squasher.rb'

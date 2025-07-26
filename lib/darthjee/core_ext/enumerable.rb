@@ -116,8 +116,8 @@ module Enumerable
   #   values # returns [3, 1]
   #
   # @return [::Array<::Object>]
-  def map_and_select(&block)
-    map(&block).select(&:trueful?)
+  def map_and_select(&)
+    map(&).select(&:trueful?)
   end
 
   # Maps values and creates a hash
@@ -134,9 +134,9 @@ module Enumerable
   #
   #   strings.map_to_hash(&:size) # returns { 'word' => 4, 'big_word' => 8 }
   def map_to_hash
-    map do |value|
+    to_h do |value|
       [value, yield(value)]
-    end.to_h
+    end
   end
 
   private
@@ -152,7 +152,8 @@ module Enumerable
   # @return [::TrueClass,::FalseClass]
   def empty_value?(value)
     return true unless value.present?
-    return unless value.is_a?(Enumerable)
+    return false unless value.is_a?(Enumerable)
+
     value.clean!.empty?
   end
 end

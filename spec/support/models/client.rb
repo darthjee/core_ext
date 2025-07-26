@@ -9,7 +9,8 @@ class Client
     requested << id
 
     return unless existing_ids.include?(id)
-    { id: id }
+
+    { id: }
   end
 
   def requested

@@ -57,18 +57,18 @@ shared_examples 'a method that remaps the keys' do |method|
     end
   end
 
-  context 'when remap has original array keys' do
+  context 'when remap swap keys' do
     let(:remap) { { b: :a, a: :b } }
 
-    it 'does not remap the keys' do
+    it 'swap keys' do
       expect(result).to eq(b: 1, a: 2)
     end
   end
 
-  context 'when remap has original array keys' do
+  context 'when remap has one of the keys swapped' do
     let(:remap) { { a: :b, b: :c } }
 
-    it 'does not remap the keys' do
+    it 'swap just that key' do
       expect(result).to eq(b: 1, c: 2)
     end
   end

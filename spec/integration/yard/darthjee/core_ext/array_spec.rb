@@ -20,7 +20,7 @@ describe Array do
       let(:array) { [{ a: { b: 1 }, b: 2 }, { a: { b: 3 }, b: 4 }] }
 
       describe 'when passing just the first key' do
-        it 'returns the array mapped ' do
+        it 'returns the array mapped' do
           expect(array.mapk(:a)).to eq([{ b: 1 }, { b: 3 }])
         end
       end

@@ -103,7 +103,7 @@ shared_examples 'a method that change the hash values' do |method|
 
     it 'ignore hash and does not work recursively when option is passed' do
       options = { skip_inner: false, recursive: false }
-      result = hash.public_send(method, options) do |value|
+      result = hash.public_send(method, **options) do |value|
         value.is_a?(Hash) ? value : value + 1
       end
       expect(result).to eq(a: 2, b: 3, c: { d: 3, e: 4 })
@@ -142,7 +142,7 @@ shared_examples 'a method that change the hash values' do |method|
 
     it 'ignore hash and does not work recursively when option is passed' do
       options = { skip_inner: false, recursive: false }
-      result = hash.public_send(method, options) do |value|
+      result = hash.public_send(method, **options) do |value|
         value.is_a?(Array) ? value : value + 1
       end
       expect(result).to eq(a: 2, b: 3, c: [{ d: 3 }, { e: { f: 4 } }, 5])

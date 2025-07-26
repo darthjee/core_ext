@@ -18,6 +18,7 @@ class Hash
       def eql?(other)
         return true if equals?(other)
         return false unless other.is_a?(self.class)
+
         a.value == value
       end
     end

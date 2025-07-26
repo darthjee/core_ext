@@ -27,7 +27,7 @@ end
 
 shared_examples 'a method that is able to change keys' do |method|
   let(:foo_sym_transformation) do
-    hash.public_send(method) { |k| "foo_#{k}".to_sym }
+    hash.public_send(method) { |k| :"foo_#{k}" }
   end
 
   context 'with simple level hash' do
@@ -52,7 +52,7 @@ shared_examples 'a method that is able to change keys' do |method|
 
   context 'with recursive hash' do
     let(:hash) { { 'a' => 1, b: { c: 3, 'd' => 4 } } }
-    let(:result) { hash.public_send(method, options) { |k| "foo_#{k}" } }
+    let(:result) { hash.public_send(method, **options) { |k| "foo_#{k}" } }
     let(:expected) do
       { 'foo_a' => 1, 'foo_b' => { 'foo_c' => 3, 'foo_d' => 4 } }
     end
@@ -64,7 +64,7 @@ shared_examples 'a method that is able to change keys' do |method|
     end
 
     context 'when options are given' do
-      let(:options) { { recursive: recursive } }
+      let(:options) { { recursive: } }
 
       context 'with recursion' do
         let(:recursive) { true }

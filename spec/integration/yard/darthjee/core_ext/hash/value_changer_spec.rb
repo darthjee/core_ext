@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Darthjee::CoreExt::Hash::ValueChanger do
   describe 'yard' do
-    subject(:changer) { described_class.new(options, &block) }
+    subject(:changer) { described_class.new(**options, &block) }
 
     describe '#initialize' do
       let(:options) { { recursive: false, skip_inner: false } }

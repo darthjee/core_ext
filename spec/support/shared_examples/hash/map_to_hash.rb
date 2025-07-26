@@ -4,7 +4,7 @@ shared_examples 'an array with map_to_hash method' do
   describe '#map_to_hash' do
     subject(:hash) { %w[word1 wooord2] }
 
-    let(:mapping_block) { proc { |word| word.length } }
+    let(:mapping_block) { proc(&:length) }
     let(:mapped)        { hash.map_to_hash(&mapping_block) }
     let(:expected)      { { 'word1' => 5, 'wooord2' => 7 } }
 

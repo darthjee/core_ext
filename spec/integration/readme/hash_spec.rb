@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
+# frozen_string_literal: true
+
 describe Hash do
   describe 'readme' do
     describe '#chain_fetch' do
@@ -357,9 +361,14 @@ describe Hash do
         expect(hash.sort_keys.keys)
           .to eq(%i[a b])
       end
+
+      it 'does not change the original hash' do
+        expect { hash.sort_keys }
+          .not_to change(hash, :keys)
+      end
     end
 
-    describe '#sort_keys' do
+    describe '#sort_keys!' do
       subject(:hash) { { b: 1, a: 2 } }
 
       it 'sort hash keys' do

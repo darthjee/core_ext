@@ -19,7 +19,7 @@ describe Class do
 
       it 'returns the same instance' do
         expect(instance.name)
-          .to be_equal(other.name)
+          .to equal(other.name)
       end
     end
 
@@ -44,7 +44,7 @@ describe Class do
 
       it 'returns the same instance' do
         expect(instance.name)
-          .to be_equal(other.name)
+          .to equal(other.name)
       end
     end
 
@@ -98,7 +98,7 @@ describe Class do
       end
 
       it 'returns the same instance for both methods' do
-        expect(instance.cars).to be_equal(instance.houses)
+        expect(instance.cars).to equal(instance.houses)
       end
 
       context 'when setting cars' do

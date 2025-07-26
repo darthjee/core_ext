@@ -21,7 +21,7 @@ describe Hash do
       end
     end
 
-    describe '#exclusive_merge' do
+    describe '#exclusive_merge!' do
       subject(:hash) { { a: 1, b: 2, c: 3 } }
 
       let(:other)    { { b: 4, 'c' => 5, e: 6 } }
@@ -86,9 +86,9 @@ describe Hash do
       subject(:hash) do
         {
           'person[0]_name_first' => 'John',
-          'person[0]_name_last'  => 'Doe',
+          'person[0]_name_last' => 'Doe',
           'person[1]_name_first' => 'John',
-          'person[1]_name_last'  => 'Wick'
+          'person[1]_name_last' => 'Wick'
         }
       end
 

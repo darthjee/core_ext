@@ -27,13 +27,13 @@ module Darthjee
         # @example
         #   hash = { first_key: 1, 'second_key' => 2 }
         #   options = { uppercase_first_letter: false }
-        #   hash.camelize_keys(options) # returns {
+        #   hash.camelize_keys(**options) # returns {
         #                               #   firstKey: 1,
         #                               #   'secondKey' => 2
         #                               # }
         #
-        def camelize_keys(options = {})
-          dup.camelize_keys!(options)
+        def camelize_keys(**)
+          dup.camelize_keys!(**)
         end
 
         # Change keys to CamelCase changing the original hash
@@ -47,8 +47,8 @@ module Darthjee
         # @example (see #camelize_keys)
         #
         # @see #camelize_keys
-        def camelize_keys!(options = {})
-          Hash::KeyChanger.new(self).camelize_keys(options)
+        def camelize_keys!(**)
+          Hash::KeyChanger.new(self).camelize_keys(**)
         end
 
         # Camelize all keys in the hash as `key.camelize(:lower)
@@ -62,8 +62,8 @@ module Darthjee
         #                            #   'secondKey' => 2
         #                            # }
         #
-        def lower_camelize_keys(options = {})
-          dup.lower_camelize_keys!(options)
+        def lower_camelize_keys(**)
+          dup.lower_camelize_keys!(**)
         end
 
         # Camelize all keys in the hash
@@ -71,10 +71,10 @@ module Darthjee
         # @return [::Hash] self after changing the keys
         #
         # @example (see #lower_camelize_keys)
-        def lower_camelize_keys!(options = {})
+        def lower_camelize_keys!(**options)
           options = options.merge(uppercase_first_letter: false)
 
-          camelize_keys!(options)
+          camelize_keys!(**options)
         end
 
         # Change all keys to be snakecase
@@ -96,8 +96,8 @@ module Darthjee
         #                         # }
         #
         # @return [::Hash]
-        def underscore_keys(options = {})
-          dup.underscore_keys!(options)
+        def underscore_keys(**)
+          dup.underscore_keys!(**)
         end
 
         # Change all keys to be snakecase
@@ -113,8 +113,8 @@ module Darthjee
         # @example (see #underscore_keys)
         #
         # @return [::Hash]
-        def underscore_keys!(options = {})
-          Hash::KeyChanger.new(self).underscore_keys(options)
+        def underscore_keys!(**)
+          Hash::KeyChanger.new(self).underscore_keys(**)
         end
       end
     end

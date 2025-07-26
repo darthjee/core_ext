@@ -10,10 +10,10 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
       {
         'account.person.name[0]' => 'John',
         'account.person.name[1]' => 'Wick',
-        'account.person.age'     =>  20,
-        'account.number'         => '102030',
-        :'house.number'          => 67,
-        :'house.zip'             => 12_345
+        'account.person.age' => 20,
+        'account.number' => '102030',
+        :'house.number' => 67,
+        :'house.zip' => 12_345
       }
     end
 
@@ -22,14 +22,14 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
         {
           'account' => {
             'person' => {
-              'name'   => %w[John Wick],
-              'age'    =>  20
+              'name' => %w[John Wick],
+              'age' => 20
             },
             'number' => '102030'
           },
           'house' => {
             'number' => 67,
-            'zip'    => 12_345
+            'zip' => 12_345
           }
         }
       end
@@ -46,12 +46,12 @@ describe Darthjee::CoreExt::Hash::DeepHashConstructor do
           'account' => {
             %w[person name[0]] => 'John',
             %w[person name[1]] => 'Wick',
-            %w[person age]     =>  20,
-            %w[number]         => '102030'
+            %w[person age] => 20,
+            %w[number] => '102030'
           },
           'house' => {
             %w[number] => 67,
-            %w[zip]    => 12_345
+            %w[zip] => 12_345
           }
         }
       end

@@ -61,11 +61,11 @@ module Darthjee
         #        #     'key_c' => 3
         #        #   }
         #        # }
-        def change_keys(recursive: true, &block)
+        def change_keys(recursive: true, &)
           if recursive
-            hash.deep_transform_keys!(&block)
+            hash.deep_transform_keys!(&)
           else
-            hash.transform_keys!(&block)
+            hash.transform_keys!(&)
           end
         end
 
@@ -92,10 +92,10 @@ module Darthjee
         #   changer = Darthjee::CoreExt::Hash::KeyChanger.new(hash)
         #   changer.camelize_keys
         #   hash   # changed to { MyKey: { InnerKey: 10 } }
-        def camelize_keys(uppercase_first_letter: true, **options)
+        def camelize_keys(uppercase_first_letter: true, **)
           type = uppercase_first_letter ? :upper : :lower
 
-          change_keys(options) do |key|
+          change_keys(**) do |key|
             key.camelize(type)
           end
         end
@@ -117,8 +117,8 @@ module Darthjee
         #   changer.underscore_keys
         #
         #   hash  # changed to { my_key: { inner_key: 10 } }
-        def underscore_keys(options = {})
-          change_keys(options, &:underscore)
+        def underscore_keys(**)
+          change_keys(**, &:underscore)
         end
 
         # Change keys considering them to be strings
@@ -143,8 +143,8 @@ module Darthjee
         #   changer.change_text { |key| key.to_s.upcase }
         #
         #   hash  # changed to { KEY: { INNER_KEY: 10 } }
-        def change_text(type: :keep, **options)
-          change_keys(**options) do |key|
+        def change_text(type: :keep, **)
+          change_keys(**) do |key|
             cast_new_key yield(key), key.class, type
           end
         end
@@ -169,9 +169,9 @@ module Darthjee
         # @return [::String,::Symbol]
         def cast_new_key(key, old_clazz, type)
           case class_cast(old_clazz, type)
-          when :symbol then
+          when :symbol
             key.to_sym
-          when :string then
+          when :string
             key.to_s
           end
         end
@@ -192,6 +192,7 @@ module Darthjee
         # @return [::Symbol]
         def class_cast(old_clazz, type)
           return type unless type == :keep
+
           old_clazz.to_s.downcase.to_sym
         end
       end

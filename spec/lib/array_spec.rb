@@ -201,6 +201,7 @@ describe Array do
         end
 
         it { expect(value).to eq('2') }
+
         it 'calls the mapping only until it returns a valid value' do
           expect(transformer).to have_received(:transform).exactly(2)
         end
@@ -267,7 +268,7 @@ describe Array do
           filtered
         end
 
-        it { expect(filtered).to eq(array[1..-1].map(&:to_s)) }
+        it { expect(filtered).to eq(array[1..].map(&:to_s)) }
 
         it 'calls the mapping only once per element' do
           expect(transformer).to have_received(:transform).exactly(4)

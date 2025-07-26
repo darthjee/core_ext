@@ -5,11 +5,11 @@ class DummyIterator
     @array = array
   end
 
-  def map(*args, &block)
-    @array.map(*args, &block)
+  def map(*, &)
+    @array.map(*, &)
   end
 
-  def each(*args, &block)
-    @array.each(*args, &block)
+  def each(*, &)
+    @array.each(*, &)
   end
 end
