@@ -12,6 +12,10 @@ Yard Documentation
 -------------------
 [https://www.rubydoc.info/gems/darthjee-core_ext/3.0.0](https://www.rubydoc.info/gems/darthjee-core_ext/3.0.0)
 
+Current Release: [3.0.0](https://github.com/darthjee/core_ext/tree/3.0.0)
+
+[Next release](https://github.com/darthjee/core_ext/compare/3.0.0...master)
+
 # Usage
 This project adds some new methods to the core ruby classes
 
