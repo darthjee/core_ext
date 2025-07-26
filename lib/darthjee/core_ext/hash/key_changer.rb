@@ -61,11 +61,11 @@ module Darthjee
         #        #     'key_c' => 3
         #        #   }
         #        # }
-        def change_keys(recursive: true, &block)
+        def change_keys(recursive: true, &)
           if recursive
-            hash.deep_transform_keys!(&block)
+            hash.deep_transform_keys!(&)
           else
-            hash.transform_keys!(&block)
+            hash.transform_keys!(&)
           end
         end
 
