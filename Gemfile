@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in credential_builder.gemspec
 gemspec
 
-gem 'bundler',       '~> 2.5.13'
+gem 'bundler',       '~> 2.6.8'
 gem 'pry',           '0.14.2'
 gem 'pry-nav',       '1.0.0'
 gem 'rake',          '13.2.1'
