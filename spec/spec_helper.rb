@@ -4,6 +4,7 @@ require 'simplecov'
 
 SimpleCov.start do
   add_filter '/spec/'
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 end
 
 require 'pry-nav'
