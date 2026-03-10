@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-require 'simplecov_json_formatter'
+
+if ENV['CI']
+  require 'simplecov-lcov'
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+end
 
 SimpleCov.start do
   add_filter '/spec/'
