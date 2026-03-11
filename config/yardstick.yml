@@ -20,6 +20,7 @@ rules:
     enabled: true
     exclude:
       - Darthjee::CoreExt::Array::HashBuilder#initialize
+      - Darthjee::CoreExt::Hash::ChainFetcher#initialize
   Summary::Presence:
     enabled: true
     exclude:

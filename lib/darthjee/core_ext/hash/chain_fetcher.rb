@@ -11,6 +11,9 @@ module Darthjee
       #
       # @see Darthjee::CoreExt::Hash#chain_fetch
       class ChainFetcher
+        # @param [::Hash] hash Hash to fetch from
+        # @param [Array] keys List of keys to fetch in chain
+        # @param [Proc] block Block to call in case of missing key
         def initialize(hash, *keys, &block)
           @hash = hash
           @keys = keys
@@ -21,7 +24,7 @@ module Darthjee
         #
         # @example (see Darthjee::CoreExt::Hash#chain_fetch)
         #
-        # @return [Object] value fetched from array
+        # @return [Object] value fetched from hash
         def fetch
           return fetch_with_block if block.present?
 
