@@ -51,6 +51,15 @@ module Darthjee
         private
 
         attr_reader :values, :keys
+        # @method values
+        # @api private
+        # @private
+        # @return [::Array] values of the hash to be built
+
+        # @method keys
+        # @api private
+        # @private
+        # @return [::Array] keys of the hash to be built
 
         # @private
         #
