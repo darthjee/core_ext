@@ -22,6 +22,7 @@ rules:
       - Darthjee::CoreExt::Array::HashBuilder#initialize
       - Darthjee::CoreExt::Hash::ChainFetcher#initialize
       - Darthjee::CoreExt::Hash::KeyChanger#initialize
+      - Darthjee::CoreExt::Hash::KeysSorter#initialize
   Summary::Presence:
     enabled: true
     exclude:

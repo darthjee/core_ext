@@ -43,6 +43,18 @@ module Darthjee
         private
 
         attr_reader :hash, :recursive
+        
+        # @method hash
+        # @api private
+        # @private
+        # Returns the hash to be sorted
+        # @return [::Hash] hash to be sorted
+
+        # @method recursive
+        # @api private
+        # @private
+        # Returns the flag indicating to perform transformation recursively
+        # @return [::TrueClass,::FalseClass] flag indicating to perform transformation recursively
 
         # @api private
         # @private
