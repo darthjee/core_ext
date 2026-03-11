@@ -11,10 +11,6 @@ RSpec/MultipleExpectations:
   Exclude:
     - 'spec/integration/**/*_spec.rb'
 
-Naming/PredicateName:
-  Exclude:
-    - 'lib/darthjee/core_ext/object.rb'
-
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*_spec.rb'
