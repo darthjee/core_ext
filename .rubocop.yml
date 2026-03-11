@@ -1,4 +1,6 @@
-require: rubocop-rspec
+plugins:
+  - rubocop-rspec
+  - rubocop-rake
 inherit_from: .rubocop_todo.yml
 
 AllCops:
@@ -8,10 +10,6 @@ AllCops:
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/integration/**/*_spec.rb'
-
-Naming/PredicateName:
-  Exclude:
-    - 'lib/darthjee/core_ext/object.rb'
 
 Metrics/BlockLength:
   Exclude:
