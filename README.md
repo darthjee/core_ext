@@ -1,10 +1,9 @@
 Darthjee/CoreExt
 ========
-
-[![Code Climate](https://codeclimate.com/github/darthjee/core_ext/badges/gpa.svg)](https://codeclimate.com/github/darthjee/core_ext)
-[![Test Coverage](https://codeclimate.com/github/darthjee/core_ext/badges/coverage.svg)](https://codeclimate.com/github/darthjee/core_ext/coverage)
-[![Issue Count](https://codeclimate.com/github/darthjee/core_ext/badges/issue_count.svg)](https://codeclimate.com/github/darthjee/core_ext)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/darthjee/core_ext/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/darthjee/core_ext/tree/main)
 [![Gem Version](https://badge.fury.io/rb/darthjee-core_ext.svg)](https://badge.fury.io/rb/darthjee-core_ext)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7040ce183ef40a4a2171b2e493c31d7)](https://app.codacy.com/gh/darthjee/core_ext/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e7040ce183ef40a4a2171b2e493c31d7)](https://app.codacy.com/gh/darthjee/core_ext/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 
 ![core_ext](https://raw.githubusercontent.com/darthjee/core_ext/master/mech.jpg)
 
