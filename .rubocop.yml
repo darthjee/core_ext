@@ -33,3 +33,6 @@ Style/HashEachMethods:
   Exclude:
     - 'lib/darthjee/core_ext/hash/deep_hash_constructor.rb'
     - 'lib/darthjee/core_ext/hash/squasher.rb'
+
+Gemspec/RequireMFA:
+  Enabled: false
