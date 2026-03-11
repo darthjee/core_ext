@@ -13,7 +13,7 @@ Yard Documentation
 
 **Current Release**: [3.0.0](https://github.com/darthjee/core_ext/tree/3.0.0)
 
-**Next release**: [3.1.0](https://github.com/darthjee/core_ext/compare/3.0.0...master)
+**Next release**: [3.1.0](https://github.com/darthjee/core_ext/compare/3.0.0...main)
 
 # Usage
 This project adds some new methods to the core ruby classes
