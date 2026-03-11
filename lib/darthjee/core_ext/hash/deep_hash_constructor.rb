@@ -67,8 +67,13 @@ module Darthjee
 
         private
 
-        # @private
         attr_reader :separator
+        
+        # @method separator
+        # @api private
+        # @private
+        # Returns the keys splitter
+        # @return [::String] keys splitter
 
         # @private
         # break the keys creating sub-hashes
