@@ -33,8 +33,21 @@ module Darthjee
 
         private
 
-        # @private
         attr_reader :hash, :keys, :block
+        # @method hash
+        # @api private
+        # @private
+        # @return [::Hash] hash to fetch from
+
+        # @method keys
+        # @api private
+        # @private
+        # @return [::Array] list of keys to fetch in chain
+
+        # @method block
+        # @api private
+        # @private
+        # @return [Proc] block to call in case of missing key
 
         # @private
         #
