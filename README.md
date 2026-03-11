@@ -5,7 +5,7 @@ Darthjee/CoreExt
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e7040ce183ef40a4a2171b2e493c31d7)](https://app.codacy.com/gh/darthjee/core_ext/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e7040ce183ef40a4a2171b2e493c31d7)](https://app.codacy.com/gh/darthjee/core_ext/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
 
-![core_ext](https://raw.githubusercontent.com/darthjee/core_ext/master/mech.jpg)
+![core_ext](https://raw.githubusercontent.com/darthjee/core_ext/main/core_ext.jpg)
 
 Yard Documentation
 -------------------
