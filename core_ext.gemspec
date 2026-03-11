@@ -20,5 +20,5 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'activesupport', '~> 7.x'
 
-  gem.metadata['rubygems_mfa_required'] = 'true'
+  gem.metadata['rubygems_mfa_required'] = 'false'
 end
