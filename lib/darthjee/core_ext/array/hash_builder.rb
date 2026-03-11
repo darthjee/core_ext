@@ -55,11 +55,13 @@ module Darthjee
         # @method values
         # @api private
         # @private
+        # Returns the values of the hash to be built
         # @return [::Array] values of the hash to be built
 
         # @method keys
         # @api private
         # @private
+        # Returns the keys of the hash to be built
         # @return [::Array] keys of the hash to be built
 
         # @private

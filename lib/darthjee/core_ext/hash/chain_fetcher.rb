@@ -38,16 +38,19 @@ module Darthjee
         # @method hash
         # @api private
         # @private
+        # Returns the hash to fetch from
         # @return [::Hash] hash to fetch from
 
         # @method keys
         # @api private
         # @private
+        # Returns the list of keys to fetch in chain
         # @return [::Array] list of keys to fetch in chain
 
         # @method block
         # @api private
         # @private
+        # Returns the block to call in case of missing key
         # @return [Proc] block to call in case of missing key
 
         # @private
