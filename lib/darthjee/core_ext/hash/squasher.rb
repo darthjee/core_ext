@@ -79,6 +79,12 @@ module Darthjee
 
         attr_reader :joiner
 
+        # @method joiner
+        # @api private
+        # @private
+        # Returns the string used to join keys
+        # @return [::String] string used to join keys
+
         # @private
         #
         # Perform squashing on array
