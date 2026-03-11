@@ -26,6 +26,7 @@ rules:
       - Darthjee::CoreExt::Hash::DeepHashConstructor#initialize
       - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#initialize
       - Darthjee::CoreExt::Hash::Squasher#initialize
+      - Darthjee::CoreExt::Hash::ValueChanger#initialize
   Summary::Presence:
     enabled: true
     exclude:

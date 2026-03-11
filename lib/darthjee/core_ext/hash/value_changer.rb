@@ -124,6 +124,24 @@ module Darthjee
 
         attr_reader :recursive, :skip_inner, :block
 
+        # @method recursive
+        # @api private
+        # @private
+        # Returns the flag telling to apply transformation recursively
+        # @return [::TrueClass,::FalseClass] flag telling to apply transformation recursively
+
+        # @method skip_inner
+        # @api private
+        # @private
+        # Returns the flag telling to not apply change block call to inner hashes
+        # @return [::TrueClass,::FalseClass] flag telling to not apply change block call to inner hashes
+
+        # @method block
+        # @api private
+        # @private
+        # Returns the block to be called when changing the values
+        # @return [::Proc] block to be called when changing the values
+
         # @private
         #
         # Apply change logic to hash object
