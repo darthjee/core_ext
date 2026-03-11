@@ -153,6 +153,7 @@ module Darthjee
         private
 
         attr_reader :hash
+
         # @method hash
         # @api private
         # @private

@@ -34,6 +34,7 @@ module Darthjee
         private
 
         attr_reader :hash, :keys, :block
+
         # @method hash
         # @api private
         # @private

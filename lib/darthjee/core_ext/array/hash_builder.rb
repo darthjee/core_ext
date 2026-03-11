@@ -51,6 +51,7 @@ module Darthjee
         private
 
         attr_reader :values, :keys
+
         # @method values
         # @api private
         # @private

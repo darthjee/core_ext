@@ -43,7 +43,7 @@ module Darthjee
         private
 
         attr_reader :hash, :recursive
-        
+
         # @method hash
         # @api private
         # @private
