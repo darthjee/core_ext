@@ -24,6 +24,7 @@ rules:
       - Darthjee::CoreExt::Hash::KeyChanger#initialize
       - Darthjee::CoreExt::Hash::KeysSorter#initialize
       - Darthjee::CoreExt::Hash::DeepHashConstructor#initialize
+      - Darthjee::CoreExt::Hash::Squasher#initialize
   Summary::Presence:
     enabled: true
     exclude:

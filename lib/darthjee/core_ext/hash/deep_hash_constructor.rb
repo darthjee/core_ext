@@ -68,7 +68,7 @@ module Darthjee
         private
 
         attr_reader :separator
-        
+
         # @method separator
         # @api private
         # @private

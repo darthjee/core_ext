@@ -15,8 +15,6 @@ module Darthjee
       # @example (see Transformable#squash)
       # @example (see #squash)
       class Squasher
-        attr_reader :joiner
-
         # @param joiner [::String] string used to join keys
         def initialize(joiner = '.')
           @joiner = joiner
@@ -78,6 +76,8 @@ module Darthjee
         end
 
         private
+
+        attr_reader :joiner
 
         # @private
         #
