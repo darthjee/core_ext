@@ -3,6 +3,7 @@
 module Darthjee
   module CoreExt
     module Hash
+      # Add transforming methods to Hash
       module Transformable
         # Merge only common keys
         #
