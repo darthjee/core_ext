@@ -7,6 +7,7 @@ module Darthjee
       #
       # @author Darthjee
       class KeyChanger
+        # @param [::Hash] hash Hash to change keys of
         def initialize(hash)
           @hash = hash
         end
@@ -152,6 +153,14 @@ module Darthjee
         private
 
         attr_reader :hash
+
+        # @method hash
+        # @api private
+        # @private
+        #
+        # Original hash to change keys of
+        #
+        # @return [::Hash] hash to change keys of
 
         # @api private
         # @private

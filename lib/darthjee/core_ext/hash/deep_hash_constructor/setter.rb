@@ -63,8 +63,19 @@ module Darthjee
 
           private
 
-          # @private
           attr_reader :hash, :base_key
+
+          # @method hash
+          # @api private
+          # @private
+          # Returns the hash to be changed
+          # @return [::Hash] hash to be changed
+
+          # @method base_key
+          # @api private
+          # @private
+          # Returns the base key of hash where subhash will be created
+          # @return [::String] base key of hash where subhash will be created
 
           # @private
           # Extract index of array from base_key

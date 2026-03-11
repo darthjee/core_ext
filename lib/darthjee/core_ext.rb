@@ -12,6 +12,7 @@ require 'darthjee/core_ext/symbol'
 require 'darthjee/core_ext/time'
 
 module Darthjee
+  # Namespace for Darthjee's core extensions.
   module CoreExt
     PATH = 'darthjee/core_ext'
 

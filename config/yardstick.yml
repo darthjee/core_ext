@@ -19,24 +19,14 @@ rules:
   ReturnTag:
     enabled: true
     exclude:
-      - Darthjee::CoreExt::Array::HashBuilder#values
-      - Darthjee::CoreExt::Array::HashBuilder#keys
-      - Darthjee::CoreExt::Array::HashBuilder#values=
-      - Darthjee::CoreExt::Array::HashBuilder#keys=
-      - Darthjee::CoreExt::Hash::ChainFetcher#hash
-      - Darthjee::CoreExt::Hash::ChainFetcher#keys
-      - Darthjee::CoreExt::Hash::ChainFetcher#block
-      - Darthjee::CoreExt::Hash::DeepHashConstructor#separator
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#hash
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#base_key
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#key
-      - Darthjee::CoreExt::Hash::KeyChanger#hash
-      - Darthjee::CoreExt::Hash::KeysSorter#hash
-      - Darthjee::CoreExt::Hash::KeysSorter#recursive
-      - Darthjee::CoreExt::Hash::Squasher#joiner
-      - Darthjee::CoreExt::Hash::ValueChanger#recursive
-      - Darthjee::CoreExt::Hash::ValueChanger#skip_inner
-      - Darthjee::CoreExt::Hash::ValueChanger#block
+      - Darthjee::CoreExt::Array::HashBuilder#initialize
+      - Darthjee::CoreExt::Hash::ChainFetcher#initialize
+      - Darthjee::CoreExt::Hash::KeyChanger#initialize
+      - Darthjee::CoreExt::Hash::KeysSorter#initialize
+      - Darthjee::CoreExt::Hash::DeepHashConstructor#initialize
+      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#initialize
+      - Darthjee::CoreExt::Hash::Squasher#initialize
+      - Darthjee::CoreExt::Hash::ValueChanger#initialize
   Summary::Presence:
     enabled: true
     exclude:
@@ -48,24 +38,6 @@ rules:
       - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#initialize
       - Darthjee::CoreExt::Hash::KeysSorter#initialize
       - Darthjee::CoreExt::Hash::Squasher#initialize
-      - Darthjee::CoreExt::Array::HashBuilder#values
-      - Darthjee::CoreExt::Array::HashBuilder#keys
-      - Darthjee::CoreExt::Array::HashBuilder#values=
-      - Darthjee::CoreExt::Array::HashBuilder#keys=
-      - Darthjee::CoreExt::Hash::ChainFetcher#hash
-      - Darthjee::CoreExt::Hash::ChainFetcher#keys
-      - Darthjee::CoreExt::Hash::ChainFetcher#block
-      - Darthjee::CoreExt::Hash::DeepHashConstructor#separator
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#hash
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#base_key
-      - Darthjee::CoreExt::Hash::DeepHashConstructor::Setter#key
-      - Darthjee::CoreExt::Hash::KeyChanger#hash
-      - Darthjee::CoreExt::Hash::KeysSorter#hash
-      - Darthjee::CoreExt::Hash::KeysSorter#recursive
-      - Darthjee::CoreExt::Hash::Squasher#joiner
-      - Darthjee::CoreExt::Hash::ValueChanger#recursive
-      - Darthjee::CoreExt::Hash::ValueChanger#skip_inner
-      - Darthjee::CoreExt::Hash::ValueChanger#block
   Summary::Length:
     enabled: true
     exclude: []
