@@ -36,7 +36,6 @@ Delegate implementation, exploration and review to the right agent.
 |----------|-------------|
 | `folder-structure.md` | Top-level directory layout |
 | `architecture.md` | Source layout and design |
-| `flow.md` | Development flow |
 | `contributing.md` | Commit, PR and code-organization rules |
 
 Keep them and AGENTS.md in sync when scopes change.

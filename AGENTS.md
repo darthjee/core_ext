@@ -106,7 +106,6 @@
 |----------|-------------|
 | [Folder Structure](docs/agents/folder-structure.md) | Top-level directory layout and the role of each folder. |
 | [Architecture](docs/agents/architecture.md) | Source layout and design of the gem. |
-| [Flow](docs/agents/flow.md) | Development flow. |
 | [Contributing](docs/agents/contributing.md) | Commit guidelines, PR standards, code organization, and refactoring rules. |
 
 ## Commit Attribution
